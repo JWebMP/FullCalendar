@@ -3,7 +3,6 @@ package za.co.mmagon.jwebswing.plugins.fullcalendar;
 import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
-import za.co.mmagon.jwebswing.components.moment.MomentAngularModule;
 
 /**
  * Adds on a ToolTip, String for custom text using header theme, Div for custom contents
@@ -32,8 +31,6 @@ public class FullCalendarFeature extends Feature<FullCalendarOptions, FullCalend
         addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
         addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
         addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
-
-        forComponent.getAngularModules().add(new MomentAngularModule(forComponent));
     }
 
     /**

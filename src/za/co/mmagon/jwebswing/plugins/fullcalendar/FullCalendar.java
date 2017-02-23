@@ -17,6 +17,7 @@
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
 import za.co.mmagon.jwebswing.base.html.Div;
+import za.co.mmagon.jwebswing.plugins.ComponentInformation;
 
 /**
  * An implementation of
@@ -25,6 +26,7 @@ import za.co.mmagon.jwebswing.base.html.Div;
  * @since 17 Jan 2017
  * @version 1.0
  */
+@ComponentInformation(name = "Full Calendar", description = "Display a full-size drag-n-drop event calendar", url = "https://fullcalendar.io/")
 public class FullCalendar extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, FullCalendar>
 {
 
@@ -40,6 +42,7 @@ public class FullCalendar extends Div<FullCalendarChildren, FullCalendarAttribut
     public FullCalendar()
     {
         addFeature(getFeature());
+        FullCalendarPageConfigurator.setFullCalendarRequired(this, true);
     }
 
     /**
