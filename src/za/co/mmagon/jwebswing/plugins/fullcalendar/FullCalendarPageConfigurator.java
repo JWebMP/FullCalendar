@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -60,15 +60,14 @@ public class FullCalendarPageConfigurator extends PageConfigurator
     {
         if (!page.isConfigured())
         {
-            if (page.getBody().readChildrenPropertyFirstResult(FullCalendarEnabled, true))
-            {
-
-            }
+            page.getBody().addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
+            page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
+            page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
         }
         return page;
     }
 
-    public static void setFullCalendarRequired(Component component, boolean required)
+    public static void setRequired(Component component, boolean required)
     {
         component.getProperties().put(FullCalendarEnabled, required);
     }

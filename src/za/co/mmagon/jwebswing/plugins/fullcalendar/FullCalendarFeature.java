@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,9 +44,9 @@ public class FullCalendarFeature extends Feature<FullCalendarOptions, FullCalend
         super("FullCalendarFeature");
         setComponent(forComponent);
 
-        addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
+        /*addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
         addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
-        addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
+        addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());*/
     }
 
     /**
