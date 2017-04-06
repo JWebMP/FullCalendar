@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,14 +33,26 @@ public class FullCalendarEventSource extends FullCalendarEvent
 {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * The URL for an event source
+     */
     private String url;
 
+    /**
+     * The URL for the event source
+     *
+     * @return
+     */
     public String getUrl()
     {
         return url;
     }
 
+    /**
+     * The URL for the events source
+     *
+     * @param url
+     */
     public void setUrl(String url)
     {
         this.url = url;

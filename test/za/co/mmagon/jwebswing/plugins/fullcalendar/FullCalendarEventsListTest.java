@@ -17,8 +17,8 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
-import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEventsList;
 import org.junit.Test;
+import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEventsList;
 
 /**
  *

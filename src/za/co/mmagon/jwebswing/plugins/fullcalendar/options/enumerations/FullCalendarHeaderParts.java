@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,9 +52,21 @@ public enum FullCalendarHeaderParts
      * A space between
      */
     space,
+    /**
+     * A month button to be shown
+     */
     month,
+    /**
+     * The agenda week to be shown
+     */
     agendaWeek,
+    /**
+     * The agenda day to be shown
+     */
     agendaDay,
+    /**
+     * The list week to be shown
+     */
     listWeek;
 
     /**

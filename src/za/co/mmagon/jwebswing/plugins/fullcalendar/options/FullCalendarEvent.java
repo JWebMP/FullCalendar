@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
  * @since 05 Feb 2017
  *
  */
-public class FullCalendarEvent extends JavaScriptPart
+public class FullCalendarEvent extends JavaScriptPart implements IFullCalendarEvent
 {
 
     private static final long serialVersionUID = 1L;
@@ -164,6 +164,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * String/Integer. Optional
      * <p>
      * Uniquely identifies the given event. Different instances of repeating events should all have the same id.
+     *
+     * @return
      */
     public String getId()
     {
@@ -174,6 +176,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * String/Integer. Optional
      * <p>
      * Uniquely identifies the given event. Different instances of repeating events should all have the same id.
+     *
+     * @param id
+     * @return
      */
     public FullCalendarEvent setId(String id)
     {
@@ -185,6 +190,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * String. Required.
      * <p>
      * The text on an event's element
+     *
+     * @return
      */
     public String getTitle()
     {
@@ -195,6 +202,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * String. Required.
      * <p>
      * The text on an event's element
+     *
+     * @param title
+     * @return
      */
     public FullCalendarEvent setTitle(String title)
     {
@@ -211,6 +221,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * If all else fails, FullCalendar will try to guess. If either the start or end value has a "T" as part of the ISO8601 date string, allDay will become false. Otherwise, it will be true.
      * <p>
      * Don't include quotes around your true/false. This value is a boolean, not a string!
+     *
+     * @return
      */
     public Boolean getAllDay()
     {
@@ -226,6 +238,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * If all else fails, FullCalendar will try to guess. If either the start or end value has a "T" as part of the ISO8601 date string, allDay will become false. Otherwise, it will be true.
      * <p>
      * Don't include quotes around your true/false. This value is a boolean, not a string!
+     *
+     * @param allDay
+     * @return
      */
     public FullCalendarEvent setAllDay(Boolean allDay)
     {
@@ -237,6 +252,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * The date/time an event begins. Required.
      * <p>
      * A Moment-ish input, like an ISO8601 string. Throughout the API this will become a real Moment object.
+     *
+     * @return
      */
     public Date getStart()
     {
@@ -247,6 +264,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * The date/time an event begins. Required.
      * <p>
      * A Moment-ish input, like an ISO8601 string. Throughout the API this will become a real Moment object.
+     *
+     * @param start
+     * @return
      */
     public FullCalendarEvent setStart(Date start)
     {
@@ -260,6 +280,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * A Moment-ish input, like an ISO8601 string. Throughout the API this will become a real Moment object.
      * <p>
      * It is the moment immediately after the event has ended. For example, if the last full day of an event is Thursday, the exclusive end of the event will be 00:00:00 on Friday!
+     *
+     * @return
      */
     public Date getEnd()
     {
@@ -272,6 +294,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * A Moment-ish input, like an ISO8601 string. Throughout the API this will become a real Moment object.
      * <p>
      * It is the moment immediately after the event has ended. For example, if the last full day of an event is Thursday, the exclusive end of the event will be 00:00:00 on Friday!
+     *
+     * @param end
+     * @return
      */
     public FullCalendarEvent setEnd(Date end)
     {
@@ -283,6 +308,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * String/Array. Optional.
      * <p>
      * A CSS class (or array of classes) that will be attached to this event's element.
+     *
+     * @return
      */
     public List<String> getClassName()
     {
@@ -297,6 +324,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * String/Array. Optional.
      * <p>
      * A CSS class (or array of classes) that will be attached to this event's element.
+     *
+     * @param className
+     * @return
      */
     public FullCalendarEvent setClassName(List<String> className)
     {
@@ -308,6 +338,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master editable option for this single event.
+     *
+     * @return
      */
     public Boolean getEditable()
     {
@@ -318,6 +350,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master editable option for this single event.
+     *
+     * @param editable
+     * @return
      */
     public FullCalendarEvent setEditable(Boolean editable)
     {
@@ -329,6 +364,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master eventStartEditable option for this single event.
+     *
+     * @return
      */
     public Boolean getStartEditable()
     {
@@ -339,6 +376,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master eventStartEditable option for this single event.
+     *
+     * @param startEditable
+     * @return
      */
     public FullCalendarEvent setStartEditable(Boolean startEditable)
     {
@@ -350,6 +390,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master eventDurationEditable option for this single event.
+     *
+     * @return
      */
     public Boolean getDurationEditable()
     {
@@ -360,6 +402,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master eventDurationEditable option for this single event.
+     *
+     * @param durationEditable
+     * @return
      */
     public FullCalendarEvent setDurationEditable(Boolean durationEditable)
     {
@@ -371,6 +416,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master eventResourceEditable option for this single event.
+     *
+     * @return
      */
     public Boolean getResourceEditable()
     {
@@ -381,6 +428,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * true or false. Optional.
      * <p>
      * Overrides the master eventResourceEditable option for this single event.
+     *
+     * @param resourceEditable
+     * @return
      */
     public FullCalendarEvent setResourceEditable(Boolean resourceEditable)
     {
@@ -392,6 +442,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * Allows alternate rendering of the event, like background events.
      * <p>
      * Can be empty, "background", or "inverse-background"
+     *
+     * @return
      */
     public FullCalendarEventRenderingOptions getRendering()
     {
@@ -402,6 +454,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * Allows alternate rendering of the event, like background events.
      * <p>
      * Can be empty, "background", or "inverse-background"
+     *
+     * @param rendering
+     * @return
      */
     public FullCalendarEvent setRendering(FullCalendarEventRenderingOptions rendering)
     {
@@ -415,6 +470,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * Overrides the master eventOverlap option for this single event.
      * <p>
      * If false, prevents this event from being dragged/resized over other events. Also prevents other events from being dragged/resized over this event.
+     *
+     * @return
      */
     public Boolean getOverlap()
     {
@@ -427,6 +484,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * Overrides the master eventOverlap option for this single event.
      * <p>
      * If false, prevents this event from being dragged/resized over other events. Also prevents other events from being dragged/resized over this event.
+     *
+     * @param overlap
+     * @return
      */
     public FullCalendarEvent setOverlap(Boolean overlap)
     {
@@ -439,6 +499,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * an event ID, "businessHours", object. Optional.
      * <p>
      * Overrides the master eventConstraint option for this single event.
+     *
+     * @return
      */
     public Serializable getConstraint()
     {
@@ -450,6 +512,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * an event ID, "businessHours", object. Optional.
      * <p>
      * Overrides the master eventConstraint option for this single event.
+     *
+     * @param constraint
+     * @return
      */
     public FullCalendarEvent setConstraint(Serializable constraint)
     {
@@ -461,6 +526,8 @@ public class FullCalendarEvent extends JavaScriptPart
      * Event Source Object. Automatically populated.
      * <p>
      * A reference to the event source that this event came from.
+     *
+     * @return
      */
     public Serializable getSource()
     {
@@ -471,6 +538,9 @@ public class FullCalendarEvent extends JavaScriptPart
      * Event Source Object. Automatically populated.
      * <p>
      * A reference to the event source that this event came from.
+     *
+     * @param source
+     * @return
      */
     public FullCalendarEvent setSource(Serializable source)
     {
@@ -480,6 +550,8 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's background and border color just like the calendar-wide eventColor option.
+     *
+     * @return
      */
     public ColourCSSImpl getColor()
     {
@@ -488,6 +560,9 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's background and border color just like the calendar-wide eventColor option.
+     *
+     * @param color
+     * @return
      */
     public FullCalendarEvent setColor(ColourCSSImpl color)
     {
@@ -497,6 +572,8 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's background color just like the calendar-wide eventBackgroundColor option.
+     *
+     * @return
      */
     public ColourCSSImpl getBackgroundColor()
     {
@@ -505,6 +582,9 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's background color just like the calendar-wide eventBackgroundColor option.
+     *
+     * @param backgroundColor
+     * @return
      */
     public FullCalendarEvent setBackgroundColor(ColourCSSImpl backgroundColor)
     {
@@ -514,6 +594,8 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's border color just like the the calendar-wide eventBorderColor option.
+     *
+     * @return
      */
     public ColourCSSImpl getBorderColor()
     {
@@ -522,6 +604,9 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's border color just like the the calendar-wide eventBorderColor option.
+     *
+     * @param borderColor
+     * @return
      */
     public FullCalendarEvent setBorderColor(ColourCSSImpl borderColor)
     {
@@ -531,6 +616,8 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's text color just like the calendar-wide eventTextColor option.
+     *
+     * @return
      */
     public ColourCSSImpl getTextColor()
     {
@@ -539,6 +626,9 @@ public class FullCalendarEvent extends JavaScriptPart
 
     /**
      * Sets an event's text color just like the calendar-wide eventTextColor option.
+     *
+     * @param textColor
+     * @return
      */
     public FullCalendarEvent setTextColor(ColourCSSImpl textColor)
     {

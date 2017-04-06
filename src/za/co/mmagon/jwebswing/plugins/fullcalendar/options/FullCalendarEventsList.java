@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,16 @@ public class FullCalendarEventsList extends JavaScriptPart
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * A list of calendar events
+     */
     private List<FullCalendarEvent> events;
 
+    /**
+     * Returns the list of calendar events
+     *
+     * @return
+     */
     @JsonValue
     public List<FullCalendarEvent> getEvents()
     {
@@ -45,6 +53,11 @@ public class FullCalendarEventsList extends JavaScriptPart
         return events;
     }
 
+    /**
+     * Sets the list of calendar events
+     *
+     * @param events
+     */
     public void setEvents(List<FullCalendarEvent> events)
     {
         this.events = events;

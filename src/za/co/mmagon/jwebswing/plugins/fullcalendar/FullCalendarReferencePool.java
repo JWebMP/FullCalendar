@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,9 +28,10 @@ import za.co.mmagon.jwebswing.base.servlets.interfaces.ReferencePool;
  */
 public enum FullCalendarReferencePool implements ReferencePool
 {
-    FullCalendarReferencePrint(null, new CSSReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/fullcalendar.print.css", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.print.min.css")),
-    FullCalendarReference(new JavascriptReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/fullcalendar.js", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"),
-            new CSSReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/fullcalendar.css", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css")),;
+    FullCalendarGoogleCalendarReference(new JavascriptReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/gcal.min.js", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/gcal.min.js"), null),
+    FullCalendarReferencePrint(null, new CSSReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/fullcalendar.print.min.css", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.print.min.css")),
+    FullCalendarReference(new JavascriptReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.js", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"),
+                          new CSSReference("FullCalendar", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.css", "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css")),;
 
     /**
      * The actual javascript

@@ -44,9 +44,9 @@ public class FullCalendarFeature extends Feature<FullCalendarOptions, FullCalend
         super("FullCalendarFeature");
         setComponent(forComponent);
 
-        /*addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
+        addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
         addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
-        addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());*/
+        addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
     }
 
     /**

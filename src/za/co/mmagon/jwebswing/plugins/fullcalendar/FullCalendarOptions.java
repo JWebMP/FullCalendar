@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Marc Magon
  *
  * This program is free software: you can redistribute it and/or modify
@@ -91,6 +91,7 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
      * Sets the header
      *
      * @param header
+     * @return
      */
     public FullCalendarOptions setHeader(FullCalendarHeaderOptions header)
     {
@@ -116,6 +117,7 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
      * Sets the footer
      *
      * @param footer
+     * @return
      */
     public FullCalendarOptions setFooter(FullCalendarHeaderOptions footer)
     {
@@ -131,6 +133,8 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * can click day/week names to navigate views
+     *
+     * @return
      */
     public Boolean getNavLinks()
     {
@@ -139,6 +143,9 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * can click day/week names to navigate views
+     *
+     * @param navLinks
+     * @return
      */
     public FullCalendarOptions setNavLinks(Boolean navLinks)
     {
@@ -148,6 +155,8 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * The grid is editable or not
+     *
+     * @return
      */
     public Boolean getEditable()
     {
@@ -156,6 +165,9 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * The grid is editable or not
+     *
+     * @param editable
+     * @return
      */
     public FullCalendarOptions setEditable(Boolean editable)
     {
@@ -165,6 +177,8 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * Allow the "more" link when there's too many events
+     *
+     * @return
      */
     public Boolean getEventLimit()
     {
@@ -173,6 +187,9 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * Allow the "more" link when there's too many events
+     *
+     * @param eventLimit
+     * @return
      */
     public FullCalendarOptions setEventLimit(Boolean eventLimit)
     {
@@ -182,6 +199,8 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * The events for this calendar
+     *
+     * @return
      */
     public FullCalendarEventsList getEvents()
     {
@@ -194,6 +213,9 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 
     /**
      * The events for this calendar
+     *
+     * @param events
+     * @return
      */
     public FullCalendarOptions setEvents(FullCalendarEventsList events)
     {
@@ -215,6 +237,7 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
      * To use jquery ui themes
      *
      * @param theme
+     * @return
      */
     public FullCalendarOptions setTheme(Boolean theme)
     {
