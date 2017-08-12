@@ -17,6 +17,7 @@
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
 import java.util.Map;
+
 import za.co.mmagon.jwebswing.base.servlets.interfaces.IDataComponent;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEventsList;
@@ -25,224 +26,232 @@ import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarHeaderOpt
 /**
  * All the options
  * <p>
+ *
  * @author GedMarc
- * @since Mar 4, 2015
  * @version 1.0
  * <p>
  * <p>
+ * @since Mar 4, 2015
  */
 public class FullCalendarOptions extends JavaScriptPart implements IDataComponent<FullCalendarEventsList>
 {
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * The header
-     */
-    private FullCalendarHeaderOptions header;
-    /**
-     * The footer
-     */
-    private FullCalendarHeaderOptions footer;
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The header
+	 */
+	private FullCalendarHeaderOptions header;
+	/**
+	 * The footer
+	 */
+	private FullCalendarHeaderOptions footer;
 
-    /**
-     * can click day/week names to navigate views
-     */
-    private Boolean navLinks;
-    /**
-     * The grid is editable or not
-     */
-    private Boolean editable;
-    /**
-     * Allow the "more" link when there's too many events
-     */
-    private Boolean eventLimit;
-    /**
-     * The events for this calendar
-     */
-    private FullCalendarEventsList events;
-    /**
-     * To use jquery ui themes
-     */
-    private Boolean theme;
+	/**
+	 * can click day/week names to navigate views
+	 */
+	private Boolean navLinks;
+	/**
+	 * The grid is editable or not
+	 */
+	private Boolean editable;
+	/**
+	 * Allow the "more" link when there's too many events
+	 */
+	private Boolean eventLimit;
+	/**
+	 * The events for this calendar
+	 */
+	private FullCalendarEventsList events;
+	/**
+	 * To use jquery ui themes
+	 */
+	private Boolean theme;
 
-    /**
-     * The options for the component
-     */
-    public FullCalendarOptions()
-    {
+	/**
+	 * The options for the component
+	 */
+	public FullCalendarOptions()
+	{
 
-    }
+	}
 
-    /**
-     * The header options. never null
-     *
-     * @return
-     */
-    public FullCalendarHeaderOptions getHeader()
-    {
-        if (header == null)
-        {
-            header = new FullCalendarHeaderOptions();
-        }
-        return header;
-    }
+	/**
+	 * The header options. never null
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderOptions getHeader()
+	{
+		if (header == null)
+		{
+			header = new FullCalendarHeaderOptions();
+		}
+		return header;
+	}
 
-    /**
-     * Sets the header
-     *
-     * @param header
-     * @return
-     */
-    public FullCalendarOptions setHeader(FullCalendarHeaderOptions header)
-    {
-        this.header = header;
-        return this;
-    }
+	/**
+	 * Sets the header
+	 *
+	 * @param header
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setHeader(FullCalendarHeaderOptions header)
+	{
+		this.header = header;
+		return this;
+	}
 
-    /**
-     * The footer of the calendar
-     *
-     * @return
-     */
-    public FullCalendarHeaderOptions getFooter()
-    {
-        if (footer == null)
-        {
-            footer = new FullCalendarHeaderOptions();
-        }
-        return footer;
-    }
+	/**
+	 * The footer of the calendar
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderOptions getFooter()
+	{
+		if (footer == null)
+		{
+			footer = new FullCalendarHeaderOptions();
+		}
+		return footer;
+	}
 
-    /**
-     * Sets the footer
-     *
-     * @param footer
-     * @return
-     */
-    public FullCalendarOptions setFooter(FullCalendarHeaderOptions footer)
-    {
-        this.footer = footer;
-        return this;
-    }
+	/**
+	 * Sets the footer
+	 *
+	 * @param footer
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setFooter(FullCalendarHeaderOptions footer)
+	{
+		this.footer = footer;
+		return this;
+	}
 
-    @Override
-    public FullCalendarEventsList getData(Map<String, String[]> params)
-    {
-        return getEvents();
-    }
+	@Override
+	public FullCalendarEventsList getData(Map<String, String[]> params)
+	{
+		return getEvents();
+	}
 
-    /**
-     * can click day/week names to navigate views
-     *
-     * @return
-     */
-    public Boolean getNavLinks()
-    {
-        return navLinks;
-    }
+	/**
+	 * can click day/week names to navigate views
+	 *
+	 * @return
+	 */
+	public Boolean getNavLinks()
+	{
+		return navLinks;
+	}
 
-    /**
-     * can click day/week names to navigate views
-     *
-     * @param navLinks
-     * @return
-     */
-    public FullCalendarOptions setNavLinks(Boolean navLinks)
-    {
-        this.navLinks = navLinks;
-        return this;
-    }
+	/**
+	 * can click day/week names to navigate views
+	 *
+	 * @param navLinks
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setNavLinks(Boolean navLinks)
+	{
+		this.navLinks = navLinks;
+		return this;
+	}
 
-    /**
-     * The grid is editable or not
-     *
-     * @return
-     */
-    public Boolean getEditable()
-    {
-        return editable;
-    }
+	/**
+	 * The grid is editable or not
+	 *
+	 * @return
+	 */
+	public Boolean getEditable()
+	{
+		return editable;
+	}
 
-    /**
-     * The grid is editable or not
-     *
-     * @param editable
-     * @return
-     */
-    public FullCalendarOptions setEditable(Boolean editable)
-    {
-        this.editable = editable;
-        return this;
-    }
+	/**
+	 * The grid is editable or not
+	 *
+	 * @param editable
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setEditable(Boolean editable)
+	{
+		this.editable = editable;
+		return this;
+	}
 
-    /**
-     * Allow the "more" link when there's too many events
-     *
-     * @return
-     */
-    public Boolean getEventLimit()
-    {
-        return eventLimit;
-    }
+	/**
+	 * Allow the "more" link when there's too many events
+	 *
+	 * @return
+	 */
+	public Boolean getEventLimit()
+	{
+		return eventLimit;
+	}
 
-    /**
-     * Allow the "more" link when there's too many events
-     *
-     * @param eventLimit
-     * @return
-     */
-    public FullCalendarOptions setEventLimit(Boolean eventLimit)
-    {
-        this.eventLimit = eventLimit;
-        return this;
-    }
+	/**
+	 * Allow the "more" link when there's too many events
+	 *
+	 * @param eventLimit
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setEventLimit(Boolean eventLimit)
+	{
+		this.eventLimit = eventLimit;
+		return this;
+	}
 
-    /**
-     * The events for this calendar
-     *
-     * @return
-     */
-    public FullCalendarEventsList getEvents()
-    {
-        if (events == null)
-        {
-            events = new FullCalendarEventsList();
-        }
-        return events;
-    }
+	/**
+	 * The events for this calendar
+	 *
+	 * @return
+	 */
+	public FullCalendarEventsList getEvents()
+	{
+		if (events == null)
+		{
+			events = new FullCalendarEventsList();
+		}
+		return events;
+	}
 
-    /**
-     * The events for this calendar
-     *
-     * @param events
-     * @return
-     */
-    public FullCalendarOptions setEvents(FullCalendarEventsList events)
-    {
-        this.events = events;
-        return this;
-    }
+	/**
+	 * The events for this calendar
+	 *
+	 * @param events
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setEvents(FullCalendarEventsList events)
+	{
+		this.events = events;
+		return this;
+	}
 
-    /**
-     * To use the themes
-     *
-     * @return
-     */
-    public Boolean getTheme()
-    {
-        return theme;
-    }
+	/**
+	 * To use the themes
+	 *
+	 * @return
+	 */
+	public Boolean getTheme()
+	{
+		return theme;
+	}
 
-    /**
-     * To use jquery ui themes
-     *
-     * @param theme
-     * @return
-     */
-    public FullCalendarOptions setTheme(Boolean theme)
-    {
-        this.theme = theme;
-        return this;
-    }
+	/**
+	 * To use jquery ui themes
+	 *
+	 * @param theme
+	 *
+	 * @return
+	 */
+	public FullCalendarOptions setTheme(Boolean theme)
+	{
+		this.theme = theme;
+		return this;
+	}
 
 }

@@ -17,20 +17,18 @@
 package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 
 /**
- *
  * @author GedMarc
  * @since 05 Feb 2017
- *
  */
 public enum FullCalendarEventRenderingOptions
 {
-    background,
-    inverse_background;
-
-    @Override
-    public String toString()
-    {
-        return name().replace('_', '-');
-    }
-
+	background,
+	inverse_background;
+	
+	@Override
+	public String toString()
+	{
+		return name().replace('_', '-');
+	}
+	
 }

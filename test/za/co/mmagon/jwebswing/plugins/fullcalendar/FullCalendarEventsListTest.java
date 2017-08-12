@@ -21,20 +21,19 @@ import org.junit.Test;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEventsList;
 
 /**
- *
  * @author GedMarc
  */
 public class FullCalendarEventsListTest
 {
 
-    public FullCalendarEventsListTest()
-    {
-    }
+	public FullCalendarEventsListTest()
+	{
+	}
 
-    @Test
-    public void testSomeMethod()
-    {
-        System.out.println(new FullCalendarEventsList());
-    }
+	@Test
+	public void testSomeMethod()
+	{
+		System.out.println(new FullCalendarEventsList());
+	}
 
 }

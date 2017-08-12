@@ -25,11 +25,10 @@ import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
  *
  * @author GedMarc
  * @since 04 Feb 2017
- *
  */
 public class FullCalendarHeaderCustomButton extends JavaScriptPart
 {
-
-    private static final long serialVersionUID = 1L;
-
+	
+	private static final long serialVersionUID = 1L;
+	
 }

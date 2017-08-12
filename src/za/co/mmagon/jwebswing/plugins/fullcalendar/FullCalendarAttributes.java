@@ -19,51 +19,50 @@ package za.co.mmagon.jwebswing.plugins.fullcalendar;
 import za.co.mmagon.jwebswing.base.html.interfaces.AttributeDefinitions;
 
 /**
- *
  * @author GedMarc
  */
 public enum FullCalendarAttributes implements AttributeDefinitions
 {
-    Visibility;
+	Visibility;
 
-    private boolean isKeyword;
+	private boolean isKeyword;
 
-    /**
-     * The component attributes
-     */
-    private FullCalendarAttributes()
-    {
-    }
+	/**
+	 * The component attributes
+	 */
+	private FullCalendarAttributes()
+	{
+	}
 
-    /**
-     * If the attribute is loaded as a keyword only
-     *
-     * @param isKeyword
-     */
-    private FullCalendarAttributes(boolean isKeyword)
-    {
-        this.isKeyword = isKeyword;
-    }
+	/**
+	 * If the attribute is loaded as a keyword only
+	 *
+	 * @param isKeyword
+	 */
+	private FullCalendarAttributes(boolean isKeyword)
+	{
+		this.isKeyword = isKeyword;
+	}
 
-    /**
-     * If the attribute is a keyword
-     *
-     * @return
-     */
-    @Override
-    public boolean isKeyword()
-    {
-        return isKeyword;
-    }
+	/**
+	 * If the attribute is a keyword
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isKeyword()
+	{
+		return isKeyword;
+	}
 
-    /**
-     * Returns the attribute name replacing all underscores with dashes and all dollar signs to empty
-     *
-     * @return
-     */
-    @Override
-    public String toString()
-    {
-        return name().toLowerCase().replace('_', '-').replace("$", "");
-    }
+	/**
+	 * Returns the attribute name replacing all underscores with dashes and all dollar signs to empty
+	 *
+	 * @return
+	 */
+	@Override
+	public String toString()
+	{
+		return name().toLowerCase().replace('_', '-').replace("$", "");
+	}
 }

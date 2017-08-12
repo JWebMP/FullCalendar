@@ -27,35 +27,34 @@ package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
  *
  * @author GedMarc
  * @since 05 Feb 2017
- *
  */
 public class FullCalendarEventSource extends FullCalendarEvent
 {
-
-    private static final long serialVersionUID = 1L;
-    /**
-     * The URL for an event source
-     */
-    private String url;
-
-    /**
-     * The URL for the event source
-     *
-     * @return
-     */
-    public String getUrl()
-    {
-        return url;
-    }
-
-    /**
-     * The URL for the events source
-     *
-     * @param url
-     */
-    public void setUrl(String url)
-    {
-        this.url = url;
-    }
-
+	
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The URL for an event source
+	 */
+	private String url;
+	
+	/**
+	 * The URL for the event source
+	 *
+	 * @return
+	 */
+	public String getUrl()
+	{
+		return url;
+	}
+	
+	/**
+	 * The URL for the events source
+	 *
+	 * @param url
+	 */
+	public void setUrl(String url)
+	{
+		this.url = url;
+	}
+	
 }

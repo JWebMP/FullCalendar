@@ -19,21 +19,20 @@ package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.FullCalendar;
 
 /**
- *
  * @author Marc Magon
  * @since 04 Apr 2017
  */
 public class FullCalendarGoogleCalendarEventSource extends FullCalendarEventSource
 {
-
-    private static final long serialVersionUID = 1L;
-
-    /*
-    * Constructs a new FullCalendarGoogleCalendarEventSource
-     */
-    public FullCalendarGoogleCalendarEventSource(FullCalendar fc)
-    {
-        //Nothing needed
-    }
-
+	
+	private static final long serialVersionUID = 1L;
+	
+	/*
+	* Constructs a new FullCalendarGoogleCalendarEventSource
+	 */
+	public FullCalendarGoogleCalendarEventSource(FullCalendar fc)
+	{
+		//Nothing needed
+	}
+	
 }

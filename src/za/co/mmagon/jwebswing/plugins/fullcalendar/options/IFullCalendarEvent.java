@@ -19,7 +19,6 @@ package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 import java.io.Serializable;
 
 /**
- *
  * @author Marc Magon
  * @since 04 Apr 2017
  */

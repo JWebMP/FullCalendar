@@ -22,53 +22,51 @@ import za.co.mmagon.jwebswing.PageConfigurator;
 import za.co.mmagon.jwebswing.plugins.PluginInformation;
 
 /**
- *
  * @author GedMarc
  * @since 23 Feb 2017
- *
  */
 @PluginInformation(pluginName = "Full Calendar",
-                   pluginUniqueName = "full-calendar",
-                   pluginDescription = "Full Calendar is a free, open-source project that enables you to design full calendar-like features and functions that is fully interactive, ajax controlled and mobile friendly. ",
-                   pluginVersion = "3.2.0",
-                   pluginDependancyUniqueIDs = "jquery,moment",
-                   pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
-                   pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
-                   pluginGitUrl = "https://github.com/GedMarc/JWebSwing-FullCalendarPlugin",
-                   pluginSourceUrl = "https://github.com/fullcalendar",
-                   pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-FullCalendarPlugin/wiki",
-                   pluginOriginalHomepage = "https://fullcalendar.io/",
-                   pluginSourceDonateUrl = "https://fullcalendar.io/donate/",
-                   pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/FullCalendarPlugin.jar/download",
-                   pluginIconUrl = "bower_components/fullcalendar/fullcalendar_icon.png",
-                   pluginIconImageUrl = "bower_components/fullcalendar/fullcalendar_example.png",
-                   pluginLastUpdatedDate = "2017/03/04"
+		pluginUniqueName = "full-calendar",
+		pluginDescription = "Full Calendar is a free, open-source project that enables you to design full calendar-like features and functions that is fully interactive, ajax controlled and mobile friendly. ",
+		pluginVersion = "3.2.0",
+		pluginDependancyUniqueIDs = "jquery,moment",
+		pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
+		pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
+		pluginGitUrl = "https://github.com/GedMarc/JWebSwing-FullCalendarPlugin",
+		pluginSourceUrl = "https://github.com/fullcalendar",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-FullCalendarPlugin/wiki",
+		pluginOriginalHomepage = "https://fullcalendar.io/",
+		pluginSourceDonateUrl = "https://fullcalendar.io/donate/",
+		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/FullCalendarPlugin.jar/download",
+		pluginIconUrl = "bower_components/fullcalendar/fullcalendar_icon.png",
+		pluginIconImageUrl = "bower_components/fullcalendar/fullcalendar_example.png",
+		pluginLastUpdatedDate = "2017/03/04"
 )
 public class FullCalendarPageConfigurator extends PageConfigurator
 {
 
-    private static final long serialVersionUID = 1L;
-    public static final String FullCalendarEnabled = "full-calendar-enabled";
+	public static final String FullCalendarEnabled = "full-calendar-enabled";
+	private static final long serialVersionUID = 1L;
 
-    public FullCalendarPageConfigurator()
-    {
+	public FullCalendarPageConfigurator()
+	{
 
-    }
+	}
 
-    @Override
-    public Page configure(Page page)
-    {
-        if (!page.isConfigured())
-        {
-            /*page.getBody().addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
+	public static void setRequired(Component component, boolean required)
+	{
+		component.getProperties().put(FullCalendarEnabled, required);
+	}
+
+	@Override
+	public Page configure(Page page)
+	{
+		if (!page.isConfigured())
+		{
+	        /*page.getBody().addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
             page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
             page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());*/
-        }
-        return page;
-    }
-
-    public static void setRequired(Component component, boolean required)
-    {
-        component.getProperties().put(FullCalendarEnabled, required);
-    }
+		}
+		return page;
+	}
 }

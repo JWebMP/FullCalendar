@@ -40,123 +40,126 @@ import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
  *
  * @author GedMarc
  * @since 04 Feb 2017
- *
  */
 public class FullCalendarHeaderButtonIcons extends JavaScriptPart
 {
-
-    private static final long serialVersionUID = 1L;
-    /**
-     * The class name for the previous item icon
-     */
-    private String prev;
-    /**
-     * The class name for the next item icon
-     */
-    private String next;
-    /**
-     * The previous year icon class
-     */
-    private String prevYear;
-    /**
-     * The next year icon class
-     */
-    private String nextYear;
-
-    /**
-     * Constructs a new button icon configuration
-     */
-    public FullCalendarHeaderButtonIcons()
-    {
-        //Nothing Needed
-    }
-
-    /**
-     * Gets the previous class icon
-     *
-     * @return
-     */
-    public String getPrev()
-    {
-        return prev;
-    }
-
-    /**
-     * Sets the previous class icon
-     *
-     * @param prev
-     * @return
-     */
-    public FullCalendarHeaderButtonIcons setPrev(String prev)
-    {
-        this.prev = prev;
-        return this;
-    }
-
-    /**
-     * Gets the next class icon
-     *
-     * @return
-     */
-    public String getNext()
-    {
-        return next;
-    }
-
-    /**
-     * Sets the next class icon
-     *
-     * @param next
-     * @return
-     */
-    public FullCalendarHeaderButtonIcons setNext(String next)
-    {
-        this.next = next;
-        return this;
-    }
-
-    /**
-     * Gets the previous year provider
-     *
-     * @return
-     */
-    public String getPrevYear()
-    {
-        return prevYear;
-    }
-
-    /**
-     * Sets the previous year provider
-     *
-     * @param prevYear
-     * @return
-     */
-    public FullCalendarHeaderButtonIcons setPrevYear(String prevYear)
-    {
-        this.prevYear = prevYear;
-        return this;
-    }
-
-    /**
-     * Gets the next year class icon
-     *
-     * @return
-     */
-    public String getNextYear()
-    {
-        return nextYear;
-    }
-
-    /**
-     * Sets the next year class icon
-     *
-     * @param nextYear
-     * @return
-     */
-    public FullCalendarHeaderButtonIcons setNextYear(String nextYear)
-    {
-        this.nextYear = nextYear;
-        return this;
-    }
-
+	
+	private static final long serialVersionUID = 1L;
+	/**
+	 * The class name for the previous item icon
+	 */
+	private String prev;
+	/**
+	 * The class name for the next item icon
+	 */
+	private String next;
+	/**
+	 * The previous year icon class
+	 */
+	private String prevYear;
+	/**
+	 * The next year icon class
+	 */
+	private String nextYear;
+	
+	/**
+	 * Constructs a new button icon configuration
+	 */
+	public FullCalendarHeaderButtonIcons()
+	{
+		//Nothing Needed
+	}
+	
+	/**
+	 * Gets the previous class icon
+	 *
+	 * @return
+	 */
+	public String getPrev()
+	{
+		return prev;
+	}
+	
+	/**
+	 * Sets the previous class icon
+	 *
+	 * @param prev
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderButtonIcons setPrev(String prev)
+	{
+		this.prev = prev;
+		return this;
+	}
+	
+	/**
+	 * Gets the next class icon
+	 *
+	 * @return
+	 */
+	public String getNext()
+	{
+		return next;
+	}
+	
+	/**
+	 * Sets the next class icon
+	 *
+	 * @param next
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderButtonIcons setNext(String next)
+	{
+		this.next = next;
+		return this;
+	}
+	
+	/**
+	 * Gets the previous year provider
+	 *
+	 * @return
+	 */
+	public String getPrevYear()
+	{
+		return prevYear;
+	}
+	
+	/**
+	 * Sets the previous year provider
+	 *
+	 * @param prevYear
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderButtonIcons setPrevYear(String prevYear)
+	{
+		this.prevYear = prevYear;
+		return this;
+	}
+	
+	/**
+	 * Gets the next year class icon
+	 *
+	 * @return
+	 */
+	public String getNextYear()
+	{
+		return nextYear;
+	}
+	
+	/**
+	 * Sets the next year class icon
+	 *
+	 * @param nextYear
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderButtonIcons setNextYear(String nextYear)
+	{
+		this.nextYear = nextYear;
+		return this;
+	}
+	
 }

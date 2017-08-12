@@ -17,50 +17,50 @@
 package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 
 /**
- *
  * @author GedMarc
  * @since 05 Feb 2017
- *
  */
 public class FullCalendarEventsList extends JavaScriptPart
 {
-
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * A list of calendar events
-     */
-    private List<FullCalendarEvent> events;
-
-    /**
-     * Returns the list of calendar events
-     *
-     * @return
-     */
-    @JsonValue
-    public List<FullCalendarEvent> getEvents()
-    {
-        if (events == null)
-        {
-            events = new ArrayList<>();
-        }
-
-        return events;
-    }
-
-    /**
-     * Sets the list of calendar events
-     *
-     * @param events
-     */
-    public void setEvents(List<FullCalendarEvent> events)
-    {
-        this.events = events;
-    }
-
+	
+	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * A list of calendar events
+	 */
+	private List<FullCalendarEvent> events;
+	
+	/**
+	 * Returns the list of calendar events
+	 *
+	 * @return
+	 */
+	@JsonValue
+	public List<FullCalendarEvent> getEvents()
+	{
+		if (events == null)
+		{
+			events = new ArrayList<>();
+		}
+		
+		return events;
+	}
+	
+	/**
+	 * Sets the list of calendar events
+	 *
+	 * @param events
+	 */
+	public void setEvents(List<FullCalendarEvent> events)
+	{
+		this.events = events;
+	}
+	
 }
