@@ -18,12 +18,11 @@ package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+import za.co.mmagon.jwebswing.plugins.fullcalendar.options.enumerations.FullCalendarHeaderParts;
 
 import java.util.Arrays;
 import java.util.List;
-
-import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
-import za.co.mmagon.jwebswing.plugins.fullcalendar.options.enumerations.FullCalendarHeaderParts;
 
 /**
  * header
@@ -107,13 +106,16 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 	protected String getLeftJson()
 	{
 		StringBuilder sb = new StringBuilder();
-		for (FullCalendarHeaderParts leftPart : getLeft())
+		if (getLeft() != null)
 		{
-			
-			sb.append(leftPart.toString());
-			if (leftPart != FullCalendarHeaderParts.space)
+			for (FullCalendarHeaderParts leftPart : getLeft())
 			{
-				sb.append(",");
+				
+				sb.append(leftPart.toString());
+				if (leftPart != FullCalendarHeaderParts.space)
+				{
+					sb.append(",");
+				}
 			}
 		}
 		if (sb.indexOf(",") > 0)
@@ -166,13 +168,16 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 	protected String getRightJson()
 	{
 		StringBuilder sb = new StringBuilder();
-		for (FullCalendarHeaderParts leftPart : getRight())
+		if (getRight() != null)
 		{
-			
-			sb.append(leftPart.toString());
-			if (leftPart != FullCalendarHeaderParts.space)
+			for (FullCalendarHeaderParts leftPart : getRight())
 			{
-				sb.append(",");
+				
+				sb.append(leftPart.toString());
+				if (leftPart != FullCalendarHeaderParts.space)
+				{
+					sb.append(",");
+				}
 			}
 		}
 		if (sb.indexOf(",") > 0)
