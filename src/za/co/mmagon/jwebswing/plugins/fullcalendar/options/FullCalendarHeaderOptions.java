@@ -96,6 +96,20 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 	 *
 	 * @return
 	 */
+	public FullCalendarHeaderOptions setLeft(List<FullCalendarHeaderParts> left)
+	{
+		this.left = left;
+		return this;
+	}
+	
+	/**
+	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be displayed adjacently.
+	 * Values separated by a space will be displayed with a small gap in between.
+	 *
+	 * @param left
+	 *
+	 * @return
+	 */
 	public FullCalendarHeaderOptions setLeft(FullCalendarHeaderParts... left)
 	{
 		List<FullCalendarHeaderParts> all = Arrays.asList(left);
@@ -110,7 +124,7 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 		{
 			for (FullCalendarHeaderParts leftPart : getLeft())
 			{
-				
+
 				sb.append(leftPart.toString());
 				if (leftPart != FullCalendarHeaderParts.space)
 				{
@@ -129,25 +143,25 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
-	 * @param left
-	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setLeft(List<FullCalendarHeaderParts> left)
+	public List<FullCalendarHeaderParts> getRight()
 	{
-		this.left = left;
-		return this;
+		return right;
 	}
 	
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
+	 * @param right
+	 *
 	 * @return
 	 */
-	public List<FullCalendarHeaderParts> getRight()
+	public FullCalendarHeaderOptions setRight(List<FullCalendarHeaderParts> right)
 	{
-		return right;
+		this.right = right;
+		return this;
 	}
 	
 	/**
@@ -172,7 +186,7 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 		{
 			for (FullCalendarHeaderParts leftPart : getRight())
 			{
-				
+
 				sb.append(leftPart.toString());
 				if (leftPart != FullCalendarHeaderParts.space)
 				{
@@ -191,25 +205,25 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
-	 * @param right
-	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setRight(List<FullCalendarHeaderParts> right)
+	public List<FullCalendarHeaderParts> getCenter()
 	{
-		this.right = right;
-		return this;
+		return center;
 	}
 	
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
+	 * @param center
+	 *
 	 * @return
 	 */
-	public List<FullCalendarHeaderParts> getCenter()
+	public FullCalendarHeaderOptions setCenter(List<FullCalendarHeaderParts> center)
 	{
-		return center;
+		this.center = center;
+		return this;
 	}
 	
 	/**
@@ -244,20 +258,6 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 			sb = sb.deleteCharAt(sb.lastIndexOf(","));
 		}
 		return sb.toString();
-	}
-	
-	/**
-	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be displayed adjacently.
-	 * Values separated by a space will be displayed with a small gap in between.
-	 *
-	 * @param center
-	 *
-	 * @return
-	 */
-	public FullCalendarHeaderOptions setCenter(List<FullCalendarHeaderParts> center)
-	{
-		this.center = center;
-		return this;
 	}
 	
 }

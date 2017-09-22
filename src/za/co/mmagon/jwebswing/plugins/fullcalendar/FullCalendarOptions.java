@@ -16,12 +16,12 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
-import java.util.Map;
-
 import za.co.mmagon.jwebswing.base.servlets.interfaces.IDataComponent;
 import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEventsList;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarHeaderOptions;
+
+import java.util.Map;
 
 /**
  * All the options

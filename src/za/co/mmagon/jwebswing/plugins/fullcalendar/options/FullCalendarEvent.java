@@ -16,13 +16,13 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 
+import za.co.mmagon.jwebswing.htmlbuilder.css.colours.ColourCSSImpl;
+import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import za.co.mmagon.jwebswing.htmlbuilder.css.colours.ColourCSSImpl;
-import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 
 /**
  * @author GedMarc

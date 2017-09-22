@@ -17,11 +17,10 @@
 package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
 
 /**
  * @author GedMarc

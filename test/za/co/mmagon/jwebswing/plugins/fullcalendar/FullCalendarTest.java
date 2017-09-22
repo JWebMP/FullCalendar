@@ -5,12 +5,12 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
-import java.util.Date;
-
 import org.junit.Assert;
 import org.junit.Test;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEvent;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.enumerations.FullCalendarHeaderParts;
+
+import java.util.Date;
 
 /**
  * @author GedMarc

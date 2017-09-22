@@ -63,9 +63,9 @@ public class FullCalendarPageConfigurator extends PageConfigurator
 	{
 		if (!page.isConfigured())
 		{
-	        page.getBody().addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
-            page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
-            page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
+			page.getBody().addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
+			page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
+			page.getBody().addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
 		}
 		return page;
 	}
