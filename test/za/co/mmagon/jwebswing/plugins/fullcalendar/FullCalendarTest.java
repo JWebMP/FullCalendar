@@ -5,8 +5,8 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.FullCalendarEvent;
 import za.co.mmagon.jwebswing.plugins.fullcalendar.options.enumerations.FullCalendarHeaderParts;
 
@@ -28,7 +28,7 @@ public class FullCalendarTest
 		FullCalendar fc = new FullCalendar();
 		fc.setID("fc");
 		System.out.println(fc.renderJavascript());
-		Assert.assertEquals("$('#fc').fullCalendar();\n", fc.renderJavascript().toString());
+		Assertions.assertEquals("$('#fc').fullCalendar();\n", fc.renderJavascript().toString());
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class FullCalendarTest
 		FullCalendar fc = new FullCalendar();
 		fc.setID("fc");
 		System.out.println(fc.toString(true));
-		Assert.assertEquals("<div id=\"fc\"></div>", fc.toString(true));
+		Assertions.assertEquals("<div id=\"fc\"></div>", fc.toString(true));
 	}
 
 	@Test
@@ -66,8 +66,8 @@ public class FullCalendarTest
 		calendar.setID("fc");
 
 		System.out.println(calendar.renderJavascript());
-
-		Assert.assertEquals("$('#fc').fullCalendar({\n"
+		
+		Assertions.assertEquals("$('#fc').fullCalendar({\n"
 				                    + "  \"header\" : {\n"
 				                    + "    \"left\" : \"prev,next, today\",\n"
 				                    + "    \"right\" : \"month,agendaWeek,agendaDay,listWeek\",\n"
