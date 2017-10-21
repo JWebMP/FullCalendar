@@ -72,7 +72,7 @@ public class FullCalendarOptions extends JavaScriptPart implements IDataComponen
 	 */
 	public FullCalendarOptions()
 	{
-
+		//Nothing Needed
 	}
 
 	/**

@@ -16,7 +16,6 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
-import za.co.mmagon.jwebswing.Component;
 import za.co.mmagon.jwebswing.Feature;
 import za.co.mmagon.jwebswing.base.html.interfaces.GlobalFeatures;
 
@@ -31,7 +30,9 @@ public class FullCalendarFeature extends Feature<FullCalendarOptions, FullCalend
 {
 
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * The full calendar options list
+	 */
 	private FullCalendarOptions options;
 
 	/**
@@ -40,14 +41,10 @@ public class FullCalendarFeature extends Feature<FullCalendarOptions, FullCalend
 	 *
 	 * @param forComponent
 	 */
-	public FullCalendarFeature(Component forComponent)
+	public FullCalendarFeature(FullCalendar forComponent)
 	{
 		super("FullCalendarFeature");
 		setComponent(forComponent);
-/*
-		addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
-		addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
-		addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());*/
 	}
 
 	/**

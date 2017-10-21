@@ -76,12 +76,7 @@ public enum FullCalendarHeaderParts
 	{
 		//Nothing needed
 	}
-	
-	private FullCalendarHeaderParts(String data)
-	{
-		this.data = data;
-	}
-	
+
 	/**
 	 * Returns the data of this enum
 	 *

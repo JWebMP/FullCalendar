@@ -50,7 +50,7 @@ public class FullCalendarPageConfigurator extends PageConfigurator
 
 	public FullCalendarPageConfigurator()
 	{
-
+		//Nothing Needed
 	}
 
 	public static void setRequired(Component component, boolean required)
