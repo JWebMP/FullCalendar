@@ -16,6 +16,8 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar.options.enumerations;
 
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.STRING_SPACE;
+
 /**
  * @author GedMarc
  * @since 04 Feb 2017
@@ -71,8 +73,8 @@ public enum FullCalendarHeaderParts
 	 * Any data for this enumeration
 	 */
 	private String data;
-	
-	private FullCalendarHeaderParts()
+
+	FullCalendarHeaderParts()
 	{
 		//Nothing needed
 	}
@@ -110,7 +112,7 @@ public enum FullCalendarHeaderParts
 	{
 		if (this == space)
 		{
-			return " ";
+			return STRING_SPACE;
 		}
 		return name();
 	}
