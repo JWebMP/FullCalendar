@@ -24,6 +24,8 @@ import za.co.mmagon.jwebswing.plugins.fullcalendar.options.enumerations.FullCale
 import java.util.Arrays;
 import java.util.List;
 
+import static za.co.mmagon.jwebswing.utilities.StaticStrings.STRING_COMMNA;
+
 /**
  * header
  * <p>
@@ -128,13 +130,13 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 				sb.append(leftPart.toString());
 				if (leftPart != FullCalendarHeaderParts.space)
 				{
-					sb.append(",");
+					sb.append(STRING_COMMNA);
 				}
 			}
 		}
-		if (sb.indexOf(",") > 0)
+		if (sb.indexOf(STRING_COMMNA) > 0)
 		{
-			sb = sb.deleteCharAt(sb.lastIndexOf(","));
+			sb = sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
 		}
 		return sb.toString();
 	}
@@ -190,13 +192,13 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 				sb.append(leftPart.toString());
 				if (leftPart != FullCalendarHeaderParts.space)
 				{
-					sb.append(",");
+					sb.append(STRING_COMMNA);
 				}
 			}
 		}
-		if (sb.indexOf(",") > 0)
+		if (sb.indexOf(STRING_COMMNA) > 0)
 		{
-			sb = sb.deleteCharAt(sb.lastIndexOf(","));
+			sb = sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
 		}
 		return sb.toString();
 	}
@@ -250,12 +252,12 @@ public class FullCalendarHeaderOptions extends JavaScriptPart
 			sb.append(leftPart.toString());
 			if (leftPart != FullCalendarHeaderParts.space)
 			{
-				sb.append(",");
+				sb.append(STRING_COMMNA);
 			}
 		}
-		if (sb.indexOf(",") > 0)
+		if (sb.indexOf(STRING_COMMNA) > 0)
 		{
-			sb = sb.deleteCharAt(sb.lastIndexOf(","));
+			sb = sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
 		}
 		return sb.toString();
 	}
