@@ -16,6 +16,8 @@
  */
 package za.co.mmagon.jwebswing.plugins.fullcalendar.options;
 
+import za.co.mmagon.jwebswing.utilities.StaticStrings;
+
 /**
  * @author GedMarc
  * @since 05 Feb 2017
@@ -28,7 +30,7 @@ public enum FullCalendarEventRenderingOptions
 	@Override
 	public String toString()
 	{
-		return name().replace('_', '-');
+		return name().replace(StaticStrings.CHAR_UNDERSCORE, '-');
 	}
 	
 }

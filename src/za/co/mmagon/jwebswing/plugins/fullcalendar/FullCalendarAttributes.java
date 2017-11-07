@@ -17,6 +17,7 @@
 package za.co.mmagon.jwebswing.plugins.fullcalendar;
 
 import za.co.mmagon.jwebswing.base.html.interfaces.AttributeDefinitions;
+import za.co.mmagon.jwebswing.utilities.StaticStrings;
 
 /**
  * @author GedMarc
@@ -30,7 +31,7 @@ public enum FullCalendarAttributes implements AttributeDefinitions
 	/**
 	 * The component attributes
 	 */
-	private FullCalendarAttributes()
+	FullCalendarAttributes()
 	{
 	}
 
@@ -53,6 +54,6 @@ public enum FullCalendarAttributes implements AttributeDefinitions
 	@Override
 	public String toString()
 	{
-		return name().toLowerCase().replace('_', '-').replace("$", "");
+		return name().toLowerCase().replace(StaticStrings.CHAR_UNDERSCORE, '-').replace("$", "");
 	}
 }
