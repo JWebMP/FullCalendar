@@ -53,6 +53,7 @@ public class FullCalendarPageConfigurator extends PageConfigurator
 		//Nothing Needed
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void setRequired(Component component, boolean required)
 	{
 		component.getProperties().put(FullCalendarEnabled, required);
