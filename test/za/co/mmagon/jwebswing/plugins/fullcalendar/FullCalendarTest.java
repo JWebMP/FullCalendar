@@ -28,7 +28,7 @@ public class FullCalendarTest
 		FullCalendar fc = new FullCalendar();
 		fc.setID("fc");
 		System.out.println(fc.renderJavascript());
-		Assertions.assertEquals("$('#fc').fullCalendar();\n", fc.renderJavascript().toString());
+		Assertions.assertEquals("$(\"#fc\").fullCalendar();\n", fc.renderJavascript().toString());
 	}
 
 	@Test
@@ -66,8 +66,8 @@ public class FullCalendarTest
 		calendar.setID("fc");
 
 		System.out.println(calendar.renderJavascript());
-		
-		Assertions.assertEquals("$('#fc').fullCalendar({\n"
+
+		Assertions.assertEquals("$(\"#fc\").fullCalendar({\n"
 				                    + "  \"header\" : {\n"
 				                    + "    \"left\" : \"prev,next, today\",\n"
 				                    + "    \"right\" : \"month,agendaWeek,agendaDay,listWeek\",\n"
