@@ -27,17 +27,18 @@ import com.jwebmp.base.servlets.interfaces.ReferencePool;
  * @since 20 Apr 2016
  */
 public enum FullCalendarReferencePool
-		implements ReferencePool, FullCalendarStrings
+		implements ReferencePool
 {
-	FullCalendarGoogleCalendarReference(new JavascriptReference(FullCalendarReferenceID, 1.0, "bower_components/fullcalendar/dist/gcal.min.js",
-	                                                            "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/gcal.min.js"), null),
-	FullCalendarReferencePrint(null, new CSSReference(FullCalendarReferenceID, 1.0, "bower_components/fullcalendar/dist/fullcalendar.print.min.css",
-	                                                  "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.print.min.css")),
-	FullCalendarReference(new JavascriptReference(FullCalendarReferenceID + "Core", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.js",
-	                                              "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"),
-	                      new CSSReference(FullCalendarReferenceID + "Core", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.css",
-	                                       "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css")),;
 
+
+	FullCalendarGoogleCalendarReference(new JavascriptReference("FullCalendar1", 1.0, "bower_components/fullcalendar/dist/gcal.min.js",
+	                                                            "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/gcal.min.js"), null),
+	FullCalendarReferencePrint(null, new CSSReference("FullCalendar2", 1.0, "bower_components/fullcalendar/dist/fullcalendar.print.min.css",
+	                                                  "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.print.min.css")),
+	FullCalendarReference(new JavascriptReference("FullCalendar3" + "Core", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.js",
+	                                              "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"),
+	                      new CSSReference("FullCalendar4" + "Core", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.css",
+	                                       "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css")),;
 	/**
 	 * The actual javascript
 	 */
