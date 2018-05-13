@@ -16,12 +16,13 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jwebmp.base.servlets.interfaces.IDataComponent;
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarHeaderOptions;
-
-import java.util.Map;
+import za.co.mmagon.guiceinjection.GuiceContext;
 
 /**
  * All the options
@@ -132,9 +133,17 @@ public class FullCalendarOptions
 	}
 
 	@Override
-	public FullCalendarEventsList getData(Map<String, String[]> params)
+	public StringBuilder renderData()
 	{
-		return getEvents();
+		try
+		{
+			return new StringBuilder(GuiceContext.getInstance(ObjectMapper.class)
+			                                     .writeValueAsString(getEvents()));
+		}
+		catch (JsonProcessingException e)
+		{
+			return new StringBuilder();
+		}
 	}
 
 	/**
