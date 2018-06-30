@@ -19,7 +19,7 @@ package com.jwebmp.plugins.fullcalendar;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jwebmp.base.servlets.interfaces.IDataComponent;
-import com.jwebmp.guiceinjection.GuiceContext;
+import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarHeaderOptions;
