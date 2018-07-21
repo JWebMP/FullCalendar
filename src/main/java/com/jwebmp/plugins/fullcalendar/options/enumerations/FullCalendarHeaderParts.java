@@ -16,7 +16,7 @@
  */
 package com.jwebmp.plugins.fullcalendar.options.enumerations;
 
-import static com.jwebmp.utilities.StaticStrings.*;
+import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * @author GedMarc

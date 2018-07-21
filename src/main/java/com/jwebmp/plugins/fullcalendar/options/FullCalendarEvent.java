@@ -16,8 +16,8 @@
  */
 package com.jwebmp.plugins.fullcalendar.options;
 
-import com.jwebmp.htmlbuilder.css.colours.ColourCSSImpl;
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.css.colours.ColourCSSImpl;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
 import java.io.Serializable;
 import java.util.ArrayList;

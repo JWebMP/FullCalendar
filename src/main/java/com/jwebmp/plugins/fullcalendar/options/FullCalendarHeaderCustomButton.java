@@ -16,7 +16,7 @@
  */
 package com.jwebmp.plugins.fullcalendar.options;
 
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
 /**
  * Defines custom buttons that can be used in the header.
