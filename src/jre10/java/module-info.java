@@ -1,3 +1,6 @@
+import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.plugins.fullcalendar.FullCalendarPageConfigurator;
+
 module com.jwebmp.plugins.fullcalendar {
 	exports com.jwebmp.plugins.fullcalendar;
 	exports com.jwebmp.plugins.fullcalendar.options;
@@ -12,4 +15,7 @@ module com.jwebmp.plugins.fullcalendar {
 	requires com.jwebmp.guicedinjection;
 	requires com.fasterxml.jackson.databind;
 	requires com.fasterxml.jackson.core;
+
+	provides IPageConfigurator with FullCalendarPageConfigurator;
+
 }
