@@ -17,5 +17,7 @@ module com.jwebmp.plugins.fullcalendar {
 	requires com.fasterxml.jackson.core;
 
 	provides IPageConfigurator with FullCalendarPageConfigurator;
-
+	opens com.jwebmp.plugins.fullcalendar to com.fasterxml.jackson.databind,com.jwebmp.core;
+	opens com.jwebmp.plugins.fullcalendar.options to com.fasterxml.jackson.databind,com.jwebmp.core;
+	opens com.jwebmp.plugins.fullcalendar.options.enumerations to com.fasterxml.jackson.databind,com.jwebmp.core;
 }
