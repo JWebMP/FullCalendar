@@ -24,6 +24,8 @@ import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarHeaderOptions;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * All the options
  * <p>
@@ -36,7 +38,7 @@ import com.jwebmp.plugins.fullcalendar.options.FullCalendarHeaderOptions;
  */
 public class FullCalendarOptions
 		extends JavaScriptPart
-		implements IDataComponent<FullCalendarEventsList>
+		implements IDataComponent
 {
 
 	private static final long serialVersionUID = 1L;
@@ -132,6 +134,7 @@ public class FullCalendarOptions
 		return this;
 	}
 
+	@NotNull
 	@Override
 	public StringBuilder renderData()
 	{
