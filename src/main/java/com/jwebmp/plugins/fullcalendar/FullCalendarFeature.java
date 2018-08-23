@@ -17,7 +17,6 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.jwebmp.core.Feature;
-import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
 
 /**
  * Adds on a ToolTip, String for custom text using header theme, Div for custom contents
@@ -27,8 +26,7 @@ import com.jwebmp.core.base.html.interfaces.GlobalFeatures;
  * @since 2013/01/16
  */
 public class FullCalendarFeature
-		extends Feature<FullCalendarOptions, FullCalendarFeature>
-		implements FullCalendarFeatures, GlobalFeatures
+		extends Feature<FullCalendarFeature, FullCalendarOptions, FullCalendarFeature>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -52,26 +50,12 @@ public class FullCalendarFeature
 	@Override
 	public int hashCode()
 	{
-		int hash = 7;
-		hash = 79 * hash + (getID().hashCode());
-		return hash;
+		return super.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (this == obj)
-		{
-			return true;
-		}
-		if (obj == null)
-		{
-			return false;
-		}
-		if (getClass() != obj.getClass())
-		{
-			return false;
-		}
 		return super.equals(obj);
 	}
 
