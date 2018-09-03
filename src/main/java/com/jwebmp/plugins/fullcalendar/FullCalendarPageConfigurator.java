@@ -46,9 +46,39 @@ import javax.validation.constraints.NotNull;
 public class FullCalendarPageConfigurator
 		implements IPageConfigurator
 {
+	/**
+	 * If this configurator is enabled
+	 */
+	private static boolean enabled = true;
+
 	public FullCalendarPageConfigurator()
 	{
 		//Nothing Needed
+	}
+
+	/**
+	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static boolean isEnabled()
+	{
+		return FullCalendarPageConfigurator.enabled;
+	}
+
+	/**
+	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
+	 * <p>
+	 * If this configurator is enabled
+	 *
+	 * @param mustEnable
+	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
+	 */
+	public static void setEnabled(boolean mustEnable)
+	{
+		FullCalendarPageConfigurator.enabled = mustEnable;
 	}
 
 	@NotNull
@@ -65,5 +95,11 @@ public class FullCalendarPageConfigurator
 			    .addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
 		}
 		return page;
+	}
+
+	@Override
+	public boolean enabled()
+	{
+		return FullCalendarPageConfigurator.enabled;
 	}
 }
