@@ -33,9 +33,9 @@ import javax.validation.constraints.NotNull;
 		pluginDependancyUniqueIDs = "jquery,moment",
 		pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
 		pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
-		pluginGitUrl = "https://github.com/GedMarc/JWebSwing-FullCalendarPlugin",
+		pluginGitUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin",
 		pluginSourceUrl = "https://github.com/fullcalendar",
-		pluginWikiUrl = "https://github.com/GedMarc/JWebSwing-FullCalendarPlugin/wiki",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin/wiki",
 		pluginOriginalHomepage = "https://fullcalendar.io/",
 		pluginSourceDonateUrl = "https://fullcalendar.io/donate/",
 		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/FullCalendarPlugin.jar/download",
@@ -44,7 +44,7 @@ import javax.validation.constraints.NotNull;
 		pluginLastUpdatedDate = "2017/03/04"
 )
 public class FullCalendarPageConfigurator
-		implements IPageConfigurator
+		implements IPageConfigurator<FullCalendarPageConfigurator>
 {
 	/**
 	 * If this configurator is enabled
