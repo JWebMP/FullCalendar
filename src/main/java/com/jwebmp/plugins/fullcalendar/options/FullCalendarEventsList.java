@@ -30,7 +30,6 @@ public class FullCalendarEventsList
 		extends JavaScriptPart
 {
 
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * A list of calendar events

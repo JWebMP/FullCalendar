@@ -34,7 +34,7 @@ public class FullCalendar
 		extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, FullCalendar>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The associated feature
 	 */

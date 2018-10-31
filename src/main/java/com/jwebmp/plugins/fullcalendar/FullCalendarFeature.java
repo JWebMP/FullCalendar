@@ -29,7 +29,7 @@ public class FullCalendarFeature
 		extends Feature<FullCalendarFeature, FullCalendarOptions, FullCalendarFeature>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The full calendar options list
 	 */

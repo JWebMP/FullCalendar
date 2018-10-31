@@ -34,7 +34,7 @@ public class FullCalendarEventSource
 		extends FullCalendarEvent
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The URL for an event source
 	 */

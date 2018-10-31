@@ -45,7 +45,7 @@ public class FullCalendarHeaderButtonIcons
 		extends JavaScriptPart
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The class name for the previous item icon
 	 */

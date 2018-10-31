@@ -38,7 +38,7 @@ public class FullCalendarHeaderOptions
 		extends JavaScriptPart
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
 	 * displayed adjacently.
@@ -128,10 +128,10 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setLeft(List<FullCalendarHeaderParts> left)
+	public FullCalendarHeaderOptions setLeft(FullCalendarHeaderParts... left)
 	{
-		this.left = left;
-		return this;
+		List<FullCalendarHeaderParts> all = Arrays.asList(left);
+		return setLeft(all);
 	}
 
 	/**
@@ -143,10 +143,10 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setLeft(FullCalendarHeaderParts... left)
+	public FullCalendarHeaderOptions setLeft(List<FullCalendarHeaderParts> left)
 	{
-		List<FullCalendarHeaderParts> all = Arrays.asList(left);
-		return setLeft(all);
+		this.left = left;
+		return this;
 	}
 
 	@JsonProperty("right")
@@ -189,21 +189,6 @@ public class FullCalendarHeaderOptions
 	 * displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
-	 * @param right
-	 *
-	 * @return
-	 */
-	public FullCalendarHeaderOptions setRight(List<FullCalendarHeaderParts> right)
-	{
-		this.right = right;
-		return this;
-	}
-
-	/**
-	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
-	 * displayed adjacently.
-	 * Values separated by a space will be displayed with a small gap in between.
-	 *
 	 * @param left
 	 *
 	 * @return
@@ -212,6 +197,21 @@ public class FullCalendarHeaderOptions
 	{
 		List<FullCalendarHeaderParts> all = Arrays.asList(left);
 		return setRight(all);
+	}
+
+	/**
+	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
+	 * displayed adjacently.
+	 * Values separated by a space will be displayed with a small gap in between.
+	 *
+	 * @param right
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderOptions setRight(List<FullCalendarHeaderParts> right)
+	{
+		this.right = right;
+		return this;
 	}
 
 	@JsonProperty("center")
@@ -251,21 +251,6 @@ public class FullCalendarHeaderOptions
 	 * displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
-	 * @param center
-	 *
-	 * @return
-	 */
-	public FullCalendarHeaderOptions setCenter(List<FullCalendarHeaderParts> center)
-	{
-		this.center = center;
-		return this;
-	}
-
-	/**
-	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
-	 * displayed adjacently.
-	 * Values separated by a space will be displayed with a small gap in between.
-	 *
 	 * @param left
 	 *
 	 * @return
@@ -274,6 +259,21 @@ public class FullCalendarHeaderOptions
 	{
 		List<FullCalendarHeaderParts> all = Arrays.asList(left);
 		return setCenter(all);
+	}
+
+	/**
+	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
+	 * displayed adjacently.
+	 * Values separated by a space will be displayed with a small gap in between.
+	 *
+	 * @param center
+	 *
+	 * @return
+	 */
+	public FullCalendarHeaderOptions setCenter(List<FullCalendarHeaderParts> center)
+	{
+		this.center = center;
+		return this;
 	}
 
 }

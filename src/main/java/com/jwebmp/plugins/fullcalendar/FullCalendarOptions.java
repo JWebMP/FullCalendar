@@ -41,7 +41,7 @@ public class FullCalendarOptions
 		implements IDataComponent
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The header
 	 */

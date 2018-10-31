@@ -33,7 +33,7 @@ public class FullCalendarEvent
 		implements IFullCalendarEvent
 {
 
-	private static final long serialVersionUID = 1L;
+
 	/**
 	 * String/Integer. Optional
 	 * <p>
