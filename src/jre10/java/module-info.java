@@ -1,5 +1,8 @@
 import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
+import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
 import com.jwebmp.plugins.fullcalendar.FullCalendarPageConfigurator;
+import com.jwebmp.plugins.fullcalendar.implementations.FullCalendarExclusionsModule;
 
 module com.jwebmp.plugins.fullcalendar {
 	exports com.jwebmp.plugins.fullcalendar;
@@ -17,7 +20,11 @@ module com.jwebmp.plugins.fullcalendar {
 	requires com.fasterxml.jackson.core;
 
 	provides IPageConfigurator with FullCalendarPageConfigurator;
-	opens com.jwebmp.plugins.fullcalendar to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.fullcalendar.options to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.fullcalendar.options.enumerations to com.fasterxml.jackson.databind,com.jwebmp.core;
+
+	provides IGuiceScanModuleExclusions with FullCalendarExclusionsModule;
+	provides IGuiceScanJarExclusions with FullCalendarExclusionsModule;
+
+	opens com.jwebmp.plugins.fullcalendar to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.fullcalendar.options to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.fullcalendar.options.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core;
 }
