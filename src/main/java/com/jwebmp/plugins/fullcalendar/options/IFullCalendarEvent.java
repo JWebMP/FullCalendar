@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Marc Magon
+ * Copyright (C) 2017 GedMarc
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@ package com.jwebmp.plugins.fullcalendar.options;
 import java.io.Serializable;
 
 /**
- * @author Marc Magon
+ * @author GedMarc
  * @since 04 Apr 2017
  */
 public interface IFullCalendarEvent
