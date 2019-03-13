@@ -140,7 +140,7 @@ public class FullCalendarOptions
 	{
 		try
 		{
-			return new StringBuilder(GuiceContext.getInstance(ObjectMapper.class)
+			return new StringBuilder(GuiceContext.get(ObjectMapper.class)
 			                                     .writeValueAsString(getEvents()));
 		}
 		catch (JsonProcessingException e)
