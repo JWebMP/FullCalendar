@@ -30,8 +30,8 @@ public enum FullCalendarReferencePool
 		implements ReferencePool
 {
 
-	FullCalendarGoogleCalendarReference(new JavascriptReference("FullCalendar1", 1.0, "bower_components/fullcalendar/dist/gcal.min.js",
-	                                                            "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/gcal.min.js"), null),
+/*	FullCalendarGoogleCalendarReference(new JavascriptReference("FullCalendar1", 1.0, "bower_components/fullcalendar/dist/gcal.min.js",
+	                                                            "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/gcal.min.js"), null),*/
 	FullCalendarReferencePrint(null, new CSSReference("FullCalendar2", 1.0, "bower_components/fullcalendar/dist/fullcalendar.print.min.css",
 	                                                  "https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.print.min.css")),
 	FullCalendarReference(new JavascriptReference("FullCalendar3" + "Core", 1.0, "bower_components/fullcalendar/dist/fullcalendar.min.js",

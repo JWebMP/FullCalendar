@@ -18,6 +18,8 @@ package com.jwebmp.plugins.fullcalendar.options;
 
 import com.jwebmp.core.utilities.StaticStrings;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_DASH;
+import static com.guicedee.guicedinjection.json.StaticStrings.CHAR_UNDERSCORE;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
@@ -32,7 +34,7 @@ public enum FullCalendarEventRenderingOptions
 	@Override
 	public String toString()
 	{
-		return name().replace(StaticStrings.CHAR_UNDERSCORE, CHAR_DASH);
+		return name().replace(CHAR_UNDERSCORE, CHAR_DASH);
 	}
 
 }
