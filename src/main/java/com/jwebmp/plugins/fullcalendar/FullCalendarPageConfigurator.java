@@ -92,7 +92,7 @@ public class FullCalendarPageConfigurator
 			page.getBody()
 			    .addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
 			page.getBody()
-			    .addCssReference(FullCalendarReferencePool.FullCalendarReferencePrint.getCssReference());
+			    .addJavaScriptReference(FullCalendarReferencePool.FullCalendarReferencePrint.getJavaScriptReference());
 		}
 		return page;
 	}

@@ -1,5 +1,5 @@
 /*!
-FullCalendar v5.3.0
+FullCalendar v5.3.2
 Docs & License: https://fullcalendar.io/
 (c) 2020 Adam Shaw
 */
@@ -9126,7 +9126,7 @@ var FullCalendar = (function (exports) {
 
     // exports
     // --------------------------------------------------------------------------------------------------
-    var version = '<%= version %>'; // important to type it, so .d.ts has generic string
+    var version = '5.3.2'; // important to type it, so .d.ts has generic string
 
     var Calendar = /** @class */ (function (_super) {
         __extends(Calendar, _super);
@@ -11683,7 +11683,7 @@ var FullCalendar = (function (exports) {
         for (var col = 0; col < colCnt; col++) {
             var placements = colPlacements[col];
             var currentNonAbsBottom = 0;
-            var runningAbsHeight = 0;
+            var currentAbsHeight = 0;
             for (var _a = 0, placements_1 = placements; _a < placements_1.length; _a++) {
                 var placement = placements_1[_a];
                 var seg = placement.seg;
@@ -11692,20 +11692,20 @@ var FullCalendar = (function (exports) {
                     if (seg.firstCol === seg.lastCol && seg.isStart && seg.isEnd) { // TODO: simpler way? NOT DRY
                         segMarginTops[seg.eventRange.instance.instanceId] =
                             placement.top - currentNonAbsBottom; // from previous seg bottom
-                        runningAbsHeight = 0;
+                        currentAbsHeight = 0;
                         currentNonAbsBottom = placement.bottom;
                     }
                     else { // multi-col event, abs positioned
-                        runningAbsHeight += placement.bottom - placement.top;
+                        currentAbsHeight = placement.bottom - currentNonAbsBottom;
                     }
                 }
             }
-            if (runningAbsHeight) {
+            if (currentAbsHeight) {
                 if (moreCnts[col]) {
-                    moreTops[col] = runningAbsHeight;
+                    moreTops[col] = currentAbsHeight;
                 }
                 else {
-                    paddingBottoms[col] = runningAbsHeight;
+                    paddingBottoms[col] = currentAbsHeight;
                 }
             }
         }
@@ -11813,7 +11813,7 @@ var FullCalendar = (function (exports) {
     populates the given hiddenCnts/segIsHidden, which are supplied empty.
     TODO: return them instead
     */
-    function limitEvents(hiddenCnts, segIsHidden, colPlacements, moreLinkConsumesLevel, isPlacementInBounds) {
+    function limitEvents(hiddenCnts, segIsHidden, colPlacements, _moreLinkConsumesLevel, isPlacementInBounds) {
         var colCnt = hiddenCnts.length;
         var segIsVisible = {}; // TODO: instead, use segIsHidden with true/false?
         var visibleColPlacements = []; // will mirror colPlacements
@@ -11829,7 +11829,7 @@ var FullCalendar = (function (exports) {
                     recordVisible(placement);
                 }
                 else {
-                    recordHidden(placement);
+                    recordHidden(placement, level, _moreLinkConsumesLevel);
                 }
                 // only considered a level if the seg had height
                 if (placement.top !== placement.bottom) {
@@ -11847,7 +11847,7 @@ var FullCalendar = (function (exports) {
                 }
             }
         }
-        function recordHidden(placement) {
+        function recordHidden(placement, currentLevel, moreLinkConsumesLevel) {
             var seg = placement.seg;
             var instanceId = seg.eventRange.instance.instanceId;
             if (!segIsHidden[instanceId]) {
@@ -11855,9 +11855,11 @@ var FullCalendar = (function (exports) {
                 for (var col = seg.firstCol; col <= seg.lastCol; col++) {
                     var hiddenCnt = ++hiddenCnts[col];
                     if (moreLinkConsumesLevel && hiddenCnt === 1) {
-                        var lastVisiblePlacement = visibleColPlacements[col].pop();
-                        if (lastVisiblePlacement) {
-                            recordHidden(lastVisiblePlacement);
+                        var doomedLevel = currentLevel - 1;
+                        while (visibleColPlacements[col].length > doomedLevel) {
+                            recordHidden(visibleColPlacements[col].pop(), // removes
+                            visibleColPlacements[col].length, // will execute after the pop. will be the index of the removed placement
+                            false);
                         }
                     }
                 }
