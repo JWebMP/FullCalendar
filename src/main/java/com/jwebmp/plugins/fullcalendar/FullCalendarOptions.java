@@ -24,7 +24,7 @@ import com.guicedee.guicedinjection.GuiceContext;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarHeaderOptions;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * All the options
