@@ -42,7 +42,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @since 04 Feb 2017
  */
 public class FullCalendarHeaderButtonIcons
-		extends JavaScriptPart
+		extends JavaScriptPart<FullCalendarHeaderButtonIcons>
 {
 
 

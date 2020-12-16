@@ -29,7 +29,7 @@ import java.util.List;
  * @since 05 Feb 2017
  */
 public class FullCalendarEvent
-		extends JavaScriptPart
+		extends JavaScriptPart<FullCalendarEvent>
 		implements IFullCalendarEvent
 {
 

@@ -37,7 +37,7 @@ import jakarta.validation.constraints.NotNull;
  * @since Mar 4, 2015
  */
 public class FullCalendarOptions
-		extends JavaScriptPart
+		extends JavaScriptPart<FullCalendarOptions>
 		implements IDataComponent
 {
 

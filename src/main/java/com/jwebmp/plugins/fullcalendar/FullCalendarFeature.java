@@ -78,7 +78,7 @@ public class FullCalendarFeature
 	@Override
 	public void assignFunctionsToComponent()
 	{
-		String requiredString = getComponent().getJQueryID() + "fullCalendar(";
+		String requiredString = getComponent().asBase().getJQueryID() + "fullCalendar(";
 		requiredString += getOptions().toString();
 		requiredString += ");" + getNewLine();
 		addQuery(requiredString);

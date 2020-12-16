@@ -18,6 +18,7 @@ package com.jwebmp.plugins.fullcalendar;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
 
 import jakarta.validation.constraints.NotNull;
@@ -29,7 +30,7 @@ import jakarta.validation.constraints.NotNull;
 @PluginInformation(pluginName = "Full Calendar",
 		pluginUniqueName = "full-calendar",
 		pluginDescription = "Full Calendar is a free, open-source project that enables you to design full calendar-like features and functions that is fully interactive, ajax controlled and mobile friendly. ",
-		pluginVersion = "3.2.0",
+		pluginVersion = "5.3.0",
 		pluginDependancyUniqueIDs = "jquery,moment",
 		pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
 		pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
@@ -38,10 +39,14 @@ import jakarta.validation.constraints.NotNull;
 		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin/wiki",
 		pluginOriginalHomepage = "https://fullcalendar.io/",
 		pluginSourceDonateUrl = "https://fullcalendar.io/donate/",
-		pluginDownloadUrl = "https://sourceforge.net/projects/jwebswing/files/plugins/FullCalendarPlugin.jar/download",
-		pluginIconUrl = "bower_components/fullcalendar/fullcalendar_icon.png",
-		pluginIconImageUrl = "bower_components/fullcalendar/fullcalendar_example.png",
-		pluginLastUpdatedDate = "2017/03/04"
+		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.jquery/jwebmp-full-calendar",
+		pluginIconUrl = "",
+		pluginIconImageUrl = "",
+		pluginLastUpdatedDate = "2020/12/16",
+		pluginGroupId = "com.jwebmp.plugins.jquery",
+		pluginArtifactId = "jwebmp-full-calendar",
+		pluginModuleName = "com.jwebmp.plugins.fullcalendar",
+		pluginStatus = PluginStatus.Released
 )
 public class FullCalendarPageConfigurator
 		implements IPageConfigurator<FullCalendarPageConfigurator>

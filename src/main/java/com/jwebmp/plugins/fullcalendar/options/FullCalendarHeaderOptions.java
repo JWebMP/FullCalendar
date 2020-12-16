@@ -25,7 +25,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.guicedee.guicedinjection.json.StaticStrings.STRING_COMMNA;
-import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**
  * header
@@ -36,10 +35,8 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  * @since 04 Feb 2017
  */
 public class FullCalendarHeaderOptions
-		extends JavaScriptPart
+		extends JavaScriptPart<FullCalendarHeaderOptions>
 {
-
-
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
 	 * displayed adjacently.
@@ -67,6 +64,7 @@ public class FullCalendarHeaderOptions
 	 */
 	public FullCalendarHeaderOptions()
 	{
+		//No config
 	}
 
 	/**
@@ -103,7 +101,7 @@ public class FullCalendarHeaderOptions
 		}
 		if (sb.indexOf(STRING_COMMNA) > 0)
 		{
-			sb = sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
+			sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
 		}
 		return sb.toString();
 	}
@@ -168,7 +166,7 @@ public class FullCalendarHeaderOptions
 		}
 		if (sb.indexOf(STRING_COMMNA) > 0)
 		{
-			sb = sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
+			sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
 		}
 		return sb.toString();
 	}
@@ -230,7 +228,7 @@ public class FullCalendarHeaderOptions
 		}
 		if (sb.indexOf(STRING_COMMNA) > 0)
 		{
-			sb = sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
+			sb.deleteCharAt(sb.lastIndexOf(STRING_COMMNA));
 		}
 		return sb.toString();
 	}

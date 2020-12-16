@@ -27,7 +27,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @since 04 Feb 2017
  */
 public class FullCalendarHeaderCustomButton
-		extends JavaScriptPart
+		extends JavaScriptPart<FullCalendarHeaderCustomButton>
 {
 
 

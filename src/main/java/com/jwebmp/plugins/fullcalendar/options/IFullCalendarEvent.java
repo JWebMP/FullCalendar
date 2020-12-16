@@ -23,7 +23,6 @@ import java.io.Serializable;
  * @since 04 Apr 2017
  */
 public interface IFullCalendarEvent
-		extends Serializable
 {
 
 }
