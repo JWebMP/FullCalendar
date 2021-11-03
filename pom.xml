@@ -10,7 +10,7 @@
     <groupId>com.jwebmp.plugins.jquery</groupId>
     <artifactId>jwebmp-full-calendar</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.0.0_0-SNAPSHOT</version>
     <name>Full Calendar</name>
     <description>The JWebSwing implementation for the Full Calendar Widget</description>
     <url>https://github.com/GedMarc/JWebSwing-Full-Calendar</url>
