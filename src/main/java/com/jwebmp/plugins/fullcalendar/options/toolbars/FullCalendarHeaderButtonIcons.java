@@ -14,8 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.jwebmp.plugins.fullcalendar.options;
+package com.jwebmp.plugins.fullcalendar.options.toolbars;
 
+import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
 /**
@@ -41,6 +42,9 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
  * @author GedMarc
  * @since 04 Feb 2017
  */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
+
 public class FullCalendarHeaderButtonIcons
 		extends JavaScriptPart<FullCalendarHeaderButtonIcons>
 {

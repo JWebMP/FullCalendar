@@ -17,6 +17,7 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.jwebmp.core.Feature;
+import com.jwebmp.plugins.fullcalendar.options.*;
 
 /**
  * Adds on a ToolTip, String for custom text using header theme, Div for custom contents

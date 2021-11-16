@@ -16,7 +16,7 @@
  */
 package com.jwebmp.plugins.fullcalendar.options;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 
 import java.util.ArrayList;
@@ -26,11 +26,13 @@ import java.util.List;
  * @author GedMarc
  * @since 05 Feb 2017
  */
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class FullCalendarEventsList
 		extends JavaScriptPart<FullCalendarEventsList>
 {
-
-
+	
 	/**
 	 * A list of calendar events
 	 */

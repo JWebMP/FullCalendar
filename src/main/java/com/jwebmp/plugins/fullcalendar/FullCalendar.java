@@ -16,8 +16,17 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
+import com.fasterxml.jackson.core.*;
+import com.guicedee.guicedinjection.*;
 import com.jwebmp.core.base.html.Div;
 import com.jwebmp.core.plugins.ComponentInformation;
+import com.jwebmp.plugins.fullcalendar.events.*;
+import com.jwebmp.plugins.fullcalendar.options.*;
+import com.jwebmp.plugins.fullcalendar.options.resources.*;
+
+import java.util.*;
+
+import static com.guicedee.guicedinjection.interfaces.ObjectBinderKeys.*;
 
 /**
  * An implementation of
@@ -33,35 +42,91 @@ import com.jwebmp.core.plugins.ComponentInformation;
 public class FullCalendar
 		extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, FullCalendar>
 {
-
-
 	/**
-	 * The associated feature
+	 * The full calendar options list
 	 */
-	private FullCalendarFeature feature;
+	private FullCalendarOptions options;
+	private String eventSource;
+	private String externalEventContainerId;
+	
+	
+	private FullCalendarDateClickEvent dateClickEvent;
+	private FullCalendarEventClickEvent eventClickEvent;
+	private FullCalendarEventReceiveEvent receiveEvent;
+	private FullCalendarEventResizeEvent eventResizeEvent;
+	private FullCalendarEventDropEvent eventDropEvent;
+	private FullCalendarSelectEvent selectEvent;
+	
+	
+	
+	
+	private List<FullCalendarResourceItem> resources;
 
 	/**
 	 * Constructs a new instance
 	 */
-	public FullCalendar()
+	public FullCalendar(String id)
 	{
-		addFeature(getFeature());
+		setID(id);
 	}
-
-	/**
-	 * Returns the feature if any is required
-	 *
-	 * @return
-	 */
-	public final FullCalendarFeature getFeature()
+	
+	@Override
+	public void init()
 	{
-		if (feature == null)
+		addAttribute("fullcalendar", "");
+		addAttribute("options", getOptions().toJson(true));
+		setInvertColonRender(true);
+		if (dateClickEvent != null)
 		{
-			feature = new FullCalendarFeature(this);
+			addAttribute("date-click", dateClickEvent.getClassCanonicalName());
 		}
-		return feature;
+		if (eventClickEvent != null)
+		{
+			addAttribute("event-click", eventClickEvent.getClassCanonicalName());
+		}
+		if (receiveEvent != null)
+		{
+			addAttribute("event-receive", receiveEvent.getClassCanonicalName());
+		}
+		if (eventResizeEvent != null)
+		{
+			addAttribute("event-resize", eventResizeEvent.getClassCanonicalName());
+		}
+		if (eventDropEvent != null)
+		{
+			addAttribute("event-drop", eventDropEvent.getClassCanonicalName());
+		}
+		if (selectEvent != null)
+		{
+			addAttribute("select", selectEvent.getClassCanonicalName());
+		}
+		
+		
+		if (resources != null)
+		{
+			try
+			{
+				addAttribute("resources", GuiceContext.get(DefaultObjectMapper).writeValueAsString(resources));
+			}
+			catch (JsonProcessingException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		if (eventSource != null)
+		{
+			addAttribute("event-source", eventSource);
+		}
+		if (externalEventContainerId != null)
+		{
+			addAttribute("externalEvents", externalEventContainerId);
+		}
+		
+		
+		super.init();
 	}
-
+	
 	/**
 	 * Returns the options if any is required
 	 *
@@ -70,7 +135,11 @@ public class FullCalendar
 	@Override
 	public FullCalendarOptions getOptions()
 	{
-		return getFeature().getOptions();
+		if (options == null)
+		{
+			options = new FullCalendarOptions();
+		}
+		return options;
 	}
 
 	@Override
@@ -83,5 +152,114 @@ public class FullCalendar
 	public boolean equals(Object o)
 	{
 		return super.equals(o);
+	}
+	
+	public FullCalendarDateClickEvent getDateClickEvent()
+	{
+		return dateClickEvent;
+	}
+	
+	public FullCalendar setDateClickEvent(FullCalendarDateClickEvent dateClickEvent)
+	{
+		this.dateClickEvent = dateClickEvent;
+		return this;
+	}
+	
+	public FullCalendar setOptions(FullCalendarOptions options)
+	{
+		this.options = options;
+		return this;
+	}
+	
+	public List<FullCalendarResourceItem> getResources()
+	{
+		if (resources == null)
+		{
+			resources = new ArrayList<>();
+		}
+		return resources;
+	}
+	
+	public FullCalendar setResources(List<FullCalendarResourceItem> resources)
+	{
+		this.resources = resources;
+		return this;
+	}
+	
+	public String getEventSource()
+	{
+		return eventSource;
+	}
+	
+	public FullCalendar setEventSource(String eventSource)
+	{
+		this.eventSource = eventSource;
+		return this;
+	}
+	
+	public String getExternalEventContainerId()
+	{
+		return externalEventContainerId;
+	}
+	
+	public FullCalendar setExternalEventContainerId(String externalEventContainerId)
+	{
+		this.externalEventContainerId = externalEventContainerId;
+		return this;
+	}
+	
+	public FullCalendarEventClickEvent getEventClickEvent()
+	{
+		return eventClickEvent;
+	}
+	
+	public FullCalendar setEventClickEvent(FullCalendarEventClickEvent eventClickEvent)
+	{
+		this.eventClickEvent = eventClickEvent;
+		return this;
+	}
+	
+	public FullCalendarEventReceiveEvent getReceiveEvent()
+	{
+		return receiveEvent;
+	}
+	
+	public FullCalendar setReceiveEvent(FullCalendarEventReceiveEvent receiveEvent)
+	{
+		this.receiveEvent = receiveEvent;
+		return this;
+	}
+	
+	public FullCalendarEventResizeEvent getEventResizeEvent()
+	{
+		return eventResizeEvent;
+	}
+	
+	public FullCalendar setEventResizeEvent(FullCalendarEventResizeEvent eventResizeEvent)
+	{
+		this.eventResizeEvent = eventResizeEvent;
+		return this;
+	}
+	
+	public FullCalendarEventDropEvent getEventDropEvent()
+	{
+		return eventDropEvent;
+	}
+	
+	public FullCalendar setEventDropEvent(FullCalendarEventDropEvent eventDropEvent)
+	{
+		this.eventDropEvent = eventDropEvent;
+		return this;
+	}
+	
+	public FullCalendarSelectEvent getSelectEvent()
+	{
+		return selectEvent;
+	}
+	
+	public FullCalendar setSelectEvent(FullCalendarSelectEvent selectEvent)
+	{
+		this.selectEvent = selectEvent;
+		return this;
 	}
 }

@@ -16,6 +16,8 @@
  */
 package com.jwebmp.plugins.fullcalendar.options.enumerations;
 
+import com.jwebmp.plugins.fullcalendar.options.toolbars.*;
+
 import static com.guicedee.guicedinjection.json.StaticStrings.STRING_SPACE;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
@@ -23,7 +25,7 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  * @author GedMarc
  * @since 04 Feb 2017
  */
-public enum FullCalendarHeaderParts
+public enum FullCalendarHeaderParts implements IFullCalendarHeaderToolbarButton<FullCalendarHeaderParts>
 {
 	/**
 	 * text containing the current month/week/day

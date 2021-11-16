@@ -27,7 +27,7 @@ import com.jwebmp.plugins.fullcalendar.options.enumerations.FullCalendarHeaderPa
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
+import java.time.*;
 
 /**
  * @author GedMarc
@@ -42,8 +42,7 @@ public class FullCalendarTest
 	@Test
 	public void testSomeMethod()
 	{
-		FullCalendar fc = new FullCalendar();
-		fc.setID("fc");
+		FullCalendar fc = new FullCalendar("fc");
 		System.out.println(fc.renderJavascript());
 		Assertions.assertEquals("$(\"#fc\").fullCalendar();\n", fc.renderJavascript()
 		                                                          .toString());
@@ -52,8 +51,7 @@ public class FullCalendarTest
 	@Test
 	public void testTag()
 	{
-		FullCalendar fc = new FullCalendar();
-		fc.setID("fc");
+		FullCalendar fc = new FullCalendar("fc");
 		System.out.println(fc.toString(true));
 		Assertions.assertEquals("<div id=\"fc\"></div>", fc.toString(true));
 	}
@@ -61,16 +59,14 @@ public class FullCalendarTest
 	@Test
 	public void testComplex()
 	{
-		FullCalendar calendar = new FullCalendar();
+		FullCalendar calendar = new FullCalendar("fc");
 
-		Date evDate = new Date(2017, 4, 4, 0, 0, 0);
+		LocalDateTime evDate = LocalDateTime.of(2017, 4, 4, 0, 0, 0);
 
 		calendar.getOptions()
 		        .setNavLinks(true);
 		calendar.getOptions()
 		        .setEditable(true);
-		calendar.getOptions()
-		        .setTheme(true);
 
 		calendar.getOptions()
 		        .getEvents()
@@ -105,14 +101,14 @@ public class FullCalendarTest
 		                                    .setStart(evDate));
 
 		calendar.getOptions()
-		        .getHeader()
-		        .setLeft(FullCalendarHeaderParts.prev, FullCalendarHeaderParts.next, FullCalendarHeaderParts.space, FullCalendarHeaderParts.today);
+		        .getHeaderToolbar()
+		        .setStart(FullCalendarHeaderParts.prev, FullCalendarHeaderParts.next, FullCalendarHeaderParts.space, FullCalendarHeaderParts.today);
 		calendar.getOptions()
-		        .getHeader()
+		        .getHeaderToolbar()
 		        .setCenter(FullCalendarHeaderParts.title);
 		calendar.getOptions()
-		        .getHeader()
-		        .setRight(FullCalendarHeaderParts.month, FullCalendarHeaderParts.agendaWeek, FullCalendarHeaderParts.agendaDay, FullCalendarHeaderParts.listWeek);
+		        .getHeaderToolbar()
+		        .setEnd(FullCalendarHeaderParts.month, FullCalendarHeaderParts.agendaWeek, FullCalendarHeaderParts.agendaDay, FullCalendarHeaderParts.listWeek);
 
 		calendar.setID("fc");
 

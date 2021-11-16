@@ -16,10 +16,13 @@
  */
 package com.jwebmp.plugins.fullcalendar.options;
 
+import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.css.colours.ColourCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.plugins.fullcalendar.options.views.*;
 
 import java.io.Serializable;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,12 +31,14 @@ import java.util.List;
  * @author GedMarc
  * @since 05 Feb 2017
  */
+
+@SuppressWarnings("JavaDoc")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 public class FullCalendarEvent
 		extends JavaScriptPart<FullCalendarEvent>
 		implements IFullCalendarEvent
 {
-
-
 	/**
 	 * String/Integer. Optional
 	 * <p>
@@ -67,7 +72,7 @@ public class FullCalendarEvent
 	 * <p>
 	 * A Moment-ish input, like an ISO8601 string. Throughout the API this will become a real Moment object.
 	 */
-	private Date start;
+	private LocalDateTime start;
 
 	/**
 	 * The exclusive date/time an event ends. Optional.
@@ -76,7 +81,7 @@ public class FullCalendarEvent
 	 * <p>
 	 * It is the moment immediately after the event has ended. For example, if the last full day of an event is Thursday, the exclusive end of the event will be 00:00:00 on Friday!
 	 */
-	private Date end;
+	private LocalDateTime end;
 
 	/**
 	 * String/Array. Optional.
@@ -162,6 +167,144 @@ public class FullCalendarEvent
 	 */
 	private ColourCSSImpl textColor;
 
+	private Boolean defaultAllDay;
+	private FullCalendarViewDuration defaultAllDayEventDuration;
+	private LocalTime defaultTimedEventDuration;
+	private Boolean forceEventDuration;
+	private List<String> resourceId;
+	
+	private String groupId;
+	private String display;
+	
+	
+	/**
+	 * Determines the default value for each Event Object’s allDay property when it is unspecified.
+	 *
+	 * Boolean, default: undefined
+	 *
+	 * By default, defaultAllDay is not set. As a result, any Event Objects that do not specify an allDay property will be subject the guessing behavior mentioned in the Event Object article.
+	 * @return
+	 */
+	public Boolean getDefaultAllDay()
+	{
+		return defaultAllDay;
+	}
+	
+	/**
+	 * Determines the default value for each Event Object’s allDay property when it is unspecified.
+	 *
+	 * Boolean, default: undefined
+	 *
+	 * By default, defaultAllDay is not set. As a result, any Event Objects that do not specify an allDay property will be subject the guessing behavior mentioned in the Event Object article.
+	 * @param defaultAllDay
+	 * @return
+	 */
+	public FullCalendarEvent setDefaultAllDay(Boolean defaultAllDay)
+	{
+		this.defaultAllDay = defaultAllDay;
+		return this;
+	}
+	
+	/**
+	 * A fallback duration for all-day Event Objects without a specified end value.
+	 *
+	 * Duration, default: { days: 1 }
+	 *
+	 * If an event does not have an end specified, it will appear to be this duration when rendered.
+	 *
+	 * The actual end of the event will remain unset unless forceEventDuration has been set to true.
+	 * @return
+	 */
+	public FullCalendarViewDuration getDefaultAllDayEventDuration()
+	{
+		if (defaultAllDayEventDuration == null)
+		{
+			defaultAllDayEventDuration = new FullCalendarViewDuration();
+		}
+		return defaultAllDayEventDuration;
+	}
+	
+	/**
+	 * A fallback duration for all-day Event Objects without a specified end value.
+	 *
+	 * Duration, default: { days: 1 }
+	 *
+	 * If an event does not have an end specified, it will appear to be this duration when rendered.
+	 *
+	 * The actual end of the event will remain unset unless forceEventDuration has been set to true.
+	 * @param defaultAllDayEventDuration
+	 * @return
+	 */
+	public FullCalendarEvent setDefaultAllDayEventDuration(FullCalendarViewDuration defaultAllDayEventDuration)
+	{
+		this.defaultAllDayEventDuration = defaultAllDayEventDuration;
+		return this;
+	}
+	
+	/**
+	 * A fallback duration for timed Event Objects without a specified end value.
+	 *
+	 * Duration, default: '01:00' (1 hour)
+	 *
+	 * If an event does not have an end specified, it will appear to be this duration when rendered.
+	 *
+	 * The actual end of the event will remain unset unless forceEventDuration has been set to true.
+	 *
+	 * This setting only affects events with allDay equal to false. For all-day events, use defaultAllDayEventDuration.
+	 * @return
+	 */
+	public LocalTime getDefaultTimedEventDuration()
+	{
+		return defaultTimedEventDuration;
+	}
+	
+	/**
+	 * A fallback duration for timed Event Objects without a specified end value.
+	 *
+	 * Duration, default: '01:00' (1 hour)
+	 *
+	 * If an event does not have an end specified, it will appear to be this duration when rendered.
+	 *
+	 * The actual end of the event will remain unset unless forceEventDuration has been set to true.
+	 *
+	 * This setting only affects events with allDay equal to false. For all-day events, use defaultAllDayEventDuration.
+	 * @param defaultTimedEventDuration
+	 * @return
+	 */
+	public FullCalendarEvent setDefaultTimedEventDuration(LocalTime defaultTimedEventDuration)
+	{
+		this.defaultTimedEventDuration = defaultTimedEventDuration;
+		return this;
+	}
+	
+	/**
+	 * A flag to force assignment of an event’s end if it is unspecified.
+	 *
+	 * Boolean, default: false
+	 *
+	 * If an event’s end is not specified, it will be calculated and assigned to the Event Object using defaultTimedEventDuration or defaultAllDayEventDuration.
+	 * @return
+	 */
+	public Boolean getForceEventDuration()
+	{
+		return forceEventDuration;
+	}
+	
+	/**
+	 * A flag to force assignment of an event’s end if it is unspecified.
+	 *
+	 * Boolean, default: false
+	 *
+	 * If an event’s end is not specified, it will be calculated and assigned to the Event Object using defaultTimedEventDuration or defaultAllDayEventDuration.
+	 * @param forceEventDuration
+	 * @return
+	 */
+	public FullCalendarEvent setForceEventDuration(Boolean forceEventDuration)
+	{
+		this.forceEventDuration = forceEventDuration;
+		return this;
+	}
+	
 	/**
 	 * String/Integer. Optional
 	 * <p>
@@ -264,7 +407,7 @@ public class FullCalendarEvent
 	 *
 	 * @return
 	 */
-	public Date getStart()
+	public LocalDateTime getStart()
 	{
 		return start;
 	}
@@ -278,7 +421,7 @@ public class FullCalendarEvent
 	 *
 	 * @return
 	 */
-	public FullCalendarEvent setStart(Date start)
+	public FullCalendarEvent setStart(LocalDateTime start)
 	{
 		this.start = start;
 		return this;
@@ -293,7 +436,7 @@ public class FullCalendarEvent
 	 *
 	 * @return
 	 */
-	public Date getEnd()
+	public LocalDateTime getEnd()
 	{
 		return end;
 	}
@@ -309,7 +452,7 @@ public class FullCalendarEvent
 	 *
 	 * @return
 	 */
-	public FullCalendarEvent setEnd(Date end)
+	public FullCalendarEvent setEnd(LocalDateTime end)
 	{
 		this.end = end;
 		return this;
@@ -657,5 +800,72 @@ public class FullCalendarEvent
 		this.textColor = textColor;
 		return this;
 	}
-
+	
+	/**
+	 * Associating Events with Resources
+	 * An Event becomes associated with a resource when its resourceId property matches one of the Resource Object’s id fields:
+	 * @return
+	 */
+	public List<String> getResourceId()
+	{
+		if (resourceId == null)
+		{
+			resourceId = new ArrayList<>();
+		}
+		return resourceId;
+	}
+	
+	/**
+	 * Associating Events with Resources
+	 * An Event becomes associated with a resource when its resourceId property matches one of the Resource Object’s id fields:
+	 * @param resourceId
+	 * @return
+	 */
+	public FullCalendarEvent setResourceId(List<String> resourceId)
+	{
+		this.resourceId = resourceId;
+		return this;
+	}
+	
+	/**
+	 * String. Events that share a groupId will be dragged and resized together automatically.
+	 * @return
+	 */
+	public String getGroupId()
+	{
+		return groupId;
+	}
+	
+	/**
+	 * String. Events that share a groupId will be dragged and resized together automatically.
+	 * @param groupId
+	 * @return
+	 */
+	public FullCalendarEvent setGroupId(String groupId)
+	{
+		this.groupId = groupId;
+		return this;
+	}
+	
+	/**
+	 *
+	 * The rendering type of this event. Can be 'auto', 'block', 'list-item', 'background', 'inverse-background', or 'none'. See eventDisplay.
+	 * @return
+	 */
+	public String getDisplay()
+	{
+		return display;
+	}
+	
+	/**
+	 *
+	 * The rendering type of this event. Can be 'auto', 'block', 'list-item', 'background', 'inverse-background', or 'none'. See eventDisplay.
+	 * @param display
+	 * @return
+	 */
+	public FullCalendarEvent setDisplay(String display)
+	{
+		this.display = display;
+		return this;
+	}
 }

@@ -26,6 +26,11 @@
             <artifactId>jwebmp-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.jwebmp.plugins.angular</groupId>
+            <artifactId>jwebmp-plugins-angularjs</artifactId>
+        </dependency>
+
     </dependencies>
 
     <scm>

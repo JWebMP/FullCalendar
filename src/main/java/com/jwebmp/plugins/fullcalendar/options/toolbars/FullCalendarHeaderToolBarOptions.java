@@ -14,10 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.jwebmp.plugins.fullcalendar.options;
+package com.jwebmp.plugins.fullcalendar.options.toolbars;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.enumerations.FullCalendarHeaderParts;
 
@@ -34,8 +33,11 @@ import static com.guicedee.guicedinjection.json.StaticStrings.STRING_COMMNA;
  * @author GedMarc
  * @since 04 Feb 2017
  */
-public class FullCalendarHeaderOptions
-		extends JavaScriptPart<FullCalendarHeaderOptions>
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
+
+public class FullCalendarHeaderToolBarOptions
+		extends JavaScriptPart<FullCalendarHeaderToolBarOptions>
 {
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
@@ -43,26 +45,26 @@ public class FullCalendarHeaderOptions
 	 * Values separated by a space will be displayed with a small gap in between.
 	 */
 	@JsonIgnoreProperties(allowSetters = true)
-	private List<FullCalendarHeaderParts> left;
+	private List<IFullCalendarHeaderToolbarButton<?>> start;
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
 	 * displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 */
 	@JsonIgnoreProperties(allowSetters = true)
-	private List<FullCalendarHeaderParts> right;
+	private List<IFullCalendarHeaderToolbarButton<?>> end;
 	/**
 	 * An object can be supplied with properties left, center, and right. These properties contain strings with comma/space separated values. Values separated by a comma will be
 	 * displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 */
 	@JsonIgnoreProperties(allowSetters = true)
-	private List<FullCalendarHeaderParts> center;
+	private List<IFullCalendarHeaderToolbarButton<?>> center;
 
 	/**
 	 * A new instance of the header options
 	 */
-	public FullCalendarHeaderOptions()
+	public FullCalendarHeaderToolBarOptions()
 	{
 		//No config
 	}
@@ -72,24 +74,24 @@ public class FullCalendarHeaderOptions
 	 * displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
-	 * @param left
-	 * @param right
+	 * @param start
+	 * @param end
 	 * @param center
 	 */
-	public FullCalendarHeaderOptions(List<FullCalendarHeaderParts> left, List<FullCalendarHeaderParts> right, List<FullCalendarHeaderParts> center)
+	public FullCalendarHeaderToolBarOptions(List<IFullCalendarHeaderToolbarButton<?>> start, List<IFullCalendarHeaderToolbarButton<?>> end, List<IFullCalendarHeaderToolbarButton<?>> center)
 	{
-		this.left = left;
-		this.right = right;
+		this.start = start;
+		this.end = end;
 		this.center = center;
 	}
 
-	@JsonProperty("left")
+	@JsonProperty("start")
 	protected String getLeftJson()
 	{
 		StringBuilder sb = new StringBuilder();
-		if (getLeft() != null)
+		if (getStart() != null)
 		{
-			for (FullCalendarHeaderParts leftPart : getLeft())
+			for (IFullCalendarHeaderToolbarButton<?> leftPart : getStart())
 			{
 
 				sb.append(leftPart.toString());
@@ -113,9 +115,9 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public List<FullCalendarHeaderParts> getLeft()
+	public List<IFullCalendarHeaderToolbarButton<?>> getStart()
 	{
-		return left;
+		return start;
 	}
 
 	/**
@@ -123,13 +125,13 @@ public class FullCalendarHeaderOptions
 	 * displayed adjacently.
 	 * Values separated by a space will be displayed with a small gap in between.
 	 *
-	 * @param left
+	 * @param start
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setLeft(FullCalendarHeaderParts... left)
+	public FullCalendarHeaderToolBarOptions setStart(IFullCalendarHeaderToolbarButton<?>... start)
 	{
-		List<FullCalendarHeaderParts> all = Arrays.asList(left);
+		List<IFullCalendarHeaderToolbarButton<?>> all = Arrays.asList(start);
 		return setLeft(all);
 	}
 
@@ -142,19 +144,19 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setLeft(List<FullCalendarHeaderParts> left)
+	public FullCalendarHeaderToolBarOptions setLeft(List<IFullCalendarHeaderToolbarButton<?>> left)
 	{
-		this.left = left;
+		this.start = left;
 		return this;
 	}
 
-	@JsonProperty("right")
+	@JsonProperty("end")
 	protected String getRightJson()
 	{
 		StringBuilder sb = new StringBuilder();
-		if (getRight() != null)
+		if (getEnd() != null)
 		{
-			for (FullCalendarHeaderParts leftPart : getRight())
+			for (IFullCalendarHeaderToolbarButton<?> leftPart : getEnd())
 			{
 
 				sb.append(leftPart.toString());
@@ -178,9 +180,9 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public List<FullCalendarHeaderParts> getRight()
+	public List<IFullCalendarHeaderToolbarButton<?>> getEnd()
 	{
-		return right;
+		return end;
 	}
 
 	/**
@@ -192,9 +194,9 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setRight(FullCalendarHeaderParts... left)
+	public FullCalendarHeaderToolBarOptions setEnd(IFullCalendarHeaderToolbarButton<?>... left)
 	{
-		List<FullCalendarHeaderParts> all = Arrays.asList(left);
+		List<IFullCalendarHeaderToolbarButton<?>> all = Arrays.asList(left);
 		return setRight(all);
 	}
 
@@ -207,9 +209,9 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setRight(List<FullCalendarHeaderParts> right)
+	public FullCalendarHeaderToolBarOptions setRight(List<IFullCalendarHeaderToolbarButton<?>> right)
 	{
-		this.right = right;
+		this.end = right;
 		return this;
 	}
 
@@ -217,7 +219,7 @@ public class FullCalendarHeaderOptions
 	protected String getCenterJson()
 	{
 		StringBuilder sb = new StringBuilder();
-		for (FullCalendarHeaderParts leftPart : getCenter())
+		for (IFullCalendarHeaderToolbarButton<?> leftPart : getCenter())
 		{
 
 			sb.append(leftPart.toString());
@@ -240,7 +242,7 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public List<FullCalendarHeaderParts> getCenter()
+	public List<IFullCalendarHeaderToolbarButton<?>> getCenter()
 	{
 		return center;
 	}
@@ -254,9 +256,9 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setCenter(FullCalendarHeaderParts... left)
+	public FullCalendarHeaderToolBarOptions setCenter(IFullCalendarHeaderToolbarButton<?>... left)
 	{
-		List<FullCalendarHeaderParts> all = Arrays.asList(left);
+		List<IFullCalendarHeaderToolbarButton<?>> all = Arrays.asList(left);
 		return setCenter(all);
 	}
 
@@ -269,7 +271,7 @@ public class FullCalendarHeaderOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarHeaderOptions setCenter(List<FullCalendarHeaderParts> center)
+	public FullCalendarHeaderToolBarOptions setCenter(List<IFullCalendarHeaderToolbarButton<?>> center)
 	{
 		this.center = center;
 		return this;
