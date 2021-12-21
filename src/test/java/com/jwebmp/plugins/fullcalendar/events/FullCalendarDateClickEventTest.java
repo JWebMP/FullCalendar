@@ -10,8 +10,5 @@ public class FullCalendarDateClickEventTest
 	public void testDateClick()
 	{
 		FullCalendarDateClickEvent ee = new FullCalendarDateClickEvent();
-		System.out.println(ee.getFunction());
-		
-		
 	}
 }

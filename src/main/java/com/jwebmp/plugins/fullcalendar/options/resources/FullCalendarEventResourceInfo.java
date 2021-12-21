@@ -11,11 +11,13 @@ public class FullCalendarEventResourceInfo implements IJsonRepresentation<FullCa
 	private String id;
 	private String title;
 	
+	private Map<String,Object> extendedProps;
+	
 	@JsonAnyGetter
 	@JsonAnySetter
-	private Map<String,String> extendedProps;
+	private Map<String,Object> unknownProperties;
 	
-	private String eventClassNames;
+	private Set<String> eventClassNames;
 	private String eventTextColor;
 	private String eventBorderColor;
 	private String eventBackgroundColor;
@@ -47,23 +49,23 @@ public class FullCalendarEventResourceInfo implements IJsonRepresentation<FullCa
 		return this;
 	}
 	
-	public Map<String, String> getExtendedProps()
+	public Map<String, Object> getExtendedProps()
 	{
 		return extendedProps;
 	}
 	
-	public FullCalendarEventResourceInfo setExtendedProps(Map<String, String> extendedProps)
+	public FullCalendarEventResourceInfo setExtendedProps(Map<String, Object> extendedProps)
 	{
 		this.extendedProps = extendedProps;
 		return this;
 	}
 	
-	public String getEventClassNames()
+	public Set<String> getEventClassNames()
 	{
 		return eventClassNames;
 	}
 	
-	public FullCalendarEventResourceInfo setEventClassNames(String eventClassNames)
+	public FullCalendarEventResourceInfo setEventClassNames(Set<String> eventClassNames)
 	{
 		this.eventClassNames = eventClassNames;
 		return this;
@@ -147,6 +149,17 @@ public class FullCalendarEventResourceInfo implements IJsonRepresentation<FullCa
 	public FullCalendarEventResourceInfo setBusinessHours(FullCalendarBusinessHours businessHours)
 	{
 		this.businessHours = businessHours;
+		return this;
+	}
+	
+	public Map<String, Object> getUnknownProperties()
+	{
+		return unknownProperties;
+	}
+	
+	public FullCalendarEventResourceInfo setUnknownProperties(Map<String, Object> unknownProperties)
+	{
+		this.unknownProperties = unknownProperties;
 		return this;
 	}
 }

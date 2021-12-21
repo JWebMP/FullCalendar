@@ -8,18 +8,16 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
             eventSource: '@eventSource',
             resources: '@resources',
 
-            dateClick: '&dateClick',
-            eventClick: '&eventClick',
-            eventReceive: '&eventReceive',
-            eventResize: '&eventResize',
-            eventDrop: '&eventDrop',
+            dateClick: '@dateClick',
+            eventClick: '@eventClick',
+            eventReceive: '@eventReceive',
+            eventResize: '@eventResize',
+            eventDrop: '@eventDrop',
 
-            select: '&select',
-            unselect: '&unselect',
+            select: '@select',
+            unselect: '@unselect',
             navLinkDayClick: '&navLinkDayClick',
-            navLinkWeekClick: '&navLinkWeekClick',
-
-            websocketGroup: '@websocket'
+            navLinkWeekClick: '&navLinkWeekClick'
         },
 
         controllerAs: 'vm',
@@ -30,17 +28,48 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
             $scope.events = [];
 
             vm.extractInfoObject = function (infoObject) {
-                alert('extracting time calendar information');
+                var details = {};
+                details.allDay = infoObject.allDay;
+                details.startStr = infoObject.startStr;
+                details.start = infoObject.start;
+                details.endStr = infoObject.endStr;
+                details.end = infoObject.end;
+                details.dateStr = infoObject.dateStr;
 
-                infoObject.view = undefined;
-                infoObject.jsEvent = undefined;
+                details.resource = {};
+                details.resource.businessHours = infoObject.resource._resource.businessHours;
+                details.resource.extendedProps = infoObject.resource._resource.extendedProps;
+                details.resource.id = infoObject.resource.id;
+                details.resource.title = infoObject.resource._resource.title;
+                details.resource.eventClassNames = infoObject.resource.eventClassNames;
+                details.resource.eventTextColor = infoObject.resource.eventTextColor;
+                details.resource.eventBorderColor = infoObject.resource.eventBorderColor;
+                details.resource.eventBackgroundColor = infoObject.resource.eventBackgroundColor;
+                details.resource.eventAllow = infoObject.resource.eventAllow;
+                details.resource.eventOverlap = infoObject.resource.eventOverlap;
 
-                var copy = JSON.parse(JSON.stringify(infoObject));
-                return copy;
+
+                return details;
+            }
+
+            $scope.updateTimesheetCallback;
+            $scope.timer = undefined;
+
+            function updateTimeSheets() {
+                if ($('#' + $scope.id).is(':visible')) {
+                    $.get($scope.eventSource, function (data) {
+                        $scope.events = data;
+                        $scope.updateTimesheetCallback($scope.events);
+                        return $scope.events;
+                    })
+                } else {
+                    return $scope.events;
+                }
             }
 
             $scope.ctrlFn = function (element) {
                 var id = element.attr('id');
+                $scope.id = id;
 
                 if ($scope.externalEvents !== undefined) {
                     $scope.containerEL = document.getElementById($scope.externalEvents);
@@ -59,85 +88,143 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
                     options.resources = JSON.parse($scope.resources);
                 }
 
+
                 if ($scope.eventSource !== undefined) {
-                    if ($('#' + id + ':visible')) {
                     //    alert('binding event source');
-                        options.events = function (info, successCallback, failureCallback) {
-                            $.get($scope.eventSource, function (data) {
-                                $scope.events = data;
-                                successCallback( $scope.events);
-                                return $scope.events;
-                            })
-                        }
-                    }//end if visible
-                    else {
+                    options.events = function (info, successCallback, failureCallback) {
+                        $scope.updateTimesheetCallback = successCallback;
+                        $scope.timer = $interval(updateTimeSheets, 1100);
                         return $scope.events;
                     }
+
+                    element.on('$destroy', function () {
+                        try {
+                            $interval.cancel($scope.timer);
+                        } catch (e) {
+
+                        }
+                    });
                 }
 
                 if ($scope.dateClick !== undefined) {
-                    $scope.options.dateClick = function (infoObject) {
-
-                   //     alert('Clicked on: ' + info.dateStr);
-                //        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-                //        alert('Current view: ' + info.view.type);
-
-                        info.dayEl.style.backgroundColor = 'red';
-                        $scope.$event = infoObject.event;
+                    options.dateClick = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
                         var copy = vm.extractInfoObject(infoObject);
-                 //       alert('Copy made: ' + copy);
-                        $scope.eventData = copy;
-                        jwCntrl.perform($event, ['headers'], $scope.dateClick, $scope.dateClick);
-                    //    $scope.dateClick();
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.dateClick, $scope.dateClick);
                     }
                 }
 
-
                 if ($scope.eventClick !== undefined) {
-                    $scope.options.eventClick = $scope.eventClick;
+                    options.eventClick = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.eventClick, $scope.eventClick);
+                    }
                 }
 
                 if ($scope.eventReceive !== undefined) {
-                    $scope.options.eventReceive = $scope.eventReceive;
+                    options.eventReceive = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.eventReceive, $scope.eventReceive);
+                    }
                 }
 
                 if ($scope.eventResize !== undefined) {
-                    $scope.options.eventResize = $scope.eventResize;
+                    options.eventResize = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.eventResize, $scope.eventResize);
+                    }
                 }
 
                 if ($scope.eventDrop !== undefined) {
-                    $scope.options.eventDrop = $scope.eventDrop;
+                    options.eventDrop = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.eventDrop, $scope.eventDrop);
+                    }
                 }
 
                 if ($scope.select !== undefined) {
-                    $scope.options.select = $scope.select;
+                    options.select = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.select, $scope.select);
+                    }
                 }
 
                 if ($scope.unselect !== undefined) {
-                    $scope.options.unselect = $scope.unselect;
+                    options.unselect = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.unselect, $scope.unselect);
+                    }
                 }
 
                 if ($scope.navLinkDayClick !== undefined) {
-                    $scope.options.navLinkDayClick = $scope.navLinkDayClick;
+                    options.navLinkDayClick = function (infoObject) {
+                        var eventObj = {};
+                        eventObj.currentTarget = {};
+                        eventObj.target = {};
+                        eventObj.target.id = id;
+                        eventObj.currentTarget.id = id;
+                        var copy = vm.extractInfoObject(infoObject);
+                        eventObj.infoObj = copy;
+                        jw.env.controller.perform(eventObj, ['headers'], $scope.navLinkDayClick, $scope.navLinkDayClick);
+                    }
                 }
 
                 $scope.calendar = new FullCalendar.Calendar($scope.calendarEL, options);
                 $scope.calendar.render();
-
-
 
             };
         }],
 
         link: function ($scope, element, attrs) {
             $scope.ctrlFn(element);
-
             element.on('$destroy', function () {
-               // alert('destroy calendar');
-                $scope.calendar.destroy();
-             //   alert('destroyed calendar');
+                try {
+                    $scope.calendar.destroy();
+                } catch (e) {
+
+                }
             });
         }
-
     };
 }]);

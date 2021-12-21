@@ -39,7 +39,7 @@ public class FullCalendarAngularJsDirective
 	 */
 	public FullCalendarAngularJsDirective()
 	{
-		super("angularJsDirective");
+		super("angularJsFullCalendarDirective");
 	}
 
 	/**

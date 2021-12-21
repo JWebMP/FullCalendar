@@ -14,7 +14,7 @@ public class FullCalendarSelectEventTest
 		FullCalendarSelectEvent e = new FullCalendarSelectEvent(){
 			
 			@Override
-			public void onSelect(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarEventInfo selectEvent)
+			public void onSelect(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarSelectEventInfo selectEvent)
 			{
 				System.out.println("Selected");
 			}
