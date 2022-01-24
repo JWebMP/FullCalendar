@@ -23,9 +23,9 @@ public abstract class FullCalendarDropEvent extends ClickAdapter<FullCalendarDro
 	@Override
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
-		Map<String, Object> info = (Map<String, Object>) call.getValue()
-		                                                     .getUnknownFields()
-		                                                     .get("infoObj");
+		LinkedHashMap map = (LinkedHashMap) call.getValue().getUnknownFields().get("infoObj");
+		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("resource");
+		
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);
 		onDrop(call, response, el);

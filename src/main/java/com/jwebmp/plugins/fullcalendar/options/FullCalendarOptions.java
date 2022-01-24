@@ -1984,7 +1984,7 @@ public class FullCalendarOptions
 	private Integer dragRevertDuration;
 	
 	private Boolean dragScroll;
-	private FullCalendarViewDuration snapDuration;
+	private FullCalendarTimeSlot snapDuration;
 	private Boolean allDayMaintainDuration;
 	private Boolean eventOverlap;
 	
@@ -2359,7 +2359,7 @@ public class FullCalendarOptions
 	 *
 	 * @return
 	 */
-	public FullCalendarViewDuration getSnapDuration()
+	public FullCalendarTimeSlot getSnapDuration()
 	{
 		return snapDuration;
 	}
@@ -2374,7 +2374,7 @@ public class FullCalendarOptions
 	 * @param snapDuration
 	 * @return
 	 */
-	public FullCalendarOptions setSnapDuration(FullCalendarViewDuration snapDuration)
+	public FullCalendarOptions setSnapDuration(FullCalendarTimeSlot snapDuration)
 	{
 		this.snapDuration = snapDuration;
 		return this;

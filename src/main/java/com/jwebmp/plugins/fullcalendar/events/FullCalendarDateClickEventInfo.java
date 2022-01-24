@@ -1,5 +1,7 @@
 package com.jwebmp.plugins.fullcalendar.events;
 
+import com.google.common.base.*;
+import com.guicedee.guicedinjection.json.*;
 import com.guicedee.guicedinjection.representations.*;
 import com.jwebmp.plugins.fullcalendar.options.resources.*;
 
@@ -7,18 +9,18 @@ import java.time.*;
 
 public class FullCalendarDateClickEventInfo implements IJsonRepresentation<FullCalendarDateClickEventInfo>
 {
-	private OffsetDateTime date;
+	private LocalDateTime date;
 	private String dateStr;
 	private Boolean allDay;
 	
 	private FullCalendarEventResourceInfo resource;
 	
-	public OffsetDateTime getDate()
+	public LocalDateTime getDate()
 	{
 		return date;
 	}
 	
-	public FullCalendarDateClickEventInfo setDate(OffsetDateTime date)
+	public FullCalendarDateClickEventInfo setDate(LocalDateTime date)
 	{
 		this.date = date;
 		return this;
@@ -55,5 +57,13 @@ public class FullCalendarDateClickEventInfo implements IJsonRepresentation<FullC
 	{
 		this.resource = resource;
 		return this;
+	}
+	
+	public void updateDates()
+	{
+		if (!Strings.isNullOrEmpty(dateStr))
+		{
+			date = new LocalDateTimeDeserializer().convert(dateStr);
+		}
 	}
 }

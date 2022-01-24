@@ -20,9 +20,9 @@ public abstract class FullCalendarSelectEvent extends ClickAdapter<FullCalendarS
 	@Override
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
-		Map<String, Object> info = (Map<String, Object>) call.getValue()
-		                                                     .getUnknownFields()
-		                                                     .get("infoObj");
+		LinkedHashMap map = (LinkedHashMap) call.getValue().getUnknownFields().get("infoObj");
+		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("resource");
+		
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarSelectEventInfo el = mapper.convertValue(info, FullCalendarSelectEventInfo.class);
 		onSelect(call, response, el);

@@ -18,7 +18,9 @@ package com.jwebmp.plugins.fullcalendar;
 
 import com.fasterxml.jackson.core.*;
 import com.guicedee.guicedinjection.*;
+import com.jwebmp.core.base.angular.*;
 import com.jwebmp.core.base.html.Div;
+import com.jwebmp.core.htmlbuilder.javascript.*;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.fullcalendar.events.*;
 import com.jwebmp.plugins.fullcalendar.options.*;
@@ -55,6 +57,7 @@ public class FullCalendar
 	private FullCalendarEventReceiveEvent receiveEvent;
 	private FullCalendarEventResizeEvent eventResizeEvent;
 	private FullCalendarEventDropEvent eventDropEvent;
+	private FullCalendarDropEvent dropEvent;
 	private FullCalendarSelectEvent selectEvent;
 	
 	
@@ -122,7 +125,6 @@ public class FullCalendar
 		{
 			addAttribute("externalEvents", externalEventContainerId);
 		}
-		
 		
 		super.init();
 	}
@@ -260,6 +262,17 @@ public class FullCalendar
 	public FullCalendar setSelectEvent(FullCalendarSelectEvent selectEvent)
 	{
 		this.selectEvent = selectEvent;
+		return this;
+	}
+	
+	public FullCalendarDropEvent getDropEvent()
+	{
+		return dropEvent;
+	}
+	
+	public FullCalendar setDropEvent(FullCalendarDropEvent dropEvent)
+	{
+		this.dropEvent = dropEvent;
 		return this;
 	}
 }

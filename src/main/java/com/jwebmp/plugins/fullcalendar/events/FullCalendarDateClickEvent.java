@@ -26,11 +26,12 @@ public class FullCalendarDateClickEvent extends ClickAdapter<FullCalendarDateCli
 	@Override
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
-		Map<String, Object> info = (Map<String, Object>) call.getValue()
-		                                                     .getUnknownFields()
-		                                                     .get("infoObj");
+		LinkedHashMap map = (LinkedHashMap) call.getValue().getUnknownFields().get("infoObj");
+		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("resource");
+		
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarDateClickEventInfo el = mapper.convertValue(info, FullCalendarDateClickEventInfo.class);
+		el.updateDates();
 		onDateClick(call, response, el);
 	}
 	

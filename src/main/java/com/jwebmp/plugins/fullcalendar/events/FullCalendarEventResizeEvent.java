@@ -20,9 +20,9 @@ public abstract class FullCalendarEventResizeEvent extends ClickAdapter<FullCale
 	@Override
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
-		Map<String, Object> info = (Map<String, Object>) call.getValue()
-		                                                     .getUnknownFields()
-		                                                     .get("infoObj");
+		LinkedHashMap map = (LinkedHashMap) call.getValue().getUnknownFields().get("infoObj");
+		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("resource");
+		
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);
 		onEventResize(call, response, el);

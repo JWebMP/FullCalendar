@@ -1,6 +1,5 @@
 JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', function ($rootScope, $interval, $timeout) {
     return {
-        restrict: 'A',
         scope: {
             options: '@options',
 
@@ -29,24 +28,52 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
             vm.extractInfoObject = function (infoObject) {
                 var details = {};
-                details.allDay = infoObject.allDay;
-                details.startStr = infoObject.startStr;
-                details.start = infoObject.start;
-                details.endStr = infoObject.endStr;
-                details.end = infoObject.end;
-                details.dateStr = infoObject.dateStr;
-
                 details.resource = {};
-                details.resource.businessHours = infoObject.resource._resource.businessHours;
-                details.resource.extendedProps = infoObject.resource._resource.extendedProps;
-                details.resource.id = infoObject.resource.id;
-                details.resource.title = infoObject.resource._resource.title;
-                details.resource.eventClassNames = infoObject.resource.eventClassNames;
-                details.resource.eventTextColor = infoObject.resource.eventTextColor;
-                details.resource.eventBorderColor = infoObject.resource.eventBorderColor;
-                details.resource.eventBackgroundColor = infoObject.resource.eventBackgroundColor;
-                details.resource.eventAllow = infoObject.resource.eventAllow;
-                details.resource.eventOverlap = infoObject.resource.eventOverlap;
+
+
+                if (infoObject.event) {
+                    details.resource.allDay = infoObject.event.allDay;
+                    details.resource.startStr = infoObject.event.startStr;
+                    details.resource.start = infoObject.event.start;
+                    details.resource.endStr = infoObject.event.endStr;
+                    details.resource.end = infoObject.event.end;
+                    details.resource.dateStr = infoObject.event.dateStr;
+
+                    if (infoObject.newResource) {
+                        if (infoObject.newResource._resource) {
+                            details.resource.newResourceId = infoObject.newResource._resource.id;
+                        }
+                    }
+
+                    if (infoObject.event._def.extendedProps) {
+                        details.resource.title = infoObject.event._def.title;
+                        for (var prop in infoObject.event._def.extendedProps) {
+                            details.resource[prop] = infoObject.event._def.extendedProps[prop];
+                        }
+                        details.resource.id = infoObject.event._def.extendedProps.timesheetId;
+                    }
+                } else if (infoObject.resource) {
+                    if (infoObject.resource._resource) {
+                        details.resource.businessHours = infoObject.resource._resource.businessHours;
+                        details.resource.extendedProps = infoObject.resource._resource.extendedProps;
+                    }
+
+                    details.resource.allDay = infoObject.allDay;
+                    details.resource.startStr = infoObject.startStr;
+                    details.resource.start = infoObject.start;
+                    details.resource.endStr = infoObject.endStr;
+                    details.resource.end = infoObject.end;
+                    details.resource.dateStr = infoObject.dateStr;
+
+                    details.resource.id = infoObject.resource.id;
+                    details.resource.title = infoObject.resource._resource.title;
+                    details.resource.eventClassNames = infoObject.resource.eventClassNames;
+                    details.resource.eventTextColor = infoObject.resource.eventTextColor;
+                    details.resource.eventBorderColor = infoObject.resource.eventBorderColor;
+                    details.resource.eventBackgroundColor = infoObject.resource.eventBackgroundColor;
+                    details.resource.eventAllow = infoObject.resource.eventAllow;
+                    details.resource.eventOverlap = infoObject.resource.eventOverlap;
+                }
 
 
                 return details;
@@ -61,7 +88,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
                         $scope.events = data;
                         $scope.updateTimesheetCallback($scope.events);
                         return $scope.events;
-                    })
+                    });
                 } else {
                     return $scope.events;
                 }
@@ -91,12 +118,13 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.eventSource !== undefined) {
                     //    alert('binding event source');
+                 //   options.events = options.eventSource;
                     options.events = function (info, successCallback, failureCallback) {
-                        $scope.updateTimesheetCallback = successCallback;
-                        $scope.timer = $interval(updateTimeSheets, 1100);
-                        return $scope.events;
-                    }
+                         $scope.updateTimesheetCallback = successCallback;
+                        // return $scope.events;
+                     }
 
+                    $scope.timer = $interval(updateTimeSheets, 2100);
                     element.on('$destroy', function () {
                         try {
                             $interval.cancel($scope.timer);
@@ -108,6 +136,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.dateClick !== undefined) {
                     options.dateClick = function (infoObject) {
+                        console.log('dateclick - ' + $scope.dateClick);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
@@ -121,6 +150,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.eventClick !== undefined) {
                     options.eventClick = function (infoObject) {
+                        console.log('eventclick - ' + $scope.eventClick);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
@@ -134,6 +164,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.eventReceive !== undefined) {
                     options.eventReceive = function (infoObject) {
+                        console.log('eventreceive - ' + $scope.eventReceive);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
@@ -147,6 +178,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.eventResize !== undefined) {
                     options.eventResize = function (infoObject) {
+                        console.log('eventresize - ' + $scope.eventResize);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
@@ -160,6 +192,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.eventDrop !== undefined) {
                     options.eventDrop = function (infoObject) {
+                        console.log('eventdrop - ' + $scope.eventDrop);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
@@ -173,6 +206,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.select !== undefined) {
                     options.select = function (infoObject) {
+                        console.log('eventselect - ' + $scope.select);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
@@ -186,6 +220,7 @@ JW_APP_NAME.directive('fullcalendar', ['$rootScope', '$interval', '$timeout', fu
 
                 if ($scope.unselect !== undefined) {
                     options.unselect = function (infoObject) {
+                        console.log('unselect - ' + $scope.unselect);
                         var eventObj = {};
                         eventObj.currentTarget = {};
                         eventObj.target = {};
