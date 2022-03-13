@@ -9,7 +9,7 @@ module com.jwebmp.plugins.fullcalendar {
 
 	requires com.jwebmp.core;
 	requires com.guicedee.logmaster;
-	requires com.jwebmp.core.angularjs;
+	requires com.jwebmp.core.angular;
 
 	requires jakarta.validation;
 	requires java.logging;
