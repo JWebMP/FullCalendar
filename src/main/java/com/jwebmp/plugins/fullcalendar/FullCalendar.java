@@ -19,6 +19,9 @@ package com.jwebmp.plugins.fullcalendar;
 import com.fasterxml.jackson.core.*;
 import com.guicedee.guicedinjection.*;
 import com.jwebmp.core.base.angular.*;
+import com.jwebmp.core.base.angular.services.annotations.references.*;
+import com.jwebmp.core.base.angular.services.annotations.structures.*;
+import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.base.html.Div;
 import com.jwebmp.core.htmlbuilder.javascript.*;
 import com.jwebmp.core.plugins.ComponentInformation;
@@ -41,8 +44,25 @@ import static com.guicedee.guicedinjection.interfaces.ObjectBinderKeys.*;
 @ComponentInformation(name = "Full Calendar",
 		description = "Display a full-size drag-n-drop event calendar",
 		url = "https://fullcalendar.io/")
-public class FullCalendar
-		extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, FullCalendar>
+@NgImportReference(name = "CalendarOptions, DateSelectArg, EventClickArg, EventApi",reference = "@fullcalendar/angular")
+
+@NgField("currentEvents: EventApi[] = [];")
+
+@NgMethod("handleWeekendsToggle() {\n" +
+          "    const { calendarOptions } = this;\n" +
+          "    calendarOptions.weekends = !calendarOptions.weekends;\n" +
+          "  }")
+@NgMethod("handleDateSelect(selectInfo: DateSelectArg) {\n" +
+          "  }")
+@NgMethod("handleEventClick(selectInfo: EventClickArg) {\n" +
+          
+          "  }")
+@NgMethod("handleEvents(events: EventApi[]) {\n" +
+          "    this.currentEvents = events;\n" +
+          "  }")
+public class FullCalendar<J extends FullCalendar<J>>
+		extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, J>
+		implements INgComponent<J>
 {
 	/**
 	 * The full calendar options list
@@ -71,13 +91,19 @@ public class FullCalendar
 	public FullCalendar(String id)
 	{
 		setID(id);
+		setTag("full-calendar");
+	}
+	
+	@Override
+	public List<String> fields()
+	{
+		return List.of("calendarOptions: CalendarOptions = " + getOptions().toJson());
 	}
 	
 	@Override
 	public void init()
 	{
-		addAttribute("fullcalendar", "");
-		addAttribute("options", getOptions().toJson(true));
+		addAttribute("[options]", "calendarOptions");
 		setInvertColonRender(true);
 		if (dateClickEvent != null)
 		{

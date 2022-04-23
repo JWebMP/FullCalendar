@@ -16,12 +16,13 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
-import com.jwebmp.core.Page;
-import com.jwebmp.core.plugins.PluginInformation;
-import com.jwebmp.core.plugins.PluginStatus;
-import com.jwebmp.core.services.IPageConfigurator;
-
-import jakarta.validation.constraints.NotNull;
+import com.jwebmp.core.*;
+import com.jwebmp.core.base.angular.services.annotations.*;
+import com.jwebmp.core.base.angular.services.annotations.references.*;
+import com.jwebmp.core.base.angular.services.annotations.structures.*;
+import com.jwebmp.core.plugins.*;
+import com.jwebmp.core.services.*;
+import jakarta.validation.constraints.*;
 
 /**
  * @author GedMarc
@@ -48,63 +49,46 @@ import jakarta.validation.constraints.NotNull;
 		pluginModuleName = "com.jwebmp.plugins.fullcalendar",
 		pluginStatus = PluginStatus.Released
 )
+@TsDependency(value = "@fullcalendar/angular",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/daygrid",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/timegrid",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/list",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/interaction",version = "^5.11.0")
+
+@NgBootImportReference(name = "FullCalendarModule ",reference = "@fullcalendar/angular")
+@NgBootImportReference(name = "!dayGridPlugin",reference = "@fullcalendar/daygrid")
+@NgBootImportReference(name = "!timeGridPlugin",reference = "@fullcalendar/timegrid")
+@NgBootImportReference(name = "!listPlugin",reference = "@fullcalendar/list")
+@NgBootImportReference(name = "!interactionPlugin",reference = "@fullcalendar/interaction")
+
+@NgBootModuleImport("FullCalendarModule")
+
+@NgBootGlobalField("FullCalendarModule.registerPlugins([\n" +
+                   "  dayGridPlugin,\n" +
+                   "  timeGridPlugin,\n" +
+                   "  listPlugin,\n" +
+                   "  interactionPlugin\n" +
+                   "])")
+
 public class FullCalendarPageConfigurator
 		implements IPageConfigurator<FullCalendarPageConfigurator>
 {
-	/**
-	 * If this configurator is enabled
-	 */
-	private static boolean enabled = true;
 
 	public FullCalendarPageConfigurator()
 	{
 		//Nothing Needed
 	}
 
-	/**
-	 * Method isEnabled returns the enabled of this AngularAnimatedChangePageConfigurator object.
-	 * <p>
-	 * If this configurator is enabled
-	 *
-	 * @return the enabled (type boolean) of this AngularAnimatedChangePageConfigurator object.
-	 */
-	public static boolean isEnabled()
-	{
-		return FullCalendarPageConfigurator.enabled;
-	}
-
-	/**
-	 * Method setEnabled sets the enabled of this AngularAnimatedChangePageConfigurator object.
-	 * <p>
-	 * If this configurator is enabled
-	 *
-	 * @param mustEnable
-	 * 		the enabled of this AngularAnimatedChangePageConfigurator object.
-	 */
-	public static void setEnabled(boolean mustEnable)
-	{
-		FullCalendarPageConfigurator.enabled = mustEnable;
-	}
-
 	@NotNull
 	@Override
 	 public Page<?> configure(Page<?> page)
 	{
-		if (!page.isConfigured() && enabled())
-		{
-			page.getBody()
-			    .addJavaScriptReference(FullCalendarReferencePool.FullCalendarReference.getJavaScriptReference());
-			page.getBody()
-			    .addCssReference(FullCalendarReferencePool.FullCalendarReference.getCssReference());
-			page.getBody()
-			    .addJavaScriptReference(FullCalendarReferencePool.FullCalendarReferencePrint.getJavaScriptReference());
-		}
 		return page;
 	}
 
 	@Override
 	public boolean enabled()
 	{
-		return FullCalendarPageConfigurator.enabled;
+		return true;
 	}
 }

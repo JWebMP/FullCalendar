@@ -23,9 +23,7 @@ public abstract class FullCalendarEventReceiveEvent extends ClickAdapter<FullCal
 	@Override
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
-		Map<String, Object> info = (Map<String, Object>) call.getValue()
-		                                                     .getUnknownFields()
-		                                                     .get("infoObj");
+		Map<String, Object> info = (Map<String, Object>) call.getUnknownFields().get("infoObj");
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);
 		onEventReceive(call, response, el);
