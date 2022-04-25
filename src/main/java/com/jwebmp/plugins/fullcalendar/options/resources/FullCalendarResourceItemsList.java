@@ -14,15 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.jwebmp.plugins.fullcalendar.options;
+package com.jwebmp.plugins.fullcalendar.options.resources;
 
 import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.base.angular.services.annotations.*;
 import com.jwebmp.core.base.angular.services.interfaces.*;
-import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.htmlbuilder.javascript.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author GedMarc
@@ -32,14 +31,14 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 @NgDataType
-public class FullCalendarEventsList
-		extends JavaScriptPart<FullCalendarEventsList> implements INgDataType<FullCalendarEventsList>
+public class FullCalendarResourceItemsList
+		extends JavaScriptPart<FullCalendarResourceItemsList> implements INgDataType<FullCalendarResourceItemsList>
 {
 	
 	/**
 	 * A list of calendar events
 	 */
-	private List<FullCalendarEvent> events;
+	private List<FullCalendarResourceItem> resources;
 
 	/**
 	 * Returns the list of calendar events
@@ -47,24 +46,24 @@ public class FullCalendarEventsList
 	 * @return
 	 */
 	@JsonValue
-	public List<FullCalendarEvent> getEvents()
+	public List<FullCalendarResourceItem> getResources()
 	{
-		if (events == null)
+		if (resources == null)
 		{
-			events = new ArrayList<>();
+			resources = new ArrayList<>();
 		}
 
-		return events;
+		return resources;
 	}
 
 	/**
 	 * Sets the list of calendar events
 	 *
-	 * @param events
+	 * @param resources
 	 */
-	public void setEvents(List<FullCalendarEvent> events)
+	public void setResources(List<FullCalendarResourceItem> resources)
 	{
-		this.events = events;
+		this.resources = resources;
 	}
 
 }

@@ -54,6 +54,12 @@ import jakarta.validation.constraints.*;
 @TsDependency(value = "@fullcalendar/timegrid",version = "^5.11.0")
 @TsDependency(value = "@fullcalendar/list",version = "^5.11.0")
 @TsDependency(value = "@fullcalendar/interaction",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/scrollgrid",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/bootstrap5",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/luxon2",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/moment",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/moment-timezone",version = "^5.11.0")
+
 
 @NgBootImportReference(name = "FullCalendarModule ",reference = "@fullcalendar/angular")
 @NgBootImportReference(name = "!dayGridPlugin",reference = "@fullcalendar/daygrid")
@@ -67,7 +73,7 @@ import jakarta.validation.constraints.*;
                    "  dayGridPlugin,\n" +
                    "  timeGridPlugin,\n" +
                    "  listPlugin,\n" +
-                   "  interactionPlugin\n" +
+                   "  interactionPlugin,\n" +
                    "])")
 
 public class FullCalendarPageConfigurator

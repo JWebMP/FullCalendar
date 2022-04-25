@@ -1,12 +1,15 @@
 package com.jwebmp.plugins.fullcalendar.options.resources;
 
+import com.jwebmp.core.base.angular.services.annotations.*;
+import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.htmlbuilder.javascript.*;
 import com.jwebmp.plugins.fullcalendar.options.*;
 
 import java.util.*;
 
-
+@NgDataType
 public class FullCalendarResourceItem extends JavaScriptPart<FullCalendarResourceItem>
+		implements INgDataType<FullCalendarResourceItem>
 {
 	private UUID id;
 	private String title;

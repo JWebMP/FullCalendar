@@ -25,12 +25,15 @@ import com.jwebmp.plugins.fullcalendar.FullCalendar;
 public class FullCalendarGoogleCalendarEventSource
 		extends FullCalendarEventSource
 {
-
-
+	
+	public FullCalendarGoogleCalendarEventSource()
+	{
+	}
+	
 	/*
 	 * Constructs a new FullCalendarGoogleCalendarEventSource
 	 */
-	public FullCalendarGoogleCalendarEventSource(FullCalendar fc)
+	public FullCalendarGoogleCalendarEventSource(FullCalendar<?> fc)
 	{
 		//Nothing needed
 	}

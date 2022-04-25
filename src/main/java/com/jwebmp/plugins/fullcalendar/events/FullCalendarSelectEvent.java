@@ -9,6 +9,7 @@ import java.util.*;
 
 import static com.guicedee.guicedinjection.interfaces.ObjectBinderKeys.*;
 
+
 public abstract class FullCalendarSelectEvent extends ClickAdapter<FullCalendarSelectEvent>
 {
 	public FullCalendarSelectEvent()
@@ -21,10 +22,8 @@ public abstract class FullCalendarSelectEvent extends ClickAdapter<FullCalendarS
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
 		LinkedHashMap map = (LinkedHashMap) call.getUnknownFields().get("infoObj");
-		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("resource");
-		
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
-		FullCalendarSelectEventInfo el = mapper.convertValue(info, FullCalendarSelectEventInfo.class);
+		FullCalendarSelectEventInfo el = mapper.convertValue(map, FullCalendarSelectEventInfo.class);
 		onSelect(call, response, el);
 	}
 	

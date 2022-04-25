@@ -17,6 +17,8 @@
 package com.jwebmp.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.*;
+import com.jwebmp.core.base.angular.services.annotations.*;
+import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.htmlbuilder.css.colours.ColourCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.views.*;
@@ -35,9 +37,10 @@ import java.util.List;
 @SuppressWarnings("JavaDoc")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
+@NgDataType
 public class FullCalendarEvent
 		extends JavaScriptPart<FullCalendarEvent>
-		implements IFullCalendarEvent
+		implements IFullCalendarEvent, INgDataType<FullCalendarEvent>
 {
 	/**
 	 * String/Integer. Optional

@@ -2509,4 +2509,83 @@ public class FullCalendarOptions
 		this.selectable = selectable;
 		return this;
 	}
+	
+	@JsonRawValue
+	private String select;
+	@JsonRawValue
+	private String eventClick;
+	@JsonRawValue
+	private String dateClick;
+	@JsonRawValue
+	private String drop;
+	@JsonRawValue
+	private String eventReceive;
+	@JsonRawValue
+	private String eventResize;
+	
+	public String getSelect()
+	{
+		return select;
+	}
+	
+	public FullCalendarOptions setSelect(String select)
+	{
+		this.select = select;
+		return this;
+	}
+	
+	public String getEventClick()
+	{
+		return eventClick;
+	}
+	
+	public FullCalendarOptions setEventClick(String eventClick)
+	{
+		this.eventClick = eventClick;
+		return this;
+	}
+	
+	public String getDateClick()
+	{
+		return dateClick;
+	}
+	
+	public FullCalendarOptions setDateClick(String dateClick)
+	{
+		this.dateClick = dateClick;
+		return this;
+	}
+	
+	public String getDrop()
+	{
+		return drop;
+	}
+	
+	public FullCalendarOptions setDrop(String drop)
+	{
+		this.drop = drop;
+		return this;
+	}
+	
+	public String getEventReceive()
+	{
+		return eventReceive;
+	}
+	
+	public FullCalendarOptions setEventReceive(String eventReceive)
+	{
+		this.eventReceive = eventReceive;
+		return this;
+	}
+	
+	public String getEventResize()
+	{
+		return eventResize;
+	}
+	
+	public FullCalendarOptions setEventResize(String eventResize)
+	{
+		this.eventResize = eventResize;
+		return this;
+	}
 }

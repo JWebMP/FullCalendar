@@ -1,6 +1,8 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.guicedee.guicedinjection.*;
+import com.guicedee.guicedservlets.undertow.*;
+import com.guicedee.logger.*;
 import com.jwebmp.core.base.angular.services.annotations.*;
 import com.jwebmp.core.base.angular.services.compiler.*;
 import com.jwebmp.core.base.angular.services.interfaces.*;
@@ -8,6 +10,7 @@ import com.jwebmp.core.base.html.*;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
+import java.util.logging.*;
 
 import static com.jwebmp.core.base.angular.services.interfaces.ITSComponent.*;
 
@@ -18,8 +21,15 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
 	@Override
 	public void init()
 	{
-		add(new FullCalendarComponent());
+		add(new FullCalendarComponentExample());
 		super.init();
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		LogFactory.configureDefaultLogHiding();
+		LogFactory.configureConsoleColourOutput(Level.FINE);
+		GuicedUndertow.boot("localhost", 6524);
 	}
 	
 	@Test

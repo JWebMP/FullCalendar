@@ -4,7 +4,7 @@ import com.jwebmp.core.base.ajax.*;
 import com.jwebmp.core.base.html.*;
 import org.junit.jupiter.api.*;
 
-public class FullCalendarSelectEventTest
+public class FullCalendarSelectEventTest extends FullCalendarSelectEvent
 {
 	
 	@Test
@@ -25,5 +25,11 @@ public class FullCalendarSelectEventTest
 		
 		System.out.println(e.renderJavascript());
 		System.out.println(d.renderJavascript());
+	}
+	
+	@Override
+	public void onSelect(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarSelectEventInfo selectEvent)
+	{
+		System.out.println("selected");
 	}
 }
