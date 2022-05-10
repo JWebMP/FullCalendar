@@ -137,6 +137,7 @@ import java.util.*;
 
 @NgOnDestroy(onDestroy = {
 		"this.subscription?.unsubscribe();",
+		"this.socketClientService.deregisterListener(this.listenerName);",
 		"this.subscriptionAdd?.unsubscribe();",
 		"this.subscriptionEdit?.unsubscribe();",
 		"this.subscriptionDelete?.unsubscribe();",

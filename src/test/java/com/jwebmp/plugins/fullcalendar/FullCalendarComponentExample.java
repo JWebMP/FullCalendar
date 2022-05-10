@@ -25,4 +25,7 @@ public class FullCalendarComponentExample extends FullCalendar<FullCalendarCompo
 		                                                  .setStart(LocalDateTime.now()));
 		return fullCalendarEventsList;
 	}
+	
+	
+	
 }
