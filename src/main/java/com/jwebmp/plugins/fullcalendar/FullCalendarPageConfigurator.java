@@ -17,9 +17,8 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.jwebmp.core.*;
-import com.jwebmp.core.base.angular.services.annotations.*;
-import com.jwebmp.core.base.angular.services.annotations.references.*;
-import com.jwebmp.core.base.angular.services.annotations.structures.*;
+import com.jwebmp.core.base.angular.client.annotations.boot.*;
+import com.jwebmp.core.base.angular.client.annotations.typescript.*;
 import com.jwebmp.core.plugins.*;
 import com.jwebmp.core.services.*;
 import jakarta.validation.constraints.*;
@@ -49,7 +48,7 @@ import jakarta.validation.constraints.*;
 		pluginModuleName = "com.jwebmp.plugins.fullcalendar",
 		pluginStatus = PluginStatus.Released
 )
-@TsDependency(value = "@fullcalendar/angular",version = "^5.11.0")
+@TsDependency(value = "@fullcalendar/angular", version = "^5.11.0")
 @TsDependency(value = "@fullcalendar/daygrid",version = "^5.11.0")
 @TsDependency(value = "@fullcalendar/timegrid",version = "^5.11.0")
 @TsDependency(value = "@fullcalendar/list",version = "^5.11.0")
@@ -62,7 +61,7 @@ import jakarta.validation.constraints.*;
 
 
 @NgBootImportReference(name = "FullCalendarModule ",reference = "@fullcalendar/angular")
-@NgBootImportReference(name = "!dayGridPlugin",reference = "@fullcalendar/daygrid")
+@NgBootImportReference(name = "!dayGridPlugin", reference = "@fullcalendar/daygrid")
 @NgBootImportReference(name = "!timeGridPlugin",reference = "@fullcalendar/timegrid")
 @NgBootImportReference(name = "!listPlugin",reference = "@fullcalendar/list")
 @NgBootImportReference(name = "!interactionPlugin",reference = "@fullcalendar/interaction")

@@ -17,8 +17,8 @@
 package com.jwebmp.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.*;
-import com.jwebmp.core.base.angular.services.annotations.*;
-import com.jwebmp.core.base.angular.services.interfaces.*;
+import com.jwebmp.core.base.angular.client.annotations.angular.*;
+import com.jwebmp.core.base.angular.client.services.interfaces.*;
 import com.jwebmp.core.htmlbuilder.css.colours.ColourCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.views.*;

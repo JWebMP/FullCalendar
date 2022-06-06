@@ -19,12 +19,13 @@ package com.jwebmp.plugins.fullcalendar;
 import com.guicedee.guicedinjection.*;
 import com.guicedee.guicedservlets.websockets.*;
 import com.jwebmp.core.base.ajax.*;
+import com.jwebmp.core.base.angular.client.annotations.constructors.*;
+import com.jwebmp.core.base.angular.client.annotations.functions.*;
+import com.jwebmp.core.base.angular.client.annotations.references.*;
+import com.jwebmp.core.base.angular.client.annotations.structures.*;
+import com.jwebmp.core.base.angular.client.services.*;
+import com.jwebmp.core.base.angular.client.services.interfaces.*;
 import com.jwebmp.core.base.angular.implementations.*;
-import com.jwebmp.core.base.angular.modules.services.*;
-import com.jwebmp.core.base.angular.services.annotations.functions.*;
-import com.jwebmp.core.base.angular.services.annotations.references.*;
-import com.jwebmp.core.base.angular.services.annotations.structures.*;
-import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.base.html.*;
 import com.jwebmp.core.plugins.*;
 import com.jwebmp.plugins.fullcalendar.events.*;
@@ -45,32 +46,27 @@ import java.util.*;
 @ComponentInformation(name = "Full Calendar",
                       description = "Display a full-size drag-n-drop event calendar",
                       url = "https://fullcalendar.io/")
-@NgImportReference(name = "CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventDropArg,EventInput,CalendarApi,FullCalendarComponent", reference = "@fullcalendar/angular")
-@NgImportReference(name = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg", reference = "@fullcalendar/interaction")
+@NgImportReference(value = "CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventDropArg,EventInput,CalendarApi,FullCalendarComponent", reference = "@fullcalendar/angular")
+@NgImportReference(value = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg", reference = "@fullcalendar/interaction")
 
-@NgImportReference(name = "ViewChild,AfterViewInit", reference = "@angular/core")
+@NgImportReference(value = "ViewChild", reference = "@angular/core")
 
 @NgDataTypeReference(FullCalendarEventsList.class)
 @NgDataTypeReference(FullCalendarEvent.class)
 @NgDataTypeReference(FullCalendarResourceItemsList.class)
 @NgDataTypeReference(FullCalendarResourceItem.class)
 
-@NgImportReference(name = "bufferTime, Subscription", reference = "rxjs")
+@NgImportReference(value = "bufferTime, Subscription", reference = "rxjs")
 
 @NgField("currentEvents: EventApi[] = [];")
 @NgField("@ViewChild('calendar')\n" +
          "    calendarComponent?: FullCalendarComponent;")
 @NgField("private calendarApi? : CalendarApi;")
 
-@NgMethod("ngAfterViewInit(){\n" +
-          //      "        alert('init calendar - ' + this.calendarComponent);\n" +
-          "        this.calendarApi = this.calendarComponent?.getApi();\n" +
-          "        let currentDate = this.calendarApi?.view.currentStart;\n" +
-          //    "        alert('init with api - ' + this.calendarApi);\n" +
-          //   "        console.log(currentDate); // result: current calendar start date\n" +
-          " this.fetchData();" +
-          "    }")
 
+@NgAfterViewInit("this.calendarApi = this.calendarComponent?.getApi();")
+@NgAfterViewInit("let currentDate = this.calendarApi?.view.currentStart;")
+@NgAfterViewInit("this.fetchData();")
 
 @NgMethod("handleWeekendsToggle() {\n" +
           "    const { calendarOptions } = this;\n" +
@@ -133,15 +129,13 @@ import java.util.*;
           "  }")
 
 @NgComponentReference(SocketClientService.class)
-@NgConstructorParameter("private socketClientService : SocketClientService")
 
-@NgOnDestroy(onDestroy = {
-		"this.subscription?.unsubscribe();",
-		"this.socketClientService.deregisterListener(this.listenerName);",
-		"this.subscriptionAdd?.unsubscribe();",
-		"this.subscriptionEdit?.unsubscribe();",
-		"this.subscriptionDelete?.unsubscribe();",
-})
+@NgOnDestroy("this.subscription?.unsubscribe();")
+@NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName);")
+@NgOnDestroy("this.subscriptionAdd?.unsubscribe();")
+@NgOnDestroy("this.subscriptionEdit?.unsubscribe();")
+@NgOnDestroy("this.subscriptionDelete?.unsubscribe();")
+
 public abstract class FullCalendar<J extends FullCalendar<J>>
 		extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, J>
 		implements INgComponent<J>
@@ -179,7 +173,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
 	@Override
 	public List<String> componentConstructorBody()
 	{
-		List<String> bodies = new ArrayList<>();
+		List<String> bodies = INgComponent.super.componentConstructorBody();
 		bodies.add("this.subscription = this.socketClientService.registerListener(this.listenerName)" +
 		           //     ".pipe(bufferTime(100))" +
 		           ".subscribe((message : EventInput[]) => {\n" +
@@ -211,16 +205,13 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
 		           "this.calendarApi?.getEventById('' +message.id)?.remove();" +
 		           //"this.events = message; \n" +
 		           "});\n");
-		
-		//bodies.add("this.fetchData();\n");
-		
 		return bodies;
 	}
 	
 	
 	public List<String> componentMethods()
 	{
-		List<String> methods = new ArrayList<>();
+		List<String> methods = INgComponent.super.componentMethods();
 		methods.add("fetchData(){\n" +
 		            "   this.socketClientService.send(this.listenerName,{className :  '" +
 		            getClass().getCanonicalName() + "',\n" +
@@ -231,7 +222,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
 	
 	public List<String> componentFields()
 	{
-		List<String> fields = new ArrayList<>();
+		List<String> fields = INgComponent.super.componentFields();
 		fields.add(" private listenerName = '" + getID() + "';");
 		fields.add(" private subscription? : Subscription;\n");
 		fields.add(" private subscriptionAdd? : Subscription;\n");
@@ -244,7 +235,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
 	@Override
 	public List<String> fields()
 	{
-		List<String> out = new ArrayList<>();
+		List<String> out = INgComponent.super.fields();
 		out.add("calendarOptions: CalendarOptions = " + getOptions().toJson());
 		
 		if (dateClickEvent != null)

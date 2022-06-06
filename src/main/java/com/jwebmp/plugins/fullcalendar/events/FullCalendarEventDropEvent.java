@@ -2,10 +2,7 @@ package com.jwebmp.plugins.fullcalendar.events;
 
 import com.fasterxml.jackson.databind.*;
 import com.guicedee.guicedinjection.*;
-import com.guicedee.guicedinjection.json.*;
-import com.jwebmp.core.*;
 import com.jwebmp.core.base.ajax.*;
-import com.jwebmp.core.base.angular.*;
 import com.jwebmp.core.events.click.*;
 
 import java.util.*;

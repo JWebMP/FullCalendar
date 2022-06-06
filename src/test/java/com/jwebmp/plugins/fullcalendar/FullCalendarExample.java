@@ -1,18 +1,20 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.guicedee.guicedinjection.*;
+
 import com.guicedee.guicedservlets.undertow.*;
 import com.guicedee.logger.*;
-import com.jwebmp.core.base.angular.services.annotations.*;
+
+import com.jwebmp.core.base.angular.client.annotations.angular.*;
+import com.jwebmp.core.base.angular.client.services.interfaces.*;
 import com.jwebmp.core.base.angular.services.compiler.*;
-import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.base.html.*;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.util.logging.*;
 
-import static com.jwebmp.core.base.angular.services.interfaces.ITSComponent.*;
+import static com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils.*;
 
 @NgComponent(value = "full-calendar-example")
 public class FullCalendarExample extends DivSimple<FullCalendarExample>
@@ -41,7 +43,7 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
 			JWebMPTypeScriptCompiler compiler = new JWebMPTypeScriptCompiler(app);
 			
 			System.out.println("Generating @NgApp (" + getTsFilename(app.getClass()) + ") " +
-			                   "in folder " + getClassDirectory(app.getClass()));
+			                   "in folder " + IComponent.getClassDirectory(app.getClass()));
 			System.out.println("================");
 			//	compiler.renderAppTS(app);
 			System.out.println("================");

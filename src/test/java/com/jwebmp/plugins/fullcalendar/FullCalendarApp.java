@@ -1,10 +1,12 @@
 package com.jwebmp.plugins.fullcalendar;
 
+import com.jwebmp.core.*;
+import com.jwebmp.core.base.angular.client.annotations.angular.*;
+import com.jwebmp.core.base.angular.client.services.interfaces.*;
 import com.jwebmp.core.base.angular.services.*;
-import com.jwebmp.core.base.angular.services.annotations.*;
 
 @NgApp(name = "fullcalendar", bootComponent = FullCalendarExample.class)
-public class FullCalendarApp extends NGApplication<FullCalendarApp>
+public class FullCalendarApp extends NGApplication<FullCalendarApp> implements INgApp<FullCalendarApp>
 {
 	public FullCalendarApp()
 	{
