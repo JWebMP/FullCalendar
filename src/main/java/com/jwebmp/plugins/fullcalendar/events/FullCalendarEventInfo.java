@@ -9,6 +9,7 @@ import java.time.*;
 
 public class FullCalendarEventInfo implements IJsonRepresentation<FullCalendarEventInfo>
 {
+	private String id;
 	private LocalDateTime start;
 	private LocalDateTime end;
 	private String startStr;
@@ -93,5 +94,16 @@ public class FullCalendarEventInfo implements IJsonRepresentation<FullCalendarEv
 		{
 			end = new LocalDateTimeDeserializer().convert(endStr);
 		}
+	}
+	
+	public String getId()
+	{
+		return id;
+	}
+	
+	public FullCalendarEventInfo setId(String id)
+	{
+		this.id = id;
+		return this;
 	}
 }

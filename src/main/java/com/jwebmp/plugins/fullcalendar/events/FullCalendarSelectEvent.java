@@ -24,6 +24,7 @@ public abstract class FullCalendarSelectEvent extends ClickAdapter<FullCalendarS
 		LinkedHashMap map = (LinkedHashMap) call.getUnknownFields().get("infoObj");
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarSelectEventInfo el = mapper.convertValue(map, FullCalendarSelectEventInfo.class);
+		el.updateDates();
 		onSelect(call, response, el);
 	}
 	

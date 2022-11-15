@@ -62,9 +62,17 @@ import jakarta.validation.constraints.*;
 
 @NgBootImportReference(name = "FullCalendarModule ",reference = "@fullcalendar/angular")
 @NgBootImportReference(name = "!dayGridPlugin", reference = "@fullcalendar/daygrid")
+@NgBootImportReference(name = "!scrollGridPlugin", reference = "@fullcalendar/scrollgrid")
 @NgBootImportReference(name = "!timeGridPlugin",reference = "@fullcalendar/timegrid")
 @NgBootImportReference(name = "!listPlugin",reference = "@fullcalendar/list")
 @NgBootImportReference(name = "!interactionPlugin",reference = "@fullcalendar/interaction")
+
+@NgBootImportReference(name = "!bootstrap5Plugin", reference = "@fullcalendar/bootstrap5")
+@TsDependency(value = "@fullcalendar/bootstrap5", version = "^5.11.0")
+@TsDependency(value = "bootstrap-icons", version = "*")
+@NgBootGlobalField("FullCalendarModule.registerPlugins([\n" + "  bootstrap5Plugin\n" + "])")
+
+
 
 @NgBootModuleImport("FullCalendarModule")
 

@@ -23,6 +23,7 @@ public abstract class FullCalendarEventReceiveEvent extends ClickAdapter<FullCal
 		Map<String, Object> info = (Map<String, Object>) call.getUnknownFields().get("infoObj");
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);
+		el.updateDates();
 		onEventReceive(call, response, el);
 	}
 	

@@ -136,6 +136,8 @@ public class FullCalendarOptions
 	private Boolean stickyHeaderDates;
 	private Boolean stickyFooterScrollbar;
 	
+	@JsonRawValue
+	private List<String> plugins;
 	
 	/**
 	 * The options for the component
@@ -335,7 +337,7 @@ public class FullCalendarOptions
 	{
 		if (initialView != null)
 		{
-			return initialView.getName();
+			return initialView.getType().toString();
 		}
 		return null;
 	}
@@ -2519,6 +2521,8 @@ public class FullCalendarOptions
 	@JsonRawValue
 	private String drop;
 	@JsonRawValue
+	private String eventDrop;
+	@JsonRawValue
 	private String eventReceive;
 	@JsonRawValue
 	private String eventResize;
@@ -2567,6 +2571,17 @@ public class FullCalendarOptions
 		return this;
 	}
 	
+	public String getEventDrop()
+	{
+		return eventDrop;
+	}
+	
+	public FullCalendarOptions setEventDrop(String eventDrop)
+	{
+		this.eventDrop = eventDrop;
+		return this;
+	}
+	
 	public String getEventReceive()
 	{
 		return eventReceive;
@@ -2586,6 +2601,33 @@ public class FullCalendarOptions
 	public FullCalendarOptions setEventResize(String eventResize)
 	{
 		this.eventResize = eventResize;
+		return this;
+	}
+	
+	public FullCalendarOptions addPlugin(FullCalendarView<?> view)
+	{
+		getPlugins().add(view.getType().toString());
+		return this;
+	}
+	
+	public FullCalendarOptions addPlugin(String pluginName)
+	{
+		getPlugins().add(pluginName);
+		return this;
+	}
+	
+	public List<String> getPlugins()
+	{
+		if (plugins == null)
+		{
+			plugins = new ArrayList<>();
+		}
+		return plugins;
+	}
+	
+	public FullCalendarOptions setPlugins(List<String> plugins)
+	{
+		this.plugins = plugins;
 		return this;
 	}
 }

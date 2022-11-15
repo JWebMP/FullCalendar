@@ -21,7 +21,7 @@ public abstract class FullCalendarEventClickEvent extends ClickAdapter<FullCalen
 	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
 	{
 		LinkedHashMap map = (LinkedHashMap) call.getUnknownFields().get("infoObj");
-		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("resource");
+		LinkedHashMap<String,String> info = (LinkedHashMap<String, String>) map.get("event");
 		
 		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
 		FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);

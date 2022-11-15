@@ -15,6 +15,8 @@ public class FullCalendarComponentExample extends FullCalendar<FullCalendarCompo
 		setSelectEvent(new FullCalendarSelectEventTest());
 	}
 	
+	
+	
 	@Override
 	public FullCalendarEventsList getInitialEvents()
 	{
@@ -25,6 +27,7 @@ public class FullCalendarComponentExample extends FullCalendar<FullCalendarCompo
 		                                                  .setStart(LocalDateTime.now()));
 		return fullCalendarEventsList;
 	}
+	
 	
 	
 	
