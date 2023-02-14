@@ -217,15 +217,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
 		           "                }\n" +
 		           "                if(workable) {\n" +
 		           " //                   alert('working on events message - ' + JSON.stringify(message));\n" +
-		           "                    for (const messageElement of message) {\n" +
-		           "                        this.calendarApi?.addEvent(messageElement);\n" +
-		           "                    }\n" +
-		           "                    setTimeout(() => {\n" +
-		           "                        this.calendarApi?.updateSize();\n" +
-		           "                    }, 200);\n" +
-		           "                    setTimeout(() => {\n" +
-		           "                        this.calendarApi?.updateSize();\n" +
-		           "                    }, 500);\n" +
+		           "                    this.calendarApi?.addEventSource(message);\n" +
 		           "                }\n" +
 		           "            } catch (e) {\n" +
 		           "                console.log(\"error in events\", e);\n" +
