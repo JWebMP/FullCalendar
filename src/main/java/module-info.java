@@ -1,4 +1,4 @@
-import com.jwebmp.plugins.fullcalendar.implementations.*;
+import com.jwebmp.plugins.fullcalendar.implementations.FullCalendarInclusionModule;
 
 module com.jwebmp.plugins.fullcalendar {
 	exports com.jwebmp.plugins.fullcalendar;
@@ -10,6 +10,7 @@ module com.jwebmp.plugins.fullcalendar {
 	requires com.fasterxml.jackson.databind;
 	requires com.fasterxml.jackson.core;
 	requires com.guicedee.guicedservlets.websockets;
+	requires com.guicedee.jsonrepresentation;
 	
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.fullcalendar.FullCalendarPageConfigurator;
 

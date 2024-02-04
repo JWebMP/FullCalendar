@@ -23,7 +23,7 @@ import com.jwebmp.plugins.fullcalendar.options.enumerations.FullCalendarHeaderPa
 import java.util.Arrays;
 import java.util.List;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.STRING_COMMNA;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.STRING_COMMNA;
 
 /**
  * header

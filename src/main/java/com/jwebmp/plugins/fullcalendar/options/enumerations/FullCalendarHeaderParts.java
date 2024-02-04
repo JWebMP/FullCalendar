@@ -18,7 +18,7 @@ package com.jwebmp.plugins.fullcalendar.options.enumerations;
 
 import com.jwebmp.plugins.fullcalendar.options.toolbars.*;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.STRING_SPACE;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.STRING_SPACE;
 import static com.jwebmp.core.utilities.StaticStrings.*;
 
 /**

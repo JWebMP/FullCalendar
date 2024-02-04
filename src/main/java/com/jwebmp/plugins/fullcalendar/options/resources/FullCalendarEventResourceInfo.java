@@ -1,10 +1,12 @@
 package com.jwebmp.plugins.fullcalendar.options.resources;
 
-import com.fasterxml.jackson.annotation.*;
-import com.guicedee.guicedinjection.representations.*;
-import com.jwebmp.plugins.fullcalendar.options.*;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
+import com.jwebmp.plugins.fullcalendar.options.FullCalendarBusinessHours;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
 
 public class FullCalendarEventResourceInfo implements IJsonRepresentation<FullCalendarEventResourceInfo>
 {

@@ -1,9 +1,9 @@
 package com.jwebmp.plugins.fullcalendar.options;
 
-import com.guicedee.guicedinjection.representations.*;
+import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
 
-import java.time.*;
-import java.util.*;
+import java.time.LocalTime;
+import java.util.List;
 
 public class FullCalendarBusinessHours implements IJsonRepresentation<FullCalendarBusinessHours>
 {

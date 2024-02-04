@@ -1,10 +1,15 @@
 package com.jwebmp.plugins.fullcalendar.options.views;
 
-import com.fasterxml.jackson.annotation.*;
-import com.guicedee.guicedinjection.representations.*;
-import com.jwebmp.plugins.fullcalendar.*;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)

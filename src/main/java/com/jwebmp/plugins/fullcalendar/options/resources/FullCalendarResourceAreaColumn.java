@@ -1,7 +1,8 @@
 package com.jwebmp.plugins.fullcalendar.options.resources;
 
-import com.fasterxml.jackson.annotation.*;
-import com.guicedee.guicedinjection.representations.*;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
 
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

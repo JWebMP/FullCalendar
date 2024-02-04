@@ -1,20 +1,17 @@
 package com.jwebmp.plugins.fullcalendar;
 
-import com.guicedee.guicedinjection.*;
+import com.guicedee.guicedinjection.GuiceContext;
+import com.guicedee.guicedservlets.undertow.GuicedUndertow;
+import com.jwebmp.core.base.angular.client.annotations.angular.NgComponent;
+import com.jwebmp.core.base.angular.client.services.interfaces.IComponent;
+import com.jwebmp.core.base.angular.client.services.interfaces.INgApp;
+import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
+import com.jwebmp.core.base.angular.services.compiler.JWebMPTypeScriptCompiler;
+import com.jwebmp.core.base.html.DivSimple;
 
-import com.guicedee.guicedservlets.undertow.*;
-import com.guicedee.logger.*;
+import java.io.IOException;
 
-import com.jwebmp.core.base.angular.client.annotations.angular.*;
-import com.jwebmp.core.base.angular.client.services.interfaces.*;
-import com.jwebmp.core.base.angular.services.compiler.*;
-import com.jwebmp.core.base.html.*;
-import org.junit.jupiter.api.*;
-
-import java.io.*;
-import java.util.logging.*;
-
-import static com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils.*;
+import static com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils.getTsFilename;
 
 @NgComponent(value = "full-calendar-example")
 public class FullCalendarExample extends DivSimple<FullCalendarExample>
@@ -29,12 +26,10 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
 	
 	public static void main(String[] args) throws Exception
 	{
-		LogFactory.configureDefaultLogHiding();
-		LogFactory.configureConsoleColourOutput(Level.FINE);
+
 		GuicedUndertow.boot("localhost", 6524);
 	}
 	
-	@Test
 	public void testAppSearch() throws IOException
 	{
 		GuiceContext.inject();
