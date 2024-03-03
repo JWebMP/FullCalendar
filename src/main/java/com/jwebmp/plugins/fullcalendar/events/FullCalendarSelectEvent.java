@@ -1,31 +1,33 @@
 package com.jwebmp.plugins.fullcalendar.events;
 
-import com.fasterxml.jackson.databind.*;
-import com.guicedee.guicedinjection.*;
-import com.jwebmp.core.base.ajax.*;
-import com.jwebmp.core.events.click.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.guicedee.client.IGuiceContext;
+import com.jwebmp.core.base.ajax.AjaxCall;
+import com.jwebmp.core.base.ajax.AjaxResponse;
+import com.jwebmp.core.events.click.ClickAdapter;
 
-import java.util.*;
+import java.util.LinkedHashMap;
 
-import static com.guicedee.guicedinjection.interfaces.ObjectBinderKeys.*;
+import static com.guicedee.guicedinjection.interfaces.ObjectBinderKeys.DefaultObjectMapper;
 
 
 public abstract class FullCalendarSelectEvent extends ClickAdapter<FullCalendarSelectEvent>
 {
-	public FullCalendarSelectEvent()
-	{
-	}
-	
-	public abstract void onSelect(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarSelectEventInfo selectEvent);
-	
-	@Override
-	public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
-	{
-		LinkedHashMap map = (LinkedHashMap) call.getUnknownFields().get("infoObj");
-		ObjectMapper mapper = GuiceContext.get(DefaultObjectMapper);
-		FullCalendarSelectEventInfo el = mapper.convertValue(map, FullCalendarSelectEventInfo.class);
-		el.updateDates();
-		onSelect(call, response, el);
-	}
-	
+    public FullCalendarSelectEvent()
+    {
+    }
+
+    public abstract void onSelect(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarSelectEventInfo selectEvent);
+
+    @Override
+    public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
+    {
+        LinkedHashMap map = (LinkedHashMap) call.getUnknownFields()
+                                                .get("infoObj");
+        ObjectMapper mapper = IGuiceContext.get(DefaultObjectMapper);
+        FullCalendarSelectEventInfo el = mapper.convertValue(map, FullCalendarSelectEventInfo.class);
+        el.updateDates();
+        onSelect(call, response, el);
+    }
+
 }

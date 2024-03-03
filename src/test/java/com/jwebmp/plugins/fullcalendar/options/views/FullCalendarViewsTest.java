@@ -9,35 +9,36 @@ import java.time.*;
 
 public class FullCalendarViewsTest
 {
-	@Test
-	public void testVisibleRange()
-	{
-		FullCalendarViews views = new FullCalendarViews();
-		views.addView(new FullCalendarViewTimeGrid().setName("timeGridDay")
-		                                            .setVisibleRange(new FullCalendarVisibleRange()
-				                                            .setStart(LocalDate.now())
-				                                            .setEnd(LocalDate.now())
-		                                            )
-		);
-		System.out.println(views.toJson());
-	}
-	
-	@Test
-	public void viewsMap()
-	{
-		FullCalendarViews views = new FullCalendarViews();
-		views.addView(new FullCalendarViewTimeGrid().setName("timeGridDay"));
-		System.out.println(views.toJson());
-		
-		
-	}
-	
-	@Test
-	public void initialViewSetting()
-	{
-		FullCalendarComponentExample fce = new FullCalendarComponentExample();
-		fce.getOptions()
-		   .setInitialView(new FullCalendarViewResourceTimeLine());
-		System.out.println(fce.getOptions().toJson());
-	}
+    @Test
+    public void testVisibleRange()
+    {
+        FullCalendarViews views = new FullCalendarViews();
+        views.addView(new FullCalendarViewTimeGrid().setName("timeGridDay")
+                                                    .setVisibleRange(new FullCalendarVisibleRange()
+                                                            .setStart(LocalDate.now())
+                                                            .setEnd(LocalDate.now())
+                                                    )
+        );
+        System.out.println(views.toJson());
+    }
+
+    @Test
+    public void viewsMap()
+    {
+        FullCalendarViews views = new FullCalendarViews();
+        views.addView(new FullCalendarViewTimeGrid().setName("timeGridDay"));
+        System.out.println(views.toJson());
+
+
+    }
+
+    @Test
+    public void initialViewSetting()
+    {
+        FullCalendar fce = new FullCalendarComponentExample();
+        fce.getOptions()
+           .setInitialView(new FullCalendarViewResourceTimeLine());
+        System.out.println(fce.getOptions()
+                              .toJson());
+    }
 }
