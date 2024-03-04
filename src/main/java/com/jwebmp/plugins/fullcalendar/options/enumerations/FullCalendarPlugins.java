@@ -8,4 +8,6 @@ public enum FullCalendarPlugins
     listPlugin,
     interactionPlugin,
     bootstrap5Plugin,
+    resourceTimelinePlugin,
+    resourceDayGridPlugin,
 }
