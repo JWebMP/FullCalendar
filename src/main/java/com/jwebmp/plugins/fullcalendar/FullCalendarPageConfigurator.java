@@ -16,48 +16,51 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
-import com.jwebmp.core.base.angular.client.annotations.boot.*;
-import com.jwebmp.core.base.angular.client.annotations.typescript.*;
-import com.jwebmp.core.plugins.*;
-import com.jwebmp.core.services.*;
-import jakarta.validation.constraints.*;
+import com.jwebmp.core.base.angular.client.annotations.boot.NgBootImportReference;
+import com.jwebmp.core.base.angular.client.annotations.boot.NgBootModuleImport;
+import com.jwebmp.core.base.angular.client.annotations.typescript.TsDependency;
+import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
+import com.jwebmp.core.services.IPage;
+import com.jwebmp.core.services.IPageConfigurator;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author GedMarc
  * @since 23 Feb 2017
  */
 @PluginInformation(pluginName = "Full Calendar",
-        pluginUniqueName = "full-calendar",
-        pluginDescription = "Full Calendar is a free, open-source project that enables you to design full calendar-like features and functions that is fully interactive, ajax controlled and mobile friendly. ",
-        pluginVersion = "5.3.0",
-        pluginDependancyUniqueIDs = "jquery,moment",
-        pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
-        pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
-        pluginGitUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin",
-        pluginSourceUrl = "https://github.com/fullcalendar",
-        pluginWikiUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin/wiki",
-        pluginOriginalHomepage = "https://fullcalendar.io/",
-        pluginSourceDonateUrl = "https://fullcalendar.io/donate/",
-        pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.jquery/jwebmp-full-calendar",
-        pluginIconUrl = "",
-        pluginIconImageUrl = "",
-        pluginLastUpdatedDate = "2020/12/16",
-        pluginGroupId = "com.jwebmp.plugins.jquery",
-        pluginArtifactId = "jwebmp-full-calendar",
-        pluginModuleName = "com.jwebmp.plugins.fullcalendar",
-        pluginStatus = PluginStatus.Released
+                   pluginUniqueName = "full-calendar",
+                   pluginDescription = "Full Calendar is a free, open-source project that enables you to design full calendar-like features and functions that is fully interactive, ajax controlled and mobile friendly. ",
+                   pluginVersion = "5.3.0",
+                   pluginDependancyUniqueIDs = "jquery,moment",
+                   pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
+                   pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
+                   pluginGitUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin",
+                   pluginSourceUrl = "https://github.com/fullcalendar",
+                   pluginWikiUrl = "https://github.com/GedMarc/JWebMP-FullCalendarPlugin/wiki",
+                   pluginOriginalHomepage = "https://fullcalendar.io/",
+                   pluginSourceDonateUrl = "https://fullcalendar.io/donate/",
+                   pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.jquery/jwebmp-full-calendar",
+                   pluginIconUrl = "",
+                   pluginIconImageUrl = "",
+                   pluginLastUpdatedDate = "2020/12/16",
+                   pluginGroupId = "com.jwebmp.plugins.jquery",
+                   pluginArtifactId = "jwebmp-full-calendar",
+                   pluginModuleName = "com.jwebmp.plugins.fullcalendar",
+                   pluginStatus = PluginStatus.Released
 )
-@TsDependency(value = "@fullcalendar/angular", version = "^6.1.10")
-@TsDependency(value = "@fullcalendar/adaptive", version = "^6.1.10")
-@TsDependency(value = "@fullcalendar/daygrid", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/timegrid", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/list", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/interaction", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/scrollgrid", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/luxon2", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/moment", version = "^6.1.11")
-@TsDependency(value = "@fullcalendar/moment-timezone", version = "^6.1.11")
+@TsDependency(value = "@fullcalendar/angular", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/adaptive", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/daygrid", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/timegrid", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/list", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/interaction", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/scrollgrid", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/luxon2", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/moment", version = "^6.1.13")
+@TsDependency(value = "@fullcalendar/moment-timezone", version = "^6.1.13")
 
 
 @NgBootImportReference(value = "FullCalendarModule ", reference = "@fullcalendar/angular")
@@ -68,11 +71,9 @@ import jakarta.validation.constraints.*;
 @NgBootImportReference(name = "!interactionPlugin", reference = "@fullcalendar/interaction")*/
 
 @NgBootImportReference(value = "!bootstrap5Plugin", reference = "@fullcalendar/bootstrap5")
-@TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.11")
-@TsDependency(value = "bootstrap-icons", version = "*")
+@TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.13")
+//@TsDependency(value = "bootstrap-icons", version = "*")
 //@NgBootGlobalField("FullCalendarModule.registerPlugins([\n" + "  bootstrap5Plugin\n" + "])")
-
-
 @NgBootModuleImport("FullCalendarModule")
 
 /*@NgBootGlobalField("FullCalendarModule.registerPlugins([\n" +
