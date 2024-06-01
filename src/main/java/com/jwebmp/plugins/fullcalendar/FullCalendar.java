@@ -17,24 +17,32 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.guicedee.client.IGuiceContext;
-import com.guicedee.guicedservlets.websockets.*;
-import com.jwebmp.core.base.ajax.*;
-import com.jwebmp.core.base.angular.client.*;
-import com.jwebmp.core.base.angular.client.annotations.boot.*;
-import com.jwebmp.core.base.angular.client.annotations.functions.*;
-import com.jwebmp.core.base.angular.client.annotations.references.*;
-import com.jwebmp.core.base.angular.client.annotations.structures.*;
-import com.jwebmp.core.base.angular.client.services.*;
-import com.jwebmp.core.base.angular.client.services.interfaces.*;
-import com.jwebmp.core.base.angular.implementations.*;
-import com.jwebmp.core.base.html.*;
-import com.jwebmp.core.plugins.*;
+import com.guicedee.guicedservlets.websockets.options.IGuicedWebSocket;
+import com.guicedee.vertx.websockets.GuicedWebSocket;
+import com.jwebmp.core.base.ajax.AjaxCall;
+import com.jwebmp.core.base.ajax.AjaxResponse;
+import com.jwebmp.core.base.angular.client.DynamicData;
+import com.jwebmp.core.base.angular.client.annotations.functions.NgAfterViewInit;
+import com.jwebmp.core.base.angular.client.annotations.functions.NgOnDestroy;
+import com.jwebmp.core.base.angular.client.annotations.references.NgComponentReference;
+import com.jwebmp.core.base.angular.client.annotations.references.NgDataTypeReference;
+import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
+import com.jwebmp.core.base.angular.client.annotations.structures.NgField;
+import com.jwebmp.core.base.angular.client.annotations.structures.NgMethod;
+import com.jwebmp.core.base.angular.client.services.SocketClientService;
+import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
+import com.jwebmp.core.base.angular.implementations.WebSocketAbstractCallReceiver;
+import com.jwebmp.core.base.html.Div;
+import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.fullcalendar.events.*;
-import com.jwebmp.plugins.fullcalendar.options.*;
-import com.jwebmp.plugins.fullcalendar.options.resources.*;
+import com.jwebmp.plugins.fullcalendar.options.FullCalendarEvent;
+import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
+import com.jwebmp.plugins.fullcalendar.options.FullCalendarOptions;
+import com.jwebmp.plugins.fullcalendar.options.resources.FullCalendarResourceItem;
+import com.jwebmp.plugins.fullcalendar.options.resources.FullCalendarResourceItemsList;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,13 +54,15 @@ import java.util.List;
  * @since 17 Jan 2017
  */
 @ComponentInformation(name = "Full Calendar",
-        description = "Display a full-size drag-n-drop event calendar",
-        url = "https://fullcalendar.io/")
+                      description = "Display a full-size drag-n-drop event calendar",
+                      url = "https://fullcalendar.io/")
 
 
-@NgImportReference(value = "CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventDropArg,EventInput,CalendarApi", reference = "@fullcalendar/core")
+@NgImportReference(value = "CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventDropArg,EventInput,CalendarApi",
+                   reference = "@fullcalendar/core")
 @NgImportReference(value = "FullCalendarComponent", reference = "@fullcalendar/angular")
-@NgImportReference(value = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg", reference = "@fullcalendar/interaction")
+@NgImportReference(value = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg",
+                   reference = "@fullcalendar/interaction")
 @NgImportReference(value = "FullCalendarModule ", reference = "@fullcalendar/angular")
 @NgImportReference(value = "!dayGridPlugin", reference = "@fullcalendar/daygrid")
 @NgImportReference(value = "!scrollGridPlugin", reference = "@fullcalendar/scrollgrid")
@@ -205,66 +215,66 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         List<String> bodies = INgComponent.super.componentConstructorBody();
         bodies.add("this.subscription = this.socketClientService.registerListener(this.listenerName).subscribe((message: any) => {\n" +
 
-                "            if(message)" +
-                "            try {\n" +
-                "                 this.calendarApi?.removeAllEvents();\n" +
-                "//                alert('events message - ' + JSON.stringify(message));\n" +
-                "                let workable = false;\n" +
-                "                if (Array.isArray(message)) {\n" +
-                "                    workable = true;\n" +
-                "                } else {\n" +
-                "                    if (message.out && message.out[0]) {\n" +
-                "                        message = message.out[0];\n" +
-                "                        workable = true;\n" +
-                "                    }\n" +
-                "                }\n" +
-                "                if(workable) {\n" +
-                " //                   alert('working on events message - ' + JSON.stringify(message));\n" +
-                "                    this.calendarApi?.addEventSource(message);\n" +
-                "                }\n" +
-                "            } catch (e) {\n" +
-                "                console.log(\"error in events\", e);\n" +
-                "            }\n" +
-                "        });\n");
+                           "            if(message)" +
+                           "            try {\n" +
+                           "                 this.calendarApi?.removeAllEvents();\n" +
+                           "//                alert('events message - ' + JSON.stringify(message));\n" +
+                           "                let workable = false;\n" +
+                           "                if (Array.isArray(message)) {\n" +
+                           "                    workable = true;\n" +
+                           "                } else {\n" +
+                           "                    if (message.out && message.out[0]) {\n" +
+                           "                        message = message.out[0];\n" +
+                           "                        workable = true;\n" +
+                           "                    }\n" +
+                           "                }\n" +
+                           "                if(workable) {\n" +
+                           " //                   alert('working on events message - ' + JSON.stringify(message));\n" +
+                           "                    this.calendarApi?.addEventSource(message);\n" +
+                           "                }\n" +
+                           "            } catch (e) {\n" +
+                           "                console.log(\"error in events\", e);\n" +
+                           "            }\n" +
+                           "        });\n");
 
         bodies.add("this.subscriptionAdd = this.socketClientService.registerListener(this.listenerName + 'Add')\n" +
-                "            .subscribe((message: DynamicData) => {\n" +
-                "                if(message && message.out && message.out[0])\n" +
-                "                {\n" +
-                "                    let ev : EventInput = message.out[0];\n" +
-                "                    this.calendarApi?.addEvent(ev);\n" +
-                "                }\n" +
-                "            });\n");
+                           "            .subscribe((message: DynamicData) => {\n" +
+                           "                if(message && message.out && message.out[0])\n" +
+                           "                {\n" +
+                           "                    let ev : EventInput = message.out[0];\n" +
+                           "                    this.calendarApi?.addEvent(ev);\n" +
+                           "                }\n" +
+                           "            });\n");
 
         bodies.add("this.subscriptionEdit = this.socketClientService.registerListener(this.listenerName + 'Edit')\n" +
-                "            .subscribe((message: DynamicData) => {\n" +
-                "                if(message && message.out && message.out[0])\n" +
-                "                {\n" +
-                "                    let ev : EventInput = message.out[0];\n" +
-                "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
-                "                    this.calendarApi?.addEvent(ev);\n" +
-                "                }\n" +
-                "                \n" +
-                "            });\n");
+                           "            .subscribe((message: DynamicData) => {\n" +
+                           "                if(message && message.out && message.out[0])\n" +
+                           "                {\n" +
+                           "                    let ev : EventInput = message.out[0];\n" +
+                           "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
+                           "                    this.calendarApi?.addEvent(ev);\n" +
+                           "                }\n" +
+                           "                \n" +
+                           "            });\n");
 
         bodies.add("this.subscriptionDelete = this.socketClientService.registerListener(this.listenerName + 'Delete')\n" +
-                "            .subscribe((message: DynamicData) => {\n" +
-                "                if(message && message.out && message.out[0])\n" +
-                "                {\n" +
-                "                    let ev : EventInput = message.out[0];\n" +
-                "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
-                "                }\n" +
-                "            });\n");
+                           "            .subscribe((message: DynamicData) => {\n" +
+                           "                if(message && message.out && message.out[0])\n" +
+                           "                {\n" +
+                           "                    let ev : EventInput = message.out[0];\n" +
+                           "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
+                           "                }\n" +
+                           "            });\n");
 
         bodies.add("this.subscriptionOptions = this.socketClientService.registerListener(this.listenerName + 'Options')\n" +
-                "            .subscribe((message: any) => {\n" +
-                "                //alert('incoming message ' + JSON.stringify(message));\n" +
-                "                if (message && message.out && message.out[0]) {\n" +
-                "                  //  alert('options message - ' + JSON.stringify(message.out[0]));\n" +
-                "                  //  this.calendarOptions = {...this.calendarOptionsOriginal,...message.out[0]}\n" +
-                "                 //    alert('options message - ' + JSON.stringify(this.calendarOptions));\n" +
-                "                }\n" +
-                "            });\n");
+                           "            .subscribe((message: any) => {\n" +
+                           "                //alert('incoming message ' + JSON.stringify(message));\n" +
+                           "                if (message && message.out && message.out[0]) {\n" +
+                           "                  //  alert('options message - ' + JSON.stringify(message.out[0]));\n" +
+                           "                  //  this.calendarOptions = {...this.calendarOptionsOriginal,...message.out[0]}\n" +
+                           "                 //    alert('options message - ' + JSON.stringify(this.calendarOptions));\n" +
+                           "                }\n" +
+                           "            });\n");
         return bodies;
     }
 
@@ -273,17 +283,17 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     {
         List<String> methods = INgComponent.super.componentMethods();
         methods.add("fetchData(){\n" +
-                "this.socketClientService.send(this.listenerName + 'Options', {\n" +
-                "            className: '" + getClass().getCanonicalName() + "',\n" +
-                "            listenerName: this.listenerName + 'Options'\n" +
-                "        }, this.listenerName + 'Options');" +
-                "" +
-                "" +
-                "" +
-                "   this.socketClientService.send(this.listenerName,{\n" +
-                "           className :  '" + getClass().getCanonicalName() + "',\n" +
-                "            listenerName: this.listenerName},this.listenerName);\n" +
-                "}\n");
+                            "this.socketClientService.send(this.listenerName + 'Options', {\n" +
+                            "            className: '" + getClass().getCanonicalName() + "',\n" +
+                            "            listenerName: this.listenerName + 'Options'\n" +
+                            "        }, this.listenerName + 'Options');" +
+                            "" +
+                            "" +
+                            "" +
+                            "   this.socketClientService.send(this.listenerName,{\n" +
+                            "           className :  '" + getClass().getCanonicalName() + "',\n" +
+                            "            listenerName: this.listenerName},this.listenerName);\n" +
+                            "}\n");
 
 /*        methods.add(" ngAfterContentChecked(): void {\n" +
                 "    }\n" +
@@ -645,13 +655,14 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
 
     protected void registerWebSocketListeners()
     {
-        if (!GuicedWebSocket.isWebSocketReceiverRegistered(getListenerName()))
+        GuicedWebSocket socket = (GuicedWebSocket) IGuiceContext.get(IGuicedWebSocket.class);
+        if (!socket.isWebSocketReceiverRegistered(getListenerName()))
         {
-            GuicedWebSocket.addWebSocketMessageReceiver(new InitialEventsReceiver(getListenerName(), getClass()));
+            socket.addWebSocketMessageReceiver(new InitialEventsReceiver(getListenerName(), getClass()));
         }
-        if (!GuicedWebSocket.isWebSocketReceiverRegistered(getListenerNameOnLoadOptions()))
+        if (!socket.isWebSocketReceiverRegistered(getListenerNameOnLoadOptions()))
         {
-            GuicedWebSocket.addWebSocketMessageReceiver(new OnLoadOptionsReceiver(getListenerNameOnLoadOptions(), getClass()));
+            socket.addWebSocketMessageReceiver(new OnLoadOptionsReceiver(getListenerNameOnLoadOptions(), getClass()));
         }
     }
 

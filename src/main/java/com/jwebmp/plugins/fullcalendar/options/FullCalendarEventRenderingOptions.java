@@ -16,11 +16,9 @@
  */
 package com.jwebmp.plugins.fullcalendar.options;
 
-import com.jwebmp.core.utilities.StaticStrings;
-
 import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_DASH;
 import static com.guicedee.services.jsonrepresentation.json.StaticStrings.CHAR_UNDERSCORE;
-import static com.jwebmp.core.utilities.StaticStrings.*;
+
 
 /**
  * @author GedMarc
@@ -28,13 +26,13 @@ import static com.jwebmp.core.utilities.StaticStrings.*;
  */
 public enum FullCalendarEventRenderingOptions
 {
-	background,
-	inverse_background;
+    background,
+    inverse_background;
 
-	@Override
-	public String toString()
-	{
-		return name().replace(CHAR_UNDERSCORE, CHAR_DASH);
-	}
+    @Override
+    public String toString()
+    {
+        return name().replace(CHAR_UNDERSCORE, CHAR_DASH);
+    }
 
 }

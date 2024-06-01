@@ -1,7 +1,6 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.guicedee.guicedinjection.GuiceContext;
-import com.guicedee.guicedservlets.undertow.GuicedUndertow;
 import com.jwebmp.core.base.angular.client.annotations.angular.NgComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.IComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgApp;
@@ -25,11 +24,6 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
         super.init();
     }
 
-    public static void main(String[] args) throws Exception
-    {
-
-        GuicedUndertow.boot("localhost", 6524);
-    }
 
     public void testAppSearch() throws IOException
     {
@@ -40,7 +34,7 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
             JWebMPTypeScriptCompiler compiler = new JWebMPTypeScriptCompiler(app);
 
             System.out.println("Generating @NgApp (" + getTsFilename(app.getClass()) + ") " +
-                    "in folder " + IComponent.getClassDirectory(app.getClass()));
+                                       "in folder " + IComponent.getClassDirectory(app.getClass()));
             System.out.println("================");
             //	compiler.renderAppTS(app);
             System.out.println("================");
