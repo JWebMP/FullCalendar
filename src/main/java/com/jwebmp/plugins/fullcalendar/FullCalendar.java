@@ -21,6 +21,7 @@ import com.guicedee.guicedservlets.websockets.options.IGuicedWebSocket;
 import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;
 import com.jwebmp.core.base.angular.client.DynamicData;
+import com.jwebmp.core.base.angular.client.annotations.constructors.NgConstructorParameter;
 import com.jwebmp.core.base.angular.client.annotations.functions.NgAfterViewInit;
 import com.jwebmp.core.base.angular.client.annotations.functions.NgOnDestroy;
 import com.jwebmp.core.base.angular.client.annotations.references.NgComponentReference;
@@ -43,6 +44,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * An implementation of
@@ -59,6 +61,7 @@ import java.util.List;
 
 @NgImportReference(value = "CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventDropArg,EventInput,CalendarApi",
                    reference = "@fullcalendar/core")
+
 @NgImportReference(value = "FullCalendarComponent", reference = "@fullcalendar/angular")
 @NgImportReference(value = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg",
                    reference = "@fullcalendar/interaction")
@@ -166,10 +169,22 @@ import java.util.List;
 @NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName + 'Delete');")
 @NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName + 'Options');")
 
+@NgConstructorParameter("private socketClientService : SocketClientService")
+
+
 public abstract class FullCalendar<J extends FullCalendar<J>>
         extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, J>
         implements INgComponent<J>
 {
+
+    @Override
+    public Set<String> moduleImports()
+    {
+        var s = INgComponent.super.moduleImports();
+        s.add("FullCalendarModule");
+        return s;
+    }
+
     /**
      * The full calendar options list
      */
@@ -209,9 +224,9 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     }
 
     @Override
-    public List<String> componentConstructorBody()
+    public List<String> constructorBody()
     {
-        List<String> bodies = INgComponent.super.componentConstructorBody();
+        List<String> bodies = INgComponent.super.constructorBody();
         bodies.add("this.subscription = this.socketClientService.registerListener(this.listenerName).subscribe((message: any) => {\n" +
 
                            "            if(message)" +
@@ -278,9 +293,9 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     }
 
 
-    public List<String> componentMethods()
+    public List<String> methods()
     {
-        List<String> methods = INgComponent.super.componentMethods();
+        List<String> methods = INgComponent.super.methods();
         methods.add("fetchData(){\n" +
                             "this.socketClientService.send(this.listenerName + 'Options', {\n" +
                             "            className: '" + getClass().getCanonicalName() + "',\n" +
@@ -316,23 +331,18 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return methods;
     }
 
-    public List<String> componentFields()
-    {
-        List<String> fields = INgComponent.super.componentFields();
-        fields.add(" private listenerName = '" + getID() + "';");
-        fields.add(" private subscription? : Subscription;\n");
-        fields.add(" private subscriptionAdd? : Subscription;\n");
-        fields.add(" private subscriptionEdit? : Subscription;\n");
-        fields.add(" private subscriptionDelete? : Subscription;\n");
-        fields.add(" private subscriptionOptions? : Subscription;\n");
-        return fields;
-    }
-
 
     @Override
     public List<String> fields()
     {
         List<String> out = INgComponent.super.fields();
+        out.add(" private listenerName = '" + getID() + "';");
+        out.add(" private subscription? : Subscription;\n");
+        out.add(" private subscriptionAdd? : Subscription;\n");
+        out.add(" private subscriptionEdit? : Subscription;\n");
+        out.add(" private subscriptionDelete? : Subscription;\n");
+        out.add(" private subscriptionOptions? : Subscription;\n");
+
         out.add("calendarOptionsOriginal: CalendarOptions = " + getOptions().toJson() + ";");
         out.add("calendarOptions: CalendarOptions = {...this.calendarOptionsOriginal};");
 
@@ -396,7 +406,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     }
 
     @Override
-    public void init()
+    protected void init()
     {
         addAttribute("[options]", "calendarOptions");
         setInvertColonRender(true);

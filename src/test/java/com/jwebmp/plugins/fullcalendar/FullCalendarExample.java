@@ -18,7 +18,7 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
         implements INgComponent<FullCalendarExample>
 {
     @Override
-    public void init()
+    protected void init()
     {
         add(new FullCalendarComponentExample().setSelectEvent(new FullCalendarSelectEventTest()));
         super.init();

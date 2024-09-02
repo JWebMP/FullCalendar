@@ -16,8 +16,16 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
+import com.guicedee.client.IGuiceContext;
+import com.jwebmp.core.base.angular.client.services.interfaces.INgApp;
+import com.jwebmp.core.base.angular.services.compiler.JWebMPTypeScriptCompiler;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils.getTsFilename;
+import static com.jwebmp.core.base.angular.client.services.interfaces.IComponent.getClassDirectory;
 
 /**
  * @author GedMarc
@@ -25,14 +33,31 @@ import org.junit.jupiter.api.Test;
 public class FullCalendarEventsListTest
 {
 
-	public FullCalendarEventsListTest()
-	{
-	}
+    public FullCalendarEventsListTest()
+    {
+    }
 
-	@Test
-	public void testSomeMethod()
-	{
-		System.out.println(new FullCalendarEventsList());
-	}
+    @Test
+    public void testAppSearch() throws IOException
+    {
+        IGuiceContext.instance()
+                     .inject();
+        for (INgApp<?> app : JWebMPTypeScriptCompiler.getAllApps())
+        {
+            JWebMPTypeScriptCompiler compiler = new JWebMPTypeScriptCompiler(app);
+
+            System.out.println("Generating @NgApp (" + getTsFilename(app.getClass()) + ") " +
+                                       "in folder " + getClassDirectory(app.getClass()));
+            System.out.println("================");
+            //	compiler.renderAppTS(app);
+            System.out.println("================");
+        }
+    }
+
+    @Test
+    public void testSomeMethod()
+    {
+        System.out.println(new FullCalendarEventsList());
+    }
 
 }
