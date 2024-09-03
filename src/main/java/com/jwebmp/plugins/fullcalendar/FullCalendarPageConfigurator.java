@@ -16,8 +16,6 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
-import com.jwebmp.core.base.angular.client.annotations.boot.NgBootImportReference;
-import com.jwebmp.core.base.angular.client.annotations.boot.NgBootModuleImport;
 import com.jwebmp.core.base.angular.client.annotations.typescript.TsDependency;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.PluginStatus;
@@ -63,18 +61,17 @@ import jakarta.validation.constraints.NotNull;
 @TsDependency(value = "@fullcalendar/moment-timezone", version = "^6.1.13")
 
 
-@NgBootImportReference(value = "FullCalendarModule ", reference = "@fullcalendar/angular")
+//@NgBootImportReference(value = "FullCalendarModule ", reference = "@fullcalendar/angular")
 /*@NgBootImportReference(name = "!dayGridPlugin", reference = "@fullcalendar/daygrid")
 @NgBootImportReference(name = "!scrollGridPlugin", reference = "@fullcalendar/scrollgrid")
 @NgBootImportReference(name = "!timeGridPlugin", reference = "@fullcalendar/timegrid")
 @NgBootImportReference(name = "!listPlugin", reference = "@fullcalendar/list")
 @NgBootImportReference(name = "!interactionPlugin", reference = "@fullcalendar/interaction")*/
 
-@NgBootImportReference(value = "!bootstrap5Plugin", reference = "@fullcalendar/bootstrap5")
 @TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.13")
 //@TsDependency(value = "bootstrap-icons", version = "*")
 //@NgBootGlobalField("FullCalendarModule.registerPlugins([\n" + "  bootstrap5Plugin\n" + "])")
-@NgBootModuleImport("FullCalendarModule")
+//@NgBootModuleImport("FullCalendarModule")
 
 /*@NgBootGlobalField("FullCalendarModule.registerPlugins([\n" +
         "  dayGridPlugin,\n" +
