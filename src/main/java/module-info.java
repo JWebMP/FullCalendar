@@ -12,7 +12,7 @@ module com.jwebmp.plugins.fullcalendar {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
     requires com.guicedee.jsonrepresentation;
-    requires guiced.vertx.sockets;
+    requires com.guicedee.vertx.sockets;
     requires com.jwebmp.core.angular;
 
     provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.fullcalendar.FullCalendarPageConfigurator;
