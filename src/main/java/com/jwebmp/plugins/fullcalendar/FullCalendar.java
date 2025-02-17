@@ -29,7 +29,7 @@ import com.jwebmp.core.base.angular.client.annotations.references.NgDataTypeRefe
 import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgField;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgMethod;
-import com.jwebmp.core.base.angular.client.services.SocketClientService;
+import com.jwebmp.core.base.angular.client.services.EventBusService;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
 import com.jwebmp.core.base.angular.implementations.WebSocketAbstractCallReceiver;
 import com.jwebmp.core.base.html.Div;
@@ -55,16 +55,16 @@ import java.util.Set;
  * @since 17 Jan 2017
  */
 @ComponentInformation(name = "Full Calendar",
-                      description = "Display a full-size drag-n-drop event calendar",
-                      url = "https://fullcalendar.io/")
+        description = "Display a full-size drag-n-drop event calendar",
+        url = "https://fullcalendar.io/")
 
 
 @NgImportReference(value = "CalendarOptions, DateSelectArg, EventClickArg, EventApi, EventDropArg,EventInput,CalendarApi",
-                   reference = "@fullcalendar/core")
+        reference = "@fullcalendar/core")
 
 @NgImportReference(value = "FullCalendarComponent", reference = "@fullcalendar/angular")
 @NgImportReference(value = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg",
-                   reference = "@fullcalendar/interaction")
+        reference = "@fullcalendar/interaction")
 @NgImportReference(value = "FullCalendarModule ", reference = "@fullcalendar/angular")
 @NgImportReference(value = "!dayGridPlugin", reference = "@fullcalendar/daygrid")
 @NgImportReference(value = "!scrollGridPlugin", reference = "@fullcalendar/scrollgrid")
@@ -103,14 +103,14 @@ import java.util.Set;
         //   "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.dateClickEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.dateClickEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.dateClickEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
         "\t}")
 
 @NgMethod("handleDateSelect(selectInfo: DateSelectArg) {\n" +
         //  "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.selectEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.selectEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.selectEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
         "\t}")
 
 
@@ -118,35 +118,35 @@ import java.util.Set;
         //     "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.eventClickEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.eventClickEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.eventClickEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
         "  }")
 
 @NgMethod("handleDropEvent(selectInfo: DropArg) {\n" +
         //    "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.dropEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.dropEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.dropEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
         "  }")
 
 @NgMethod("handleEventDrop(selectInfo: EventDropArg) {\n" +
         //     "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.eventDropEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.eventDropEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.eventDropEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
         "  }")
 
 @NgMethod("handleEventReceive(selectInfo: EventReceiveArg) {\n" +
         //         "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.receiveEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.receiveEvent},'onClick',undefined,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.receiveEvent},'onClick',undefined,undefined);\n" +
         "  }")
 
 @NgMethod("handleEventResize(selectInfo: EventResizeDoneArg) {\n" +
         //     "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
         "\t\tthis.calendarApi?.unselect(); // clear date selection\n" +
         "\t\tif(this.eventResizeEvent)\n" +
-        "\t\tthis.socketClientService.send('ajax',{infoObj : selectInfo,eventClass : this.eventResizeEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
+        "\t\tthis.eventBusService.send('ajax',{infoObj : selectInfo,eventClass : this.eventResizeEvent},'onClick',selectInfo.jsEvent,undefined);\n" +
         "  }")
 
 
@@ -154,22 +154,25 @@ import java.util.Set;
         "    this.currentEvents = events;\n" +
         "  }")
 
-@NgComponentReference(SocketClientService.class)
+@NgComponentReference(EventBusService.class)
+@NgImportReference(value = "inject", reference = "@angular/core")
+@NgField(value = "private readonly eventBusService = inject(EventBusService); // Injected EventBus service.")
+
 @NgComponentReference(DynamicData.class)
 
 @NgOnDestroy("this.subscription?.unsubscribe();")
-@NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName);")
+@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName);")
 @NgOnDestroy("this.subscriptionAdd?.unsubscribe();")
 @NgOnDestroy("this.subscriptionEdit?.unsubscribe();")
 @NgOnDestroy("this.subscriptionDelete?.unsubscribe();")
 @NgOnDestroy("this.subscriptionOptions?.unsubscribe();")
 
-@NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName + 'Add');")
-@NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName + 'Edit');")
-@NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName + 'Delete');")
-@NgOnDestroy("this.socketClientService.deregisterListener(this.listenerName + 'Options');")
+@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Add');")
+@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Edit');")
+@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Delete');")
+@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Options');")
 
-@NgConstructorParameter("private socketClientService : SocketClientService")
+//@NgConstructorParameter("private socketClientService : SocketClientService")
 
 
 public abstract class FullCalendar<J extends FullCalendar<J>>
@@ -227,68 +230,68 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     public List<String> constructorBody()
     {
         List<String> bodies = INgComponent.super.constructorBody();
-        bodies.add("this.subscription = this.socketClientService.registerListener(this.listenerName).subscribe((message: any) => {\n" +
+        bodies.add("this.subscription = this.eventBusService.listen(this.listenerName).subscribe((message: any) => {\n" +
 
-                           "            if(message)" +
-                           "            try {\n" +
-                           "                 this.calendarApi?.removeAllEvents();\n" +
-                           "//                alert('events message - ' + JSON.stringify(message));\n" +
-                           "                let workable = false;\n" +
-                           "                if (Array.isArray(message)) {\n" +
-                           "                    workable = true;\n" +
-                           "                } else {\n" +
-                           "                    if (message.out && message.out[0]) {\n" +
-                           "                        message = message.out[0];\n" +
-                           "                        workable = true;\n" +
-                           "                    }\n" +
-                           "                }\n" +
-                           "                if(workable) {\n" +
-                           " //                   alert('working on events message - ' + JSON.stringify(message));\n" +
-                           "                    this.calendarApi?.addEventSource(message);\n" +
-                           "                }\n" +
-                           "            } catch (e) {\n" +
-                           "                console.log(\"error in events\", e);\n" +
-                           "            }\n" +
-                           "        });\n");
+                "            if(message)" +
+                "            try {\n" +
+                "                 this.calendarApi?.removeAllEvents();\n" +
+                "//                alert('events message - ' + JSON.stringify(message));\n" +
+                "                let workable = false;\n" +
+                "                if (Array.isArray(message)) {\n" +
+                "                    workable = true;\n" +
+                "                } else {\n" +
+                "                    if (message.out && message.out[0]) {\n" +
+                "                        message = message.out[0];\n" +
+                "                        workable = true;\n" +
+                "                    }\n" +
+                "                }\n" +
+                "                if(workable) {\n" +
+                " //                   alert('working on events message - ' + JSON.stringify(message));\n" +
+                "                    this.calendarApi?.addEventSource(message);\n" +
+                "                }\n" +
+                "            } catch (e) {\n" +
+                "                console.log(\"error in events\", e);\n" +
+                "            }\n" +
+                "        });\n");
 
-        bodies.add("this.subscriptionAdd = this.socketClientService.registerListener(this.listenerName + 'Add')\n" +
-                           "            .subscribe((message: DynamicData) => {\n" +
-                           "                if(message && message.out && message.out[0])\n" +
-                           "                {\n" +
-                           "                    let ev : EventInput = message.out[0];\n" +
-                           "                    this.calendarApi?.addEvent(ev);\n" +
-                           "                }\n" +
-                           "            });\n");
+        bodies.add("this.subscriptionAdd = this.eventBusService.listen(this.listenerName + 'Add')\n" +
+                "            .subscribe((message: DynamicData) => {\n" +
+                "                if(message && message.out && message.out[0])\n" +
+                "                {\n" +
+                "                    let ev : EventInput = message.out[0];\n" +
+                "                    this.calendarApi?.addEvent(ev);\n" +
+                "                }\n" +
+                "            });\n");
 
-        bodies.add("this.subscriptionEdit = this.socketClientService.registerListener(this.listenerName + 'Edit')\n" +
-                           "            .subscribe((message: DynamicData) => {\n" +
-                           "                if(message && message.out && message.out[0])\n" +
-                           "                {\n" +
-                           "                    let ev : EventInput = message.out[0];\n" +
-                           "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
-                           "                    this.calendarApi?.addEvent(ev);\n" +
-                           "                }\n" +
-                           "                \n" +
-                           "            });\n");
+        bodies.add("this.subscriptionEdit = this.eventBusService.listen(this.listenerName + 'Edit')\n" +
+                "            .subscribe((message: DynamicData) => {\n" +
+                "                if(message && message.out && message.out[0])\n" +
+                "                {\n" +
+                "                    let ev : EventInput = message.out[0];\n" +
+                "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
+                "                    this.calendarApi?.addEvent(ev);\n" +
+                "                }\n" +
+                "                \n" +
+                "            });\n");
 
-        bodies.add("this.subscriptionDelete = this.socketClientService.registerListener(this.listenerName + 'Delete')\n" +
-                           "            .subscribe((message: DynamicData) => {\n" +
-                           "                if(message && message.out && message.out[0])\n" +
-                           "                {\n" +
-                           "                    let ev : EventInput = message.out[0];\n" +
-                           "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
-                           "                }\n" +
-                           "            });\n");
+        bodies.add("this.subscriptionDelete = this.eventBusService.listen(this.listenerName + 'Delete')\n" +
+                "            .subscribe((message: DynamicData) => {\n" +
+                "                if(message && message.out && message.out[0])\n" +
+                "                {\n" +
+                "                    let ev : EventInput = message.out[0];\n" +
+                "                    this.calendarApi?.getEventById(ev.id!)?.remove();\n" +
+                "                }\n" +
+                "            });\n");
 
-        bodies.add("this.subscriptionOptions = this.socketClientService.registerListener(this.listenerName + 'Options')\n" +
-                           "            .subscribe((message: any) => {\n" +
-                           "                //alert('incoming message ' + JSON.stringify(message));\n" +
-                           "                if (message && message.out && message.out[0]) {\n" +
-                           "                  //  alert('options message - ' + JSON.stringify(message.out[0]));\n" +
-                           "                  //  this.calendarOptions = {...this.calendarOptionsOriginal,...message.out[0]}\n" +
-                           "                 //    alert('options message - ' + JSON.stringify(this.calendarOptions));\n" +
-                           "                }\n" +
-                           "            });\n");
+        bodies.add("this.subscriptionOptions = this.eventBusService.listen(this.listenerName + 'Options')\n" +
+                "            .subscribe((message: any) => {\n" +
+                "                //alert('incoming message ' + JSON.stringify(message));\n" +
+                "                if (message && message.out && message.out[0]) {\n" +
+                "                  //  alert('options message - ' + JSON.stringify(message.out[0]));\n" +
+                "                  //  this.calendarOptions = {...this.calendarOptionsOriginal,...message.out[0]}\n" +
+                "                 //    alert('options message - ' + JSON.stringify(this.calendarOptions));\n" +
+                "                }\n" +
+                "            });\n");
         return bodies;
     }
 
@@ -297,17 +300,17 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     {
         List<String> methods = INgComponent.super.methods();
         methods.add("fetchData(){\n" +
-                            "this.socketClientService.send(this.listenerName + 'Options', {\n" +
-                            "            className: '" + getClass().getCanonicalName() + "',\n" +
-                            "            listenerName: this.listenerName + 'Options'\n" +
-                            "        }, this.listenerName + 'Options');" +
-                            "" +
-                            "" +
-                            "" +
-                            "   this.socketClientService.send(this.listenerName,{\n" +
-                            "           className :  '" + getClass().getCanonicalName() + "',\n" +
-                            "            listenerName: this.listenerName},this.listenerName);\n" +
-                            "}\n");
+                "this.eventBusService.send(this.listenerName + 'Options', {\n" +
+                "            className: '" + getClass().getCanonicalName() + "',\n" +
+                "            listenerName: this.listenerName + 'Options'\n" +
+                "        }, this.listenerName + 'Options');" +
+                "" +
+                "" +
+                "" +
+                "   this.eventBusService.send(this.listenerName,{\n" +
+                "           className :  '" + getClass().getCanonicalName() + "',\n" +
+                "            listenerName: this.listenerName},this.listenerName);\n" +
+                "}\n");
 
 /*        methods.add(" ngAfterContentChecked(): void {\n" +
                 "    }\n" +
@@ -349,56 +352,49 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         if (dateClickEvent != null)
         {
             out.add("dateClickEvent : string = '" + dateClickEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("dateClickEvent? : string;");
         }
         if (eventClickEvent != null)
         {
             out.add("eventClickEvent : string = '" + eventClickEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("eventClickEvent? : string;");
         }
         if (receiveEvent != null)
         {
             out.add("receiveEvent : string = '" + receiveEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("receiveEvent? : string;");
         }
         if (eventResizeEvent != null)
         {
             out.add("eventResizeEvent : string = '" + eventResizeEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("eventResizeEvent? : string;");
         }
         if (eventDropEvent != null)
         {
             out.add("eventDropEvent : string = '" + eventDropEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("eventDropEvent? : string;");
         }
         if (dropEvent != null)
         {
             out.add("dropEvent : string = '" + dropEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("dropEvent? : string;");
         }
         if (selectEvent != null)
         {
             out.add("selectEvent : string = '" + selectEvent.getClassCanonicalName() + "';");
-        }
-        else
+        } else
         {
             out.add("selectEvent? : string;");
         }
@@ -702,15 +698,14 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
             {
                 actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
                 listenerName = call.getUnknownFields()
-                                   .get("listenerName")
-                                   .toString();
-            }
-            catch (ClassNotFoundException e)
+                        .get("listenerName")
+                        .toString();
+            } catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }
             FullCalendarEventsList initialEvents = IGuiceContext.get(actionClass)
-                                                                .getInitialEvents();
+                    .getInitialEvents();
             if (initialEvents == null)
             {
                 return null;
@@ -748,15 +743,14 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
             {
                 actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
                 listenerName = call.getUnknownFields()
-                                   .get("listenerName")
-                                   .toString();
-            }
-            catch (ClassNotFoundException e)
+                        .get("listenerName")
+                        .toString();
+            } catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }
             FullCalendarOptions initialEvents = IGuiceContext.get(actionClass)
-                                                             .getOnLoadOptions();
+                    .getOnLoadOptions();
             if (initialEvents == null)
             {
                 return null;

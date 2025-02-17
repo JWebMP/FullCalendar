@@ -52,8 +52,6 @@ public class FullCalendarOptions
         extends JavaScriptPart<FullCalendarOptions>
         implements IDataComponent
 {
-
-
     /**
      * The header
      */
@@ -206,9 +204,8 @@ public class FullCalendarOptions
         try
         {
             return new StringBuilder(IGuiceContext.get(ObjectMapper.class)
-                                                  .writeValueAsString(getEvents()));
-        }
-        catch (JsonProcessingException e)
+                    .writeValueAsString(getEvents()));
+        } catch (JsonProcessingException e)
         {
             return new StringBuilder();
         }
@@ -338,7 +335,7 @@ public class FullCalendarOptions
         if (initialView != null)
         {
             return initialView.getType()
-                              .toString();
+                    .toString();
         }
         return null;
     }

@@ -21,13 +21,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.jwebmp.plugins</groupId>
-            <artifactId>typescript-client</artifactId>
+            <groupId>com.jwebmp</groupId>
+            <artifactId>jwebmp-vertx</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.guicedee</groupId>
-            <artifactId>guiced-vertx-sockets</artifactId>
+            <groupId>com.jwebmp.plugins</groupId>
+            <artifactId>typescript-client</artifactId>
         </dependency>
 
         <dependency>
@@ -35,6 +35,7 @@
             <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.jwebmp.plugins</groupId>
             <artifactId>angular</artifactId>

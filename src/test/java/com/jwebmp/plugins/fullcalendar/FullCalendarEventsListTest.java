@@ -33,6 +33,12 @@ import static com.jwebmp.core.base.angular.client.services.interfaces.IComponent
 public class FullCalendarEventsListTest
 {
 
+    public static void main(String[] args)
+    {
+        IGuiceContext.instance().inject();
+    }
+    
+
     public FullCalendarEventsListTest()
     {
     }
@@ -41,13 +47,13 @@ public class FullCalendarEventsListTest
     public void testAppSearch() throws IOException
     {
         IGuiceContext.instance()
-                     .inject();
+                .inject();
         for (INgApp<?> app : JWebMPTypeScriptCompiler.getAllApps())
         {
             JWebMPTypeScriptCompiler compiler = new JWebMPTypeScriptCompiler(app);
 
             System.out.println("Generating @NgApp (" + getTsFilename(app.getClass()) + ") " +
-                                       "in folder " + getClassDirectory(app.getClass()));
+                    "in folder " + getClassDirectory(app.getClass()));
             System.out.println("================");
             //	compiler.renderAppTS(app);
             System.out.println("================");
