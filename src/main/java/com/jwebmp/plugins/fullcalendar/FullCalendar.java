@@ -21,6 +21,7 @@ import com.guicedee.guicedservlets.websockets.options.IGuicedWebSocket;
 import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;
 import com.jwebmp.core.base.angular.client.DynamicData;
+import com.jwebmp.core.base.angular.client.annotations.constructors.NgConstructorBody;
 import com.jwebmp.core.base.angular.client.annotations.constructors.NgConstructorParameter;
 import com.jwebmp.core.base.angular.client.annotations.functions.NgAfterViewInit;
 import com.jwebmp.core.base.angular.client.annotations.functions.NgOnDestroy;
@@ -28,6 +29,7 @@ import com.jwebmp.core.base.angular.client.annotations.references.NgComponentRef
 import com.jwebmp.core.base.angular.client.annotations.references.NgDataTypeReference;
 import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgField;
+import com.jwebmp.core.base.angular.client.annotations.structures.NgInterface;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgMethod;
 import com.jwebmp.core.base.angular.client.services.EventBusService;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
@@ -81,6 +83,8 @@ import java.util.Set;
 @NgDataTypeReference(FullCalendarResourceItemsList.class)
 @NgDataTypeReference(FullCalendarResourceItem.class)
 
+@NgInterface("OnDestroy")
+
 @NgImportReference(value = "bufferTime, Subscription", reference = "rxjs")
 
 @NgField("currentEvents: EventApi[] = [];")
@@ -88,16 +92,144 @@ import java.util.Set;
         "    calendarComponent?: FullCalendarComponent;")
 @NgField("private calendarApi? : CalendarApi;")
 
+@NgField("""
+        \tprivate handlerGeneralId : string;
+            private handlerAddId : string;
+            private handlerEditId : string;
+            private handlerDeleteId : string;
+            private handlerOptionsId : string;
+        """)
 
-@NgAfterViewInit("this.calendarApi = this.calendarComponent?.getApi();")
-@NgAfterViewInit("let currentDate = this.calendarApi?.view.currentStart;")
-@NgAfterViewInit("this.fetchData();")
+@NgConstructorBody("""
+        \tthis.handlerGeneralId = this.generateHandlerId();
+                  this.handlerAddId = this.generateHandlerId();
+                  this.handlerEditId = this.generateHandlerId();
+                  this.handlerDeleteId = this.generateHandlerId();
+                  this.handlerOptionsId = this.generateHandlerId();
+        """)
+
+//@NgAfterViewInit("this.calendarApi = this.calendarComponent?.getApi();")
+//@NgAfterViewInit("let currentDate = this.calendarApi?.view.currentStart;")
+//@NgAfterViewInit("this.fetchData();")
+
+@NgAfterViewInit("""
+        \t\tthis.initializeEventListeners();
+                this.initializeCalendarApi();
+                this.fetchData();
+        """)
+
+@NgMethod("""
+        \t
+            /**
+             * Initialize FullCalendar API
+             */
+            private initializeCalendarApi(): void {
+                this.calendarApi = this.calendarComponent?.getApi();
+                if (this.calendarApi) {
+                    console.log('[SessionTimeSheets] Calendar API initialized');
+                } else {
+                    console.error('[SessionTimeSheets] Calendar API could not be initialized.');
+                }
+            }
+        """)
+@NgMethod("""
+        \t/**
+               * Initialize EventBus listeners
+               */
+              private initializeEventListeners(): void {
+                  // General listener
+                  const generalObserver = {
+                      next: (data: any) => this.handleSessionEvents(data),
+                      error: (err: any) =>
+                          console.error(`[SessionTimeSheets] Error in general listener:`, err),
+                      complete: () =>
+                          console.log('[SessionTimeSheets] General listener completed'),
+                  };
+                  this.subscriptionGeneral = this.eventBusService
+                      .listen(this.listenerName, this.generateHandlerId())
+                      .subscribe(generalObserver);
+        
+                  // Add events listener
+                  const addObserver = {
+                      next: (data: any) => this.handleAddEvent(data),
+                      error: (err: any) =>
+                          console.error(`[SessionTimeSheets] Error in add listener:`, err),
+                      complete: () =>
+                          console.log('[SessionTimeSheets] Add listener completed'),
+                  };
+                  this.subscriptionAdd = this.eventBusService
+                      .listen(`${this.listenerName}Add`, this.generateHandlerId())
+                      .subscribe(addObserver);
+        
+                  // Edit events listener
+                  const editObserver = {
+                      next: (data: any) => this.handleEditEvent(data),
+                      error: (err: any) =>
+                          console.error(`[SessionTimeSheets] Error in edit listener:`, err),
+                      complete: () =>
+                          console.log('[SessionTimeSheets] Edit listener completed'),
+                  };
+                  this.subscriptionEdit = this.eventBusService
+                      .listen(`${this.listenerName}Edit`, this.generateHandlerId())
+                      .subscribe(editObserver);
+        
+                  // Delete events listener
+                  const deleteObserver = {
+                      next: (data: any) => this.handleDeleteEvent(data),
+                      error: (err: any) =>
+                          console.error(`[SessionTimeSheets] Error in delete listener:`, err),
+                      complete: () =>
+                          console.log('[SessionTimeSheets] Delete listener completed'),
+                  };
+                  this.subscriptionDelete = this.eventBusService
+                      .listen(`${this.listenerName}Delete`, this.generateHandlerId())
+                      .subscribe(deleteObserver);
+        
+                  // Options listener
+                  const optionsObserver = {
+                      next: (options: CalendarOptions) =>
+                          this.updateCalendarOptions(options),
+                      error: (err: any) =>
+                          console.error(`[SessionTimeSheets] Error in options listener:`, err),
+                      complete: () =>
+                          console.log('[SessionTimeSheets] Options listener completed'),
+                  };
+                  this.subscriptionOptions = this.eventBusService
+                      .listen(`${this.listenerName}Options`, this.generateHandlerId())
+                      .subscribe(optionsObserver);
+              }
+        
+        """)
 
 
-@NgMethod("handleWeekendsToggle() {\n" +
+@NgMethod("\thandleWeekendsToggle() {\n" +
         "    const { calendarOptions } = this;\n" +
         "    calendarOptions.weekends = !calendarOptions.weekends;\n" +
         "  }")
+
+@NgMethod("""
+            /**
+             * Update calendar options dynamically.
+             */
+            private updateCalendarOptions(options: CalendarOptions): void {
+                console.log('[SessionTimeSheets] Updating calendar options:', options);
+                if (this.calendarApi) {
+                    this.calendarApi.setOption('headerToolbar', options.headerToolbar);
+                    // Extend this to update other options dynamically
+                }
+            }
+        """)
+@NgMethod("""
+            /**
+             * Generates a unique handler ID for each listener.
+             */
+            private generateHandlerId(): string {
+                return `${this.listenerName}-${Date.now()}-${Math.random()
+                    .toString(36)
+                    .substring(2, 15)}`;
+            }
+        
+        """)
 
 @NgMethod("handleDateClick(selectInfo: DateClickArg) {\n" +
         //   "\t\tconst calendarApi = selectInfo.view.calendar;\n" +
@@ -154,26 +286,70 @@ import java.util.Set;
         "    this.currentEvents = events;\n" +
         "  }")
 
+@NgMethod("""
+        \t/**
+               * Handle general session events.
+               */
+              private handleSessionEvents(data: any): void {
+                  console.log('[SessionTimeSheets] Received general session events data:', data);
+                  this.calendarApi?.addEventSource(data);
+              }
+        """)
+@NgMethod("""
+        \t/**
+               * Handle "add" events.
+               */
+              private handleAddEvent(data: any): void {
+                  console.log('[SessionTimeSheets] Received add event data:', data);
+                  let ev : EventInput = data;
+                  this.calendarApi?.addEvent(ev);
+              }
+        """)
+@NgMethod("""
+        \t/**
+               * Handle "edit" events.
+               */
+              private handleEditEvent(data: any): void {
+                  console.log('[SessionTimeSheets] Received edit event data:', data);
+                  let ev : EventInput = data;
+                  this.calendarApi?.getEventById(ev.id!)?.remove();
+                  this.calendarApi?.addEvent(ev);
+              }
+        """)
+@NgMethod("""
+        \t/**
+               * Handle "delete" events.
+               */
+              private handleDeleteEvent(data: any): void {
+                  console.log('[SessionTimeSheets] Received delete event data:', data);
+                  let ev : EventInput = data;
+                  this.calendarApi?.getEventById(ev.id!)?.remove();
+              }
+        """)
+
 @NgComponentReference(EventBusService.class)
 @NgImportReference(value = "inject", reference = "@angular/core")
 @NgField(value = "private readonly eventBusService = inject(EventBusService); // Injected EventBus service.")
 
 @NgComponentReference(DynamicData.class)
 
-@NgOnDestroy("this.subscription?.unsubscribe();")
-@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName);")
-@NgOnDestroy("this.subscriptionAdd?.unsubscribe();")
-@NgOnDestroy("this.subscriptionEdit?.unsubscribe();")
-@NgOnDestroy("this.subscriptionDelete?.unsubscribe();")
-@NgOnDestroy("this.subscriptionOptions?.unsubscribe();")
-
-@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Add');")
-@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Edit');")
-@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Delete');")
-@NgOnDestroy("this.eventBusService.unregisterListener(this.listenerName + 'Options');")
-
-//@NgConstructorParameter("private socketClientService : SocketClientService")
-
+@NgOnDestroy("""
+                console.log('Cleaning up all event listeners and subscriptions.');
+        
+                // Unsubscribe to avoid memory leaks
+                if (this.subscriptionGeneral) this.subscriptionGeneral.unsubscribe();
+                if (this.subscriptionAdd) this.subscriptionAdd.unsubscribe();
+                if (this.subscriptionEdit) this.subscriptionEdit.unsubscribe();
+                if (this.subscriptionDelete) this.subscriptionDelete.unsubscribe();
+                if (this.subscriptionOptions) this.subscriptionOptions.unsubscribe();
+        
+                // Unregister each listener
+                this.eventBusService.unregisterListener(this.listenerName,this.handlerGeneralId);
+                this.eventBusService.unregisterListener(`${this.listenerName}Add`,this.handlerAddId);
+                this.eventBusService.unregisterListener(`${this.listenerName}Edit`,this.handlerEditId);
+                this.eventBusService.unregisterListener(`${this.listenerName}Delete`,this.handlerDeleteId);
+                this.eventBusService.unregisterListener(`${this.listenerName}Options`,this.handlerOptionsId);
+        """)
 
 public abstract class FullCalendar<J extends FullCalendar<J>>
         extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, J>
@@ -219,18 +395,10 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     }
 
     @Override
-    public List<String> globalFields()
-    {
-        List<String> list = new ArrayList(INgComponent.super.globalFields());
-        //list.add("defineFullCalendarElement();");
-        return list;
-    }
-
-    @Override
     public List<String> constructorBody()
     {
         List<String> bodies = INgComponent.super.constructorBody();
-        bodies.add("this.subscription = this.eventBusService.listen(this.listenerName).subscribe((message: any) => {\n" +
+       /* bodies.add("this.subscription = this.eventBusService.listen(this.listenerName).subscribe((message: any) => {\n" +
 
                 "            if(message)" +
                 "            try {\n" +
@@ -291,7 +459,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
                 "                  //  this.calendarOptions = {...this.calendarOptionsOriginal,...message.out[0]}\n" +
                 "                 //    alert('options message - ' + JSON.stringify(this.calendarOptions));\n" +
                 "                }\n" +
-                "            });\n");
+                "            });\n");*/
         return bodies;
     }
 
@@ -301,14 +469,14 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         List<String> methods = INgComponent.super.methods();
         methods.add("fetchData(){\n" +
                 "this.eventBusService.send(this.listenerName + 'Options', {\n" +
-                "            className: '" + getClass().getCanonicalName() + "',\n" +
+                "            className: this.clazzName,\n" +
                 "            listenerName: this.listenerName + 'Options'\n" +
                 "        }, this.listenerName + 'Options');" +
                 "" +
                 "" +
                 "" +
                 "   this.eventBusService.send(this.listenerName,{\n" +
-                "           className :  '" + getClass().getCanonicalName() + "',\n" +
+                "           className :  this.clazzName,\n" +
                 "            listenerName: this.listenerName},this.listenerName);\n" +
                 "}\n");
 
@@ -340,13 +508,15 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     {
         List<String> out = INgComponent.super.fields();
         out.add(" private listenerName = '" + getID() + "';");
-        out.add(" private subscription? : Subscription;\n");
+        out.add(" private clazzName = '" + getClass().getCanonicalName() + "';");
+        out.add(" private subscriptionGeneral? : Subscription;\n");
         out.add(" private subscriptionAdd? : Subscription;\n");
         out.add(" private subscriptionEdit? : Subscription;\n");
         out.add(" private subscriptionDelete? : Subscription;\n");
         out.add(" private subscriptionOptions? : Subscription;\n");
 
         out.add("calendarOptionsOriginal: CalendarOptions = " + getOptions().toJson() + ";");
+
         out.add("calendarOptions: CalendarOptions = {...this.calendarOptionsOriginal};");
 
         if (dateClickEvent != null)
