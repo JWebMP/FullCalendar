@@ -126,9 +126,9 @@ import java.util.Set;
             private initializeCalendarApi(): void {
                 this.calendarApi = this.calendarComponent?.getApi();
                 if (this.calendarApi) {
-                    console.log('[SessionTimeSheets] Calendar API initialized');
+                    console.log('[FullCalendar] Calendar API initialized');
                 } else {
-                    console.error('[SessionTimeSheets] Calendar API could not be initialized.');
+                    console.error('[FullCalendar] Calendar API could not be initialized.');
                 }
             }
         """)
@@ -141,48 +141,48 @@ import java.util.Set;
                   const generalObserver = {
                       next: (data: any) => this.handleSessionEvents(data),
                       error: (err: any) =>
-                          console.error(`[SessionTimeSheets] Error in general listener:`, err),
+                          console.error(`[FullCalendar] Error in general listener:`, err),
                       complete: () =>
-                          console.log('[SessionTimeSheets] General listener completed'),
+                          console.log('[FullCalendar] General listener completed'),
                   };
                   this.subscriptionGeneral = this.eventBusService
-                      .listen(this.listenerName, this.generateHandlerId())
+                      .listen(this.listenerName, this.handlerGeneralId)
                       .subscribe(generalObserver);
         
                   // Add events listener
                   const addObserver = {
                       next: (data: any) => this.handleAddEvent(data),
                       error: (err: any) =>
-                          console.error(`[SessionTimeSheets] Error in add listener:`, err),
+                          console.error(`[FullCalendar] Error in add listener:`, err),
                       complete: () =>
-                          console.log('[SessionTimeSheets] Add listener completed'),
+                          console.log('[FullCalendar] Add listener completed'),
                   };
                   this.subscriptionAdd = this.eventBusService
-                      .listen(`${this.listenerName}Add`, this.generateHandlerId())
+                      .listen(`${this.listenerName}Add`, this.handlerAddId)
                       .subscribe(addObserver);
         
                   // Edit events listener
                   const editObserver = {
                       next: (data: any) => this.handleEditEvent(data),
                       error: (err: any) =>
-                          console.error(`[SessionTimeSheets] Error in edit listener:`, err),
+                          console.error(`[FullCalendar] Error in edit listener:`, err),
                       complete: () =>
-                          console.log('[SessionTimeSheets] Edit listener completed'),
+                          console.log('[FullCalendar] Edit listener completed'),
                   };
                   this.subscriptionEdit = this.eventBusService
-                      .listen(`${this.listenerName}Edit`, this.generateHandlerId())
+                      .listen(`${this.listenerName}Edit`, this.handlerEditId)
                       .subscribe(editObserver);
         
                   // Delete events listener
                   const deleteObserver = {
                       next: (data: any) => this.handleDeleteEvent(data),
                       error: (err: any) =>
-                          console.error(`[SessionTimeSheets] Error in delete listener:`, err),
+                          console.error(`[FullCalendar] Error in delete listener:`, err),
                       complete: () =>
-                          console.log('[SessionTimeSheets] Delete listener completed'),
+                          console.log('[FullCalendar] Delete listener completed'),
                   };
                   this.subscriptionDelete = this.eventBusService
-                      .listen(`${this.listenerName}Delete`, this.generateHandlerId())
+                      .listen(`${this.listenerName}Delete`, this.handlerDeleteId)
                       .subscribe(deleteObserver);
         
                   // Options listener
@@ -190,12 +190,12 @@ import java.util.Set;
                       next: (options: CalendarOptions) =>
                           this.updateCalendarOptions(options),
                       error: (err: any) =>
-                          console.error(`[SessionTimeSheets] Error in options listener:`, err),
+                          console.error(`[FullCalendar] Error in options listener:`, err),
                       complete: () =>
-                          console.log('[SessionTimeSheets] Options listener completed'),
+                          console.log('[FullCalendar] Options listener completed'),
                   };
                   this.subscriptionOptions = this.eventBusService
-                      .listen(`${this.listenerName}Options`, this.generateHandlerId())
+                      .listen(`${this.listenerName}Options`, this.handlerOptionsId)
                       .subscribe(optionsObserver);
               }
         
@@ -212,11 +212,15 @@ import java.util.Set;
              * Update calendar options dynamically.
              */
             private updateCalendarOptions(options: CalendarOptions): void {
-                console.log('[SessionTimeSheets] Updating calendar options:', options);
-                if (this.calendarApi) {
-                    this.calendarApi.setOption('headerToolbar', options.headerToolbar);
-                    // Extend this to update other options dynamically
+                if(typeof options === 'string')
+                {
+                    options = JSON.parse(options);
                 }
+                this.calendarOptions = {
+                    ...this.calendarOptions,
+                    ...options
+                };
+                console.log('[FullCalendar] Updating calendar options:', this.calendarOptions);
             }
         """)
 @NgMethod("""
@@ -291,8 +295,13 @@ import java.util.Set;
                * Handle general session events.
                */
               private handleSessionEvents(data: any): void {
-                  console.log('[SessionTimeSheets] Received general session events data:', data);
-                  this.calendarApi?.addEventSource(data);
+                  console.log('[FullCalendar] Received general session events data:', data);
+                  if(typeof data === 'string')
+                  {
+                    this.calendarApi?.addEventSource(JSON.parse(data));
+                  }else {
+                    this.calendarApi?.addEventSource(data);
+                  }
               }
         """)
 @NgMethod("""
@@ -300,8 +309,8 @@ import java.util.Set;
                * Handle "add" events.
                */
               private handleAddEvent(data: any): void {
-                  console.log('[SessionTimeSheets] Received add event data:', data);
-                  let ev : EventInput = data;
+                  console.log('[FullCalendar] Received add event data:', data);
+                  let ev : EventInput = JSON.parse(data);
                   this.calendarApi?.addEvent(ev);
               }
         """)
@@ -310,8 +319,8 @@ import java.util.Set;
                * Handle "edit" events.
                */
               private handleEditEvent(data: any): void {
-                  console.log('[SessionTimeSheets] Received edit event data:', data);
-                  let ev : EventInput = data;
+                  console.log('[FullCalendar] Received edit event data:', data);
+                  let ev : EventInput = JSON.parse(data);
                   this.calendarApi?.getEventById(ev.id!)?.remove();
                   this.calendarApi?.addEvent(ev);
               }
@@ -321,8 +330,8 @@ import java.util.Set;
                * Handle "delete" events.
                */
               private handleDeleteEvent(data: any): void {
-                  console.log('[SessionTimeSheets] Received delete event data:', data);
-                  let ev : EventInput = data;
+                  console.log('[FullCalendar] Received delete event data:', data);
+                  let ev : EventInput = JSON.parse(data);
                   this.calendarApi?.getEventById(ev.id!)?.remove();
               }
         """)
