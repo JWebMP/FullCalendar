@@ -337,8 +337,8 @@ import java.util.Set;
         """)
 
 @NgComponentReference(EventBusService.class)
-@NgImportReference(value = "inject", reference = "@angular/core")
-@NgField(value = "private readonly eventBusService = inject(EventBusService); // Injected EventBus service.")
+//@NgImportReference(value = "inject", reference = "@angular/core")
+//@NgField(value = "private readonly eventBusService = inject(EventBusService); // Injected EventBus service.")
 
 @NgComponentReference(DynamicData.class)
 
