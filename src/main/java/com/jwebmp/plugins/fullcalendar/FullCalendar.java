@@ -68,13 +68,13 @@ import java.util.Set;
 @NgImportReference(value = "DateClickArg, DropArg, EventReceiveArg, EventResizeDoneArg",
         reference = "@fullcalendar/interaction")
 @NgImportReference(value = "FullCalendarModule ", reference = "@fullcalendar/angular")
-@NgImportReference(value = "!dayGridPlugin", reference = "@fullcalendar/daygrid")
-@NgImportReference(value = "!scrollGridPlugin", reference = "@fullcalendar/scrollgrid")
-@NgImportReference(value = "!timeGridPlugin", reference = "@fullcalendar/timegrid")
-@NgImportReference(value = "!listPlugin", reference = "@fullcalendar/list")
-@NgImportReference(value = "!interactionPlugin", reference = "@fullcalendar/interaction")
+@NgImportReference(value = "dayGridPlugin", reference = "@fullcalendar/daygrid", wrapValueInBraces = false)
+@NgImportReference(value = "scrollGridPlugin", reference = "@fullcalendar/scrollgrid", wrapValueInBraces = false)
+@NgImportReference(value = "timeGridPlugin", reference = "@fullcalendar/timegrid", wrapValueInBraces = false)
+@NgImportReference(value = "listPlugin", reference = "@fullcalendar/list", wrapValueInBraces = false)
+@NgImportReference(value = "interactionPlugin", reference = "@fullcalendar/interaction", wrapValueInBraces = false)
 
-@NgImportReference(value = "!bootstrap5Plugin", reference = "@fullcalendar/bootstrap5")
+@NgImportReference(value = "bootstrap5Plugin", reference = "@fullcalendar/bootstrap5", wrapValueInBraces = false)
 
 @NgImportReference(value = "ViewChild", reference = "@angular/core")
 
@@ -116,6 +116,13 @@ import java.util.Set;
         \t\tthis.initializeEventListeners();
                 this.initializeCalendarApi();
                 this.fetchData();
+        """)
+
+@NgImportReference(value = "v4 as uuidv4", reference = "uuid")
+@NgMethod("""
+        private generateHandlerId(): string {
+            return `${this.listenerName}-${uuidv4()}`;
+        }
         """)
 
 @NgMethod("""
@@ -222,17 +229,6 @@ import java.util.Set;
                 };
                 console.log('[FullCalendar] Updating calendar options:', this.calendarOptions);
             }
-        """)
-@NgMethod("""
-            /**
-             * Generates a unique handler ID for each listener.
-             */
-            private generateHandlerId(): string {
-                return `${this.listenerName}-${Date.now()}-${Math.random()
-                    .toString(36)
-                    .substring(2, 15)}`;
-            }
-        
         """)
 
 @NgMethod("handleDateClick(selectInfo: DateClickArg) {\n" +
@@ -531,49 +527,56 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         if (dateClickEvent != null)
         {
             out.add("dateClickEvent : string = '" + dateClickEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("dateClickEvent? : string;");
         }
         if (eventClickEvent != null)
         {
             out.add("eventClickEvent : string = '" + eventClickEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("eventClickEvent? : string;");
         }
         if (receiveEvent != null)
         {
             out.add("receiveEvent : string = '" + receiveEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("receiveEvent? : string;");
         }
         if (eventResizeEvent != null)
         {
             out.add("eventResizeEvent : string = '" + eventResizeEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("eventResizeEvent? : string;");
         }
         if (eventDropEvent != null)
         {
             out.add("eventDropEvent : string = '" + eventDropEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("eventDropEvent? : string;");
         }
         if (dropEvent != null)
         {
             out.add("dropEvent : string = '" + dropEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("dropEvent? : string;");
         }
         if (selectEvent != null)
         {
             out.add("selectEvent : string = '" + selectEvent.getClassCanonicalName() + "';");
-        } else
+        }
+        else
         {
             out.add("selectEvent? : string;");
         }
@@ -879,7 +882,8 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
                 listenerName = call.getUnknownFields()
                         .get("listenerName")
                         .toString();
-            } catch (ClassNotFoundException e)
+            }
+            catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }
@@ -924,7 +928,8 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
                 listenerName = call.getUnknownFields()
                         .get("listenerName")
                         .toString();
-            } catch (ClassNotFoundException e)
+            }
+            catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }

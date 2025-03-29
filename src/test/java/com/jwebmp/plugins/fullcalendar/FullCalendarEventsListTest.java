@@ -23,6 +23,7 @@ import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static com.jwebmp.core.base.angular.client.services.interfaces.AnnotationUtils.getTsFilename;
 import static com.jwebmp.core.base.angular.client.services.interfaces.IComponent.getClassDirectory;
@@ -37,14 +38,14 @@ public class FullCalendarEventsListTest
     {
         IGuiceContext.instance().inject();
     }
-    
+
 
     public FullCalendarEventsListTest()
     {
     }
 
     @Test
-    public void testAppSearch() throws IOException
+    public void testAppSearch() throws IOException, InterruptedException
     {
         IGuiceContext.instance()
                 .inject();
@@ -58,6 +59,8 @@ public class FullCalendarEventsListTest
             //	compiler.renderAppTS(app);
             System.out.println("================");
         }
+        TimeUnit.SECONDS.sleep(2L);
+
     }
 
     @Test
