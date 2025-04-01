@@ -27,6 +27,7 @@ import com.jwebmp.core.base.angular.client.annotations.functions.NgAfterViewInit
 import com.jwebmp.core.base.angular.client.annotations.functions.NgOnDestroy;
 import com.jwebmp.core.base.angular.client.annotations.references.NgComponentReference;
 import com.jwebmp.core.base.angular.client.annotations.references.NgDataTypeReference;
+import com.jwebmp.core.base.angular.client.annotations.references.NgImportModule;
 import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgField;
 import com.jwebmp.core.base.angular.client.annotations.structures.NgInterface;
@@ -355,20 +356,11 @@ import java.util.Set;
                 this.eventBusService.unregisterListener(`${this.listenerName}Delete`,this.handlerDeleteId);
                 this.eventBusService.unregisterListener(`${this.listenerName}Options`,this.handlerOptionsId);
         """)
-
+@NgImportModule("FullCalendarModule")
 public abstract class FullCalendar<J extends FullCalendar<J>>
         extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, J>
         implements INgComponent<J>
 {
-
-    @Override
-    public Set<String> moduleImports()
-    {
-        var s = INgComponent.super.moduleImports();
-        s.add("FullCalendarModule");
-        return s;
-    }
-
     /**
      * The full calendar options list
      */
