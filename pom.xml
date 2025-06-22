@@ -40,7 +40,11 @@
             <groupId>com.jwebmp.plugins</groupId>
             <artifactId>angular</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.jwebmp.core</groupId>
+            <artifactId>jwebmp-testlib</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <properties>
