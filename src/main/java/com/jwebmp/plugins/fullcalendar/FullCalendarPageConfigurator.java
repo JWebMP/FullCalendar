@@ -16,6 +16,8 @@
  */
 package com.jwebmp.plugins.fullcalendar;
 
+import com.jwebmp.core.base.angular.client.annotations.boot.NgBootConstructorBody;
+import com.jwebmp.core.base.angular.client.annotations.boot.NgBootImportReference;
 import com.jwebmp.core.base.angular.client.annotations.typescript.TsDependency;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.PluginStatus;
