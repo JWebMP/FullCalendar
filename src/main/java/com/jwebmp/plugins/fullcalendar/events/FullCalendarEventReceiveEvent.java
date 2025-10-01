@@ -5,6 +5,7 @@ import com.guicedee.client.IGuiceContext;
 import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;
 import com.jwebmp.core.events.click.ClickAdapter;
+import io.smallrye.mutiny.Uni;
 
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public abstract class FullCalendarEventReceiveEvent extends ClickAdapter<FullCal
     public abstract void onEventReceive(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarEventInfo selectEvent);
 
     @Override
-    public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
+    public Uni<Void> onClick(AjaxCall<?> call, AjaxResponse<?> response)
     {
         Map<String, Object> info = (Map<String, Object>) call.getUnknownFields()
                                                              .get("infoObj");
@@ -27,6 +28,8 @@ public abstract class FullCalendarEventReceiveEvent extends ClickAdapter<FullCal
         FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);
         el.updateDates();
         onEventReceive(call, response, el);
+        return Uni.createFrom()
+                  .voidItem();
     }
 
 }

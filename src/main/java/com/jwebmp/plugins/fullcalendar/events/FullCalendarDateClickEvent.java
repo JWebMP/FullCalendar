@@ -5,6 +5,7 @@ import com.guicedee.client.IGuiceContext;
 
 import com.jwebmp.core.base.ajax.*;
 import com.jwebmp.core.events.click.*;
+import io.smallrye.mutiny.Uni;
 
 import java.util.*;
 
@@ -22,7 +23,7 @@ public class FullCalendarDateClickEvent extends ClickAdapter<FullCalendarDateCli
     }
 
     @Override
-    public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
+    public Uni<Void> onClick(AjaxCall<?> call, AjaxResponse<?> response)
     {
         LinkedHashMap map = (LinkedHashMap) call.getUnknownFields()
                                                 .get("infoObj");
@@ -32,6 +33,8 @@ public class FullCalendarDateClickEvent extends ClickAdapter<FullCalendarDateCli
         FullCalendarDateClickEventInfo el = mapper.convertValue(info, FullCalendarDateClickEventInfo.class);
         el.updateDates();
         onDateClick(call, response, el);
+        return Uni.createFrom()
+                  .voidItem();
     }
 
 }

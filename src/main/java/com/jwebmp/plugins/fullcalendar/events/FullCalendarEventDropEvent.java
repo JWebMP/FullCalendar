@@ -6,6 +6,7 @@ import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;
 import com.jwebmp.core.events.click.ClickAdapter;
 import com.jwebmp.plugins.fullcalendar.options.resources.FullCalendarResourceItem;
+import io.smallrye.mutiny.Uni;
 
 import java.util.LinkedHashMap;
 
@@ -22,7 +23,7 @@ public abstract class FullCalendarEventDropEvent extends ClickAdapter<FullCalend
                                      FullCalendarEventInfo oldEvent, FullCalendarEventInfo newEvent);
 
     @Override
-    public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
+    public Uni<Void> onClick(AjaxCall<?> call, AjaxResponse<?> response)
     {
         LinkedHashMap map = (LinkedHashMap) call.getUnknownFields()
                                                 .get("infoObj");
@@ -42,6 +43,8 @@ public abstract class FullCalendarEventDropEvent extends ClickAdapter<FullCalend
 
 
         onEventDrop(call, response, ri1, ri2, el, el2);
+        return Uni.createFrom()
+                  .voidItem();
     }
 
 }

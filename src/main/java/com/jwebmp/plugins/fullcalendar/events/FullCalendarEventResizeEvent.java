@@ -5,6 +5,7 @@ import com.guicedee.client.IGuiceContext;
 import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;
 import com.jwebmp.core.events.click.ClickAdapter;
+import io.smallrye.mutiny.Uni;
 
 import java.util.LinkedHashMap;
 
@@ -19,7 +20,7 @@ public abstract class FullCalendarEventResizeEvent extends ClickAdapter<FullCale
     public abstract void onEventResize(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarEventInfo oldEvent, FullCalendarEventInfo selectEvent);
 
     @Override
-    public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
+    public Uni<Void> onClick(AjaxCall<?> call, AjaxResponse<?> response)
     {
         LinkedHashMap map = (LinkedHashMap) call.getUnknownFields()
                                                 .get("infoObj");
@@ -32,6 +33,8 @@ public abstract class FullCalendarEventResizeEvent extends ClickAdapter<FullCale
         el.updateDates();
         el2.updateDates();
         onEventResize(call, response, el2, el);
+        return Uni.createFrom()
+                  .voidItem();
     }
 
 }

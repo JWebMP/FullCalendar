@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.*;
 import com.guicedee.client.IGuiceContext;
 import com.jwebmp.core.base.ajax.*;
 import com.jwebmp.core.events.click.*;
+import io.smallrye.mutiny.Uni;
 
 import java.util.*;
 
@@ -19,7 +20,7 @@ public abstract class FullCalendarDropEvent extends ClickAdapter<FullCalendarDro
     public abstract void onDrop(AjaxCall<?> call, AjaxResponse<?> response, FullCalendarEventInfo selectEvent);
 
     @Override
-    public void onClick(AjaxCall<?> call, AjaxResponse<?> response)
+    public Uni<Void> onClick(AjaxCall<?> call, AjaxResponse<?> response)
     {
         LinkedHashMap map = (LinkedHashMap) call.getUnknownFields()
                                                 .get("infoObj");
@@ -28,6 +29,8 @@ public abstract class FullCalendarDropEvent extends ClickAdapter<FullCalendarDro
         ObjectMapper mapper = IGuiceContext.get(DefaultObjectMapper);
         FullCalendarEventInfo el = mapper.convertValue(info, FullCalendarEventInfo.class);
         onDrop(call, response, el);
+        return Uni.createFrom()
+                  .voidItem();
     }
 
 }
