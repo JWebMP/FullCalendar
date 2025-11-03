@@ -36,6 +36,7 @@ import com.jwebmp.core.base.angular.client.services.EventBusService;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
 import com.jwebmp.core.base.angular.implementations.WebSocketAbstractCallReceiver;
 import com.jwebmp.core.base.html.Div;
+import com.jwebmp.core.base.html.DivSimple;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.fullcalendar.events.*;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEvent;
@@ -78,6 +79,7 @@ import java.util.Set;
 @NgImportReference(value = "bootstrap5Plugin", reference = "@fullcalendar/bootstrap5", wrapValueInBraces = false)
 
 @NgImportReference(value = "ViewChild", reference = "@angular/core")
+@NgImportReference(value = "CommonModule", reference = "@angular/common")
 
 @NgDataTypeReference(FullCalendarEventsList.class)
 @NgDataTypeReference(FullCalendarEvent.class)
@@ -357,6 +359,7 @@ import java.util.Set;
                 this.eventBusService.unregisterListener(`${this.listenerName}Options`,this.handlerOptionsId);
         """)
 @NgImportModule("FullCalendarModule")
+@NgImportModule("CommonModule")
 public abstract class FullCalendar<J extends FullCalendar<J>>
         extends Div<FullCalendarChildren, FullCalendarAttributes, FullCalendarFeatures, FullCalendarEvents, J>
         implements INgComponent<J>
@@ -376,6 +379,56 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     private FullCalendarEventDropEvent eventDropEvent;
     private FullCalendarDropEvent dropEvent;
     private FullCalendarSelectEvent selectEvent;
+
+    // Template flags (opt-in). All default to false so no ng-template markup is emitted unless enabled explicitly.
+    private boolean enableEventContentTemplate;
+    private boolean enableDayHeaderTemplate;
+    private boolean enableDayCellTemplate;
+    private boolean enableWeekNumberTemplate;
+    private boolean enableMoreLinkTemplate;
+    private boolean enableNoEventsTemplate;
+    private boolean enableSlotLabelTemplate;
+    private boolean enableListDayHeaderTemplate;
+
+    public boolean isEnableEventContentTemplate() { return enableEventContentTemplate; }
+    public boolean isEnableDayHeaderTemplate() { return enableDayHeaderTemplate; }
+    public boolean isEnableDayCellTemplate() { return enableDayCellTemplate; }
+    public boolean isEnableWeekNumberTemplate() { return enableWeekNumberTemplate; }
+    public boolean isEnableMoreLinkTemplate() { return enableMoreLinkTemplate; }
+    public boolean isEnableNoEventsTemplate() { return enableNoEventsTemplate; }
+    public boolean isEnableSlotLabelTemplate() { return enableSlotLabelTemplate; }
+    public boolean isEnableListDayHeaderTemplate() { return enableListDayHeaderTemplate; }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableEventContentTemplate(boolean enable) { this.enableEventContentTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableDayHeaderTemplate(boolean enable) { this.enableDayHeaderTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableDayCellTemplate(boolean enable) { this.enableDayCellTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableWeekNumberTemplate(boolean enable) { this.enableWeekNumberTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableMoreLinkTemplate(boolean enable) { this.enableMoreLinkTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableNoEventsTemplate(boolean enable) { this.enableNoEventsTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableSlotLabelTemplate(boolean enable) { this.enableSlotLabelTemplate = enable; return (J) this; }
+    @SuppressWarnings("unchecked")
+    public J setEnableListDayHeaderTemplate(boolean enable) { this.enableListDayHeaderTemplate = enable; return (J) this; }
+
+    /** Convenience to enable all base templates (restores previous default behavior). */
+    @SuppressWarnings("unchecked")
+    public J enableAllBaseTemplates() {
+        this.enableEventContentTemplate = true;
+        this.enableDayHeaderTemplate = true;
+        this.enableDayCellTemplate = true;
+        this.enableWeekNumberTemplate = true;
+        this.enableMoreLinkTemplate = true;
+        this.enableNoEventsTemplate = true;
+        this.enableSlotLabelTemplate = true;
+        this.enableListDayHeaderTemplate = true;
+        return (J) this;
+    }
 
     protected FullCalendar()
     {
@@ -632,6 +685,60 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         if (externalEventContainerId != null)
         {
             addAttribute("externalEvents", externalEventContainerId);
+        }
+
+        // Inject Angular template slots (content-injection areas)
+        try {
+            if (enableEventContentTemplate) {
+                NgTemplateElement eventContent = new NgTemplateElement("eventContent").withLetArg();
+                eventContent.add("<span class=\"fc-tpl fc-event\">{{ arg?.timeText }} {{ arg?.event?.title }}</span>");
+                super.add(eventContent);
+            }
+
+            if (enableDayHeaderTemplate) {
+                NgTemplateElement dayHeaderContent = new NgTemplateElement("dayHeaderContent").withLetArg();
+                dayHeaderContent.add("<span class=\"fc-tpl fc-day-header\">{{ arg?.text }}</span>");
+                super.add(dayHeaderContent);
+            }
+
+            if (enableDayCellTemplate) {
+                NgTemplateElement dayCellContent = new NgTemplateElement("dayCellContent").withLetArg();
+                dayCellContent.add("<span class=\"fc-tpl fc-day-cell\">{{ arg?.date | date:'yyyy-MM-dd' }}</span>");
+                super.add(dayCellContent);
+            }
+
+            if (enableWeekNumberTemplate) {
+                NgTemplateElement weekNumberContent = new NgTemplateElement("weekNumberContent").withLetArg();
+                weekNumberContent.add("<span class=\"fc-tpl fc-week-num\">W{{ arg?.num }}</span>");
+                super.add(weekNumberContent);
+            }
+
+            if (enableMoreLinkTemplate) {
+                NgTemplateElement moreLinkContent = new NgTemplateElement("moreLinkContent").withLetArg();
+                moreLinkContent.add("<span class=\"fc-tpl fc-more-link\">+{{ arg?.num }} more</span>");
+                super.add(moreLinkContent);
+            }
+
+            if (enableNoEventsTemplate) {
+                NgTemplateElement noEventsContent = new NgTemplateElement("noEventsContent").withLetArg();
+                noEventsContent.add("<em class=\"fc-tpl fc-no-events\">No events to display</em>");
+                super.add(noEventsContent);
+            }
+
+            if (enableSlotLabelTemplate) {
+                NgTemplateElement slotLabelContent = new NgTemplateElement("slotLabelContent").withLetArg();
+                slotLabelContent.add("<span class=\"fc-tpl fc-slot-label\">{{ arg?.text }}</span>");
+                super.add(slotLabelContent);
+            }
+
+            if (enableListDayHeaderTemplate) {
+                NgTemplateElement listDayHeaderContent = new NgTemplateElement("listDayHeaderContent").withLetArg();
+                listDayHeaderContent.add("<span class=\"fc-tpl fc-list-day-header\">{{ arg?.text }}</span>");
+                super.add(listDayHeaderContent);
+            }
+        }
+        catch (Exception ignored) {
+            // Defensive: generation-only path; ignore to avoid impacting server runtime
         }
 
         registerWebSocketListeners();

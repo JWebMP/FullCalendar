@@ -2497,6 +2497,47 @@ public class FullCalendarOptions
         return this;
     }
 
+    // Allows injecting HTML into the resource area header using FullCalendar's resourceAreaHeaderDidMount hook
+    @JsonRawValue
+    private String resourceAreaHeaderDidMount;
+
+    public String getResourceAreaHeaderDidMount()
+    {
+        return resourceAreaHeaderDidMount;
+    }
+
+    /**
+     * Convenience: set the resource area header to a block of HTML.
+     * Behind the scenes this sets FullCalendar's resourceAreaHeaderDidMount to assign innerHTML.
+     * Note: the provided HTML is inserted as-is; do not include Angular bindings.
+     */
+    public FullCalendarOptions setResourceAreaHeaderHtml(String html)
+    {
+        // When using HTML/didMount, ensure the string-based content is disabled to avoid duplicate headers
+        this.resourceAreaHeaderContent = null;
+        if (html == null)
+        {
+            this.resourceAreaHeaderDidMount = null;
+            return this;
+        }
+        // Escape backticks to safely wrap in a JS template string
+        String safeHtml = html.replace("`", "\\`");
+        this.resourceAreaHeaderDidMount = "(arg) => { const el = arg.el; el.innerHTML = `" + safeHtml + "`; }";
+        return this;
+    }
+
+    /**
+     * Expert mode: provide a raw JavaScript function body for resourceAreaHeaderDidMount.
+     * Example: (arg) => { arg.el.textContent = 'My Header'; }
+     */
+    public FullCalendarOptions setResourceAreaHeaderDidMount(String resourceAreaHeaderDidMount)
+    {
+        // Using didMount should suppress string-based header content to prevent duplicate rendering
+        this.resourceAreaHeaderContent = null;
+        this.resourceAreaHeaderDidMount = resourceAreaHeaderDidMount;
+        return this;
+    }
+
     private Boolean selectable;
 
     public Boolean getSelectable()
