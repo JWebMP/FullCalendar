@@ -82,7 +82,7 @@ import java.util.Set;
 @NgImportReference(value = "CommonModule", reference = "@angular/common")
 
 @NgDataTypeReference(FullCalendarEventsList.class)
-@NgDataTypeReference(FullCalendarEvent.class)
+//@NgDataTypeReference(FullCalendarEvent.class)
 @NgDataTypeReference(FullCalendarResourceItemsList.class)
 @NgDataTypeReference(FullCalendarResourceItem.class)
 
@@ -295,6 +295,7 @@ import java.util.Set;
                */
               private handleSessionEvents(data: any): void {
                   console.log('[FullCalendar] Received general session events data:', data);
+                  this.calendarApi?.removeAllEventSources();
                   if(typeof data === 'string')
                   {
                     this.calendarApi?.addEventSource(JSON.parse(data));
@@ -390,35 +391,84 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     private boolean enableSlotLabelTemplate;
     private boolean enableListDayHeaderTemplate;
 
-    public boolean isEnableEventContentTemplate() { return enableEventContentTemplate; }
-    public boolean isEnableDayHeaderTemplate() { return enableDayHeaderTemplate; }
-    public boolean isEnableDayCellTemplate() { return enableDayCellTemplate; }
-    public boolean isEnableWeekNumberTemplate() { return enableWeekNumberTemplate; }
-    public boolean isEnableMoreLinkTemplate() { return enableMoreLinkTemplate; }
-    public boolean isEnableNoEventsTemplate() { return enableNoEventsTemplate; }
-    public boolean isEnableSlotLabelTemplate() { return enableSlotLabelTemplate; }
-    public boolean isEnableListDayHeaderTemplate() { return enableListDayHeaderTemplate; }
+    public boolean isEnableEventContentTemplate() {return enableEventContentTemplate;}
+
+    public boolean isEnableDayHeaderTemplate() {return enableDayHeaderTemplate;}
+
+    public boolean isEnableDayCellTemplate() {return enableDayCellTemplate;}
+
+    public boolean isEnableWeekNumberTemplate() {return enableWeekNumberTemplate;}
+
+    public boolean isEnableMoreLinkTemplate() {return enableMoreLinkTemplate;}
+
+    public boolean isEnableNoEventsTemplate() {return enableNoEventsTemplate;}
+
+    public boolean isEnableSlotLabelTemplate() {return enableSlotLabelTemplate;}
+
+    public boolean isEnableListDayHeaderTemplate() {return enableListDayHeaderTemplate;}
 
     @SuppressWarnings("unchecked")
-    public J setEnableEventContentTemplate(boolean enable) { this.enableEventContentTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableDayHeaderTemplate(boolean enable) { this.enableDayHeaderTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableDayCellTemplate(boolean enable) { this.enableDayCellTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableWeekNumberTemplate(boolean enable) { this.enableWeekNumberTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableMoreLinkTemplate(boolean enable) { this.enableMoreLinkTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableNoEventsTemplate(boolean enable) { this.enableNoEventsTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableSlotLabelTemplate(boolean enable) { this.enableSlotLabelTemplate = enable; return (J) this; }
-    @SuppressWarnings("unchecked")
-    public J setEnableListDayHeaderTemplate(boolean enable) { this.enableListDayHeaderTemplate = enable; return (J) this; }
+    public J setEnableEventContentTemplate(boolean enable)
+    {
+        this.enableEventContentTemplate = enable;
+        return (J) this;
+    }
 
-    /** Convenience to enable all base templates (restores previous default behavior). */
     @SuppressWarnings("unchecked")
-    public J enableAllBaseTemplates() {
+    public J setEnableDayHeaderTemplate(boolean enable)
+    {
+        this.enableDayHeaderTemplate = enable;
+        return (J) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableDayCellTemplate(boolean enable)
+    {
+        this.enableDayCellTemplate = enable;
+        return (J) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableWeekNumberTemplate(boolean enable)
+    {
+        this.enableWeekNumberTemplate = enable;
+        return (J) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableMoreLinkTemplate(boolean enable)
+    {
+        this.enableMoreLinkTemplate = enable;
+        return (J) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableNoEventsTemplate(boolean enable)
+    {
+        this.enableNoEventsTemplate = enable;
+        return (J) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableSlotLabelTemplate(boolean enable)
+    {
+        this.enableSlotLabelTemplate = enable;
+        return (J) this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public J setEnableListDayHeaderTemplate(boolean enable)
+    {
+        this.enableListDayHeaderTemplate = enable;
+        return (J) this;
+    }
+
+    /**
+     * Convenience to enable all base templates (restores previous default behavior).
+     */
+    @SuppressWarnings("unchecked")
+    public J enableAllBaseTemplates()
+    {
         this.enableEventContentTemplate = true;
         this.enableDayHeaderTemplate = true;
         this.enableDayCellTemplate = true;
@@ -633,48 +683,75 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     {
         addAttribute("[options]", "calendarOptions");
         setInvertColonRender(true);
-        if (dateClickEvent != null)
+        if (dateClickEvent != null && getOptions().getDateClick() == null)
         {
-            //		addAttribute("date-click", dateClickEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
-            getOptions().setSelectable(true);
+            //\t\taddAttribute("date-click", dateClickEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
+            if (getOptions().getSelectable() == null)
+            {
+                getOptions().setSelectable(true);
+            }
             getOptions().setDateClick("this.handleDateClick.bind(this)");
         }
-        if (eventClickEvent != null)
+        if (eventClickEvent != null && getOptions().getEventClick() == null)
         {
-            //		addAttribute("event-click", eventClickEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
+            //\t\taddAttribute("event-click", eventClickEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
             getOptions().setEventClick("this.handleEventClick.bind(this)");
         }
-        if (receiveEvent != null)
+        if (receiveEvent != null && getOptions().getEventReceive() == null)
         {
-            //		addAttribute("event-receive", receiveEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
+            //\t\taddAttribute("event-receive", receiveEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
             getOptions().setEventReceive("this.handleEventReceive.bind(this)");
         }
-        if (eventResizeEvent != null)
+        if (eventResizeEvent != null && getOptions().getEventResize() == null)
         {
-            //	addAttribute("event-resize", eventResizeEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
+            //\taddAttribute("event-resize", eventResizeEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
             getOptions().setEventResize("this.handleEventResize.bind(this)");
         }
-        if (eventDropEvent != null)
+        if (eventDropEvent != null && getOptions().getEventDrop() == null)
         {
-            //	addAttribute("event-drop-event", eventDropEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
+            //\taddAttribute("event-drop-event", eventDropEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
             getOptions().setEventDrop("this.handleEventDrop.bind(this)");
         }
-        if (dropEvent != null)
+        if (dropEvent != null && getOptions().getDrop() == null)
         {
-            //	addAttribute("event-drop", eventDropEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
+            //\taddAttribute("event-drop", eventDropEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
             getOptions().setDrop("this.handleDropEvent.bind(this)");
         }
-        if (selectEvent != null)
+        if (selectEvent != null && getOptions().getSelect() == null)
         {
-            //	addAttribute("select", selectEvent.getClassCanonicalName());
-            getOptions().setEditable(true);
-            getOptions().setSelectable(true);
+            //\taddAttribute("select", selectEvent.getClassCanonicalName());
+            if (getOptions().getEditable() == null)
+            {
+                getOptions().setEditable(true);
+            }
+            if (getOptions().getSelectable() == null)
+            {
+                getOptions().setSelectable(true);
+            }
             getOptions().setSelect("this.handleDateSelect.bind(this)");
         }
 
@@ -688,56 +765,66 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         }
 
         // Inject Angular template slots (content-injection areas)
-        try {
-            if (enableEventContentTemplate) {
+        try
+        {
+            if (enableEventContentTemplate)
+            {
                 NgTemplateElement eventContent = new NgTemplateElement("eventContent").withLetArg();
                 eventContent.add("<span class=\"fc-tpl fc-event\">{{ arg?.timeText }} {{ arg?.event?.title }}</span>");
                 super.add(eventContent);
             }
 
-            if (enableDayHeaderTemplate) {
+            if (enableDayHeaderTemplate)
+            {
                 NgTemplateElement dayHeaderContent = new NgTemplateElement("dayHeaderContent").withLetArg();
                 dayHeaderContent.add("<span class=\"fc-tpl fc-day-header\">{{ arg?.text }}</span>");
                 super.add(dayHeaderContent);
             }
 
-            if (enableDayCellTemplate) {
+            if (enableDayCellTemplate)
+            {
                 NgTemplateElement dayCellContent = new NgTemplateElement("dayCellContent").withLetArg();
                 dayCellContent.add("<span class=\"fc-tpl fc-day-cell\">{{ arg?.date | date:'yyyy-MM-dd' }}</span>");
                 super.add(dayCellContent);
             }
 
-            if (enableWeekNumberTemplate) {
+            if (enableWeekNumberTemplate)
+            {
                 NgTemplateElement weekNumberContent = new NgTemplateElement("weekNumberContent").withLetArg();
                 weekNumberContent.add("<span class=\"fc-tpl fc-week-num\">W{{ arg?.num }}</span>");
                 super.add(weekNumberContent);
             }
 
-            if (enableMoreLinkTemplate) {
+            if (enableMoreLinkTemplate)
+            {
                 NgTemplateElement moreLinkContent = new NgTemplateElement("moreLinkContent").withLetArg();
                 moreLinkContent.add("<span class=\"fc-tpl fc-more-link\">+{{ arg?.num }} more</span>");
                 super.add(moreLinkContent);
             }
 
-            if (enableNoEventsTemplate) {
+            if (enableNoEventsTemplate)
+            {
                 NgTemplateElement noEventsContent = new NgTemplateElement("noEventsContent").withLetArg();
                 noEventsContent.add("<em class=\"fc-tpl fc-no-events\">No events to display</em>");
                 super.add(noEventsContent);
             }
 
-            if (enableSlotLabelTemplate) {
+            if (enableSlotLabelTemplate)
+            {
                 NgTemplateElement slotLabelContent = new NgTemplateElement("slotLabelContent").withLetArg();
                 slotLabelContent.add("<span class=\"fc-tpl fc-slot-label\">{{ arg?.text }}</span>");
                 super.add(slotLabelContent);
             }
 
-            if (enableListDayHeaderTemplate) {
+            if (enableListDayHeaderTemplate)
+            {
                 NgTemplateElement listDayHeaderContent = new NgTemplateElement("listDayHeaderContent").withLetArg();
                 listDayHeaderContent.add("<span class=\"fc-tpl fc-list-day-header\">{{ arg?.text }}</span>");
                 super.add(listDayHeaderContent);
             }
         }
-        catch (Exception ignored) {
+        catch (Exception ignored)
+        {
             // Defensive: generation-only path; ignore to avoid impacting server runtime
         }
 
@@ -979,15 +1066,15 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
             {
                 actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
                 listenerName = call.getUnknownFields()
-                        .get("listenerName")
-                        .toString();
+                                   .get("listenerName")
+                                   .toString();
             }
             catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }
             FullCalendarEventsList initialEvents = IGuiceContext.get(actionClass)
-                    .getInitialEvents();
+                                                                .getInitialEvents();
             if (initialEvents == null)
             {
                 return null;
@@ -1025,15 +1112,15 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
             {
                 actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
                 listenerName = call.getUnknownFields()
-                        .get("listenerName")
-                        .toString();
+                                   .get("listenerName")
+                                   .toString();
             }
             catch (ClassNotFoundException e)
             {
                 e.printStackTrace();
             }
             FullCalendarOptions initialEvents = IGuiceContext.get(actionClass)
-                    .getOnLoadOptions();
+                                                             .getOnLoadOptions();
             if (initialEvents == null)
             {
                 return null;

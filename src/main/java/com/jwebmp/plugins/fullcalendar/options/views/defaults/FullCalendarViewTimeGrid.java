@@ -2,15 +2,18 @@ package com.jwebmp.plugins.fullcalendar.options.views.defaults;
 
 
 import com.fasterxml.jackson.annotation.*;
+import com.jwebmp.core.base.angular.client.annotations.angular.NgDataType;
+import com.jwebmp.core.base.angular.client.services.interfaces.INgDataType;
 import com.jwebmp.plugins.fullcalendar.options.views.*;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
-public class FullCalendarViewTimeGrid extends FullCalendarView<FullCalendarViewTimeGrid>
+@NgDataType
+public class FullCalendarViewTimeGrid<J extends FullCalendarViewTimeGrid<J>> extends FullCalendarView<J> implements INgDataType<J>
 {
-	public FullCalendarViewTimeGrid()
-	{
-		setType(FullCalendarDefaultViews.timeGrid);
-	}
-	
+    public FullCalendarViewTimeGrid()
+    {
+        setType(FullCalendarDefaultViews.timeGrid);
+    }
+
 }

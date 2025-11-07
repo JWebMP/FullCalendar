@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.guicedee.client.IGuiceContext;
+import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.base.servlets.interfaces.IDataComponent;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.enumerations.FullCalendarPlugins;
@@ -204,8 +205,9 @@ public class FullCalendarOptions
         try
         {
             return new StringBuilder(IGuiceContext.get(ObjectMapper.class)
-                    .writeValueAsString(getEvents()));
-        } catch (JsonProcessingException e)
+                                                  .writeValueAsString(getEvents()));
+        }
+        catch (JsonProcessingException e)
         {
             return new StringBuilder();
         }
@@ -335,7 +337,7 @@ public class FullCalendarOptions
         if (initialView != null)
         {
             return initialView.getType()
-                    .toString();
+                              .toString();
         }
         return null;
     }
@@ -2504,6 +2506,13 @@ public class FullCalendarOptions
     public String getResourceAreaHeaderDidMount()
     {
         return resourceAreaHeaderDidMount;
+    }
+
+    public FullCalendarOptions setResourceAreaHeaderHtml(IComponentHierarchyBase<?, ?> component)
+    {
+        component.asBase()
+                 .setTiny(true);
+        return setResourceAreaHeaderHtml(component.toString(true));
     }
 
     /**

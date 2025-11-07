@@ -9,7 +9,7 @@ import com.jwebmp.core.htmlbuilder.javascript.*;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
 @NgDataType
-public class FullCalendarViewDuration extends JavaScriptPart<FullCalendarViewDuration> implements INgDataType<FullCalendarViewDuration>
+public class FullCalendarViewDuration<J extends FullCalendarViewDuration<J>> extends JavaScriptPart<J> implements INgDataType<J>
 {
     private String years;
     private String months;

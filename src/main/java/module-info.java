@@ -14,6 +14,8 @@ module com.jwebmp.plugins.fullcalendar {
     requires com.guicedee.jsonrepresentation;
     requires com.guicedee.vertx;
     requires com.jwebmp.core.angular;
+    requires static lombok;
+    requires com.fasterxml.jackson.annotation;
 
     provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.fullcalendar.FullCalendarPageConfigurator;
 

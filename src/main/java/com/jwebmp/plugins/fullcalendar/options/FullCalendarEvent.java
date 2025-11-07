@@ -18,15 +18,15 @@ package com.jwebmp.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.*;
 import com.jwebmp.core.base.angular.client.annotations.angular.*;
+import com.jwebmp.core.base.angular.client.annotations.references.NgComponentReference;
+import com.jwebmp.core.base.angular.client.annotations.references.NgImportReference;
 import com.jwebmp.core.base.angular.client.services.interfaces.*;
-import com.jwebmp.core.htmlbuilder.css.colours.ColourCSSImpl;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.fullcalendar.options.views.*;
 
 import java.io.Serializable;
 import java.time.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,10 +37,10 @@ import java.util.List;
 @SuppressWarnings("JavaDoc")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE, setterVisibility = JsonAutoDetect.Visibility.NONE)
-@NgDataType
-public class FullCalendarEvent
-        extends JavaScriptPart<FullCalendarEvent>
-        implements IFullCalendarEvent, INgDataType<FullCalendarEvent>
+@NgComponentReference(FullCalendarViewDuration.class)
+public class FullCalendarEvent<J extends FullCalendarEvent<J>>
+        extends JavaScriptPart<J>
+        implements IFullCalendarEvent<J>
 {
     /**
      * String/Integer. Optional
@@ -90,8 +90,11 @@ public class FullCalendarEvent
      * String/Array. Optional.
      * <p>
      * A CSS class (or array of classes) that will be attached to this event's element.
+     * FullCalendar v6 expects the property name "classNames". Keep backward compatibility by aliasing "classNames".
      */
-    private List<String> className;
+    @JsonProperty("classNames")
+    @JsonAlias({"className", "classNames"})
+    private List<String> classNames;
 
     /**
      * true or false. Optional.
@@ -204,10 +207,10 @@ public class FullCalendarEvent
      * @param defaultAllDay
      * @return
      */
-    public FullCalendarEvent setDefaultAllDay(Boolean defaultAllDay)
+    public J setDefaultAllDay(Boolean defaultAllDay)
     {
         this.defaultAllDay = defaultAllDay;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -242,10 +245,10 @@ public class FullCalendarEvent
      * @param defaultAllDayEventDuration
      * @return
      */
-    public FullCalendarEvent setDefaultAllDayEventDuration(FullCalendarViewDuration defaultAllDayEventDuration)
+    public J setDefaultAllDayEventDuration(FullCalendarViewDuration defaultAllDayEventDuration)
     {
         this.defaultAllDayEventDuration = defaultAllDayEventDuration;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -280,10 +283,10 @@ public class FullCalendarEvent
      * @param defaultTimedEventDuration
      * @return
      */
-    public FullCalendarEvent setDefaultTimedEventDuration(LocalTime defaultTimedEventDuration)
+    public J setDefaultTimedEventDuration(LocalTime defaultTimedEventDuration)
     {
         this.defaultTimedEventDuration = defaultTimedEventDuration;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -310,10 +313,10 @@ public class FullCalendarEvent
      * @param forceEventDuration
      * @return
      */
-    public FullCalendarEvent setForceEventDuration(Boolean forceEventDuration)
+    public J setForceEventDuration(Boolean forceEventDuration)
     {
         this.forceEventDuration = forceEventDuration;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -336,10 +339,10 @@ public class FullCalendarEvent
      * @param id
      * @return
      */
-    public FullCalendarEvent setId(String id)
+    public J setId(String id)
     {
         this.id = id;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -362,10 +365,10 @@ public class FullCalendarEvent
      * @param title
      * @return
      */
-    public FullCalendarEvent setTitle(String title)
+    public J setTitle(String title)
     {
         this.title = title;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -402,10 +405,10 @@ public class FullCalendarEvent
      * @param allDay
      * @return
      */
-    public FullCalendarEvent setAllDay(Boolean allDay)
+    public J setAllDay(Boolean allDay)
     {
         this.allDay = allDay;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -428,10 +431,10 @@ public class FullCalendarEvent
      * @param start
      * @return
      */
-    public FullCalendarEvent setStart(LocalDateTime start)
+    public J setStart(LocalDateTime start)
     {
         this.start = start;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -458,10 +461,10 @@ public class FullCalendarEvent
      * @param end
      * @return
      */
-    public FullCalendarEvent setEnd(LocalDateTime end)
+    public J setEnd(LocalDateTime end)
     {
         this.end = end;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -471,13 +474,13 @@ public class FullCalendarEvent
      *
      * @return
      */
-    public List<String> getClassName()
+    public List<String> getClassNames()
     {
-        if (className == null)
+        if (classNames == null)
         {
-            setClassName(new ArrayList<>());
+            setClassNames(new ArrayList<>());
         }
-        return className;
+        return classNames;
     }
 
     /**
@@ -488,10 +491,10 @@ public class FullCalendarEvent
      * @param className
      * @return
      */
-    public FullCalendarEvent setClassName(List<String> className)
+    public J setClassNames(List<String> className)
     {
-        this.className = className;
-        return this;
+        this.classNames = className;
+        return (J) this;
     }
 
     /**
@@ -514,10 +517,10 @@ public class FullCalendarEvent
      * @param editable
      * @return
      */
-    public FullCalendarEvent setEditable(Boolean editable)
+    public J setEditable(Boolean editable)
     {
         this.editable = editable;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -540,10 +543,10 @@ public class FullCalendarEvent
      * @param startEditable
      * @return
      */
-    public FullCalendarEvent setStartEditable(Boolean startEditable)
+    public J setStartEditable(Boolean startEditable)
     {
         this.startEditable = startEditable;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -566,10 +569,10 @@ public class FullCalendarEvent
      * @param durationEditable
      * @return
      */
-    public FullCalendarEvent setDurationEditable(Boolean durationEditable)
+    public J setDurationEditable(Boolean durationEditable)
     {
         this.durationEditable = durationEditable;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -592,10 +595,10 @@ public class FullCalendarEvent
      * @param resourceEditable
      * @return
      */
-    public FullCalendarEvent setResourceEditable(Boolean resourceEditable)
+    public J setResourceEditable(Boolean resourceEditable)
     {
         this.resourceEditable = resourceEditable;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -618,10 +621,10 @@ public class FullCalendarEvent
      * @param rendering
      * @return
      */
-    public FullCalendarEvent setRendering(FullCalendarEventRenderingOptions rendering)
+    public J setRendering(FullCalendarEventRenderingOptions rendering)
     {
         this.rendering = rendering;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -648,10 +651,10 @@ public class FullCalendarEvent
      * @param overlap
      * @return
      */
-    public FullCalendarEvent setOverlap(Boolean overlap)
+    public J setOverlap(Boolean overlap)
     {
         this.overlap = overlap;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -674,10 +677,10 @@ public class FullCalendarEvent
      * @param constraint
      * @return
      */
-    public FullCalendarEvent setConstraint(Serializable constraint)
+    public J setConstraint(Serializable constraint)
     {
         this.constraint = constraint;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -700,10 +703,10 @@ public class FullCalendarEvent
      * @param source
      * @return
      */
-    public FullCalendarEvent setSource(Serializable source)
+    public J setSource(Serializable source)
     {
         this.source = source;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -722,10 +725,10 @@ public class FullCalendarEvent
      * @param color
      * @return
      */
-    public FullCalendarEvent setColor(String color)
+    public J setColor(String color)
     {
         this.color = color;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -744,10 +747,10 @@ public class FullCalendarEvent
      * @param backgroundColor
      * @return
      */
-    public FullCalendarEvent setBackgroundColor(String backgroundColor)
+    public J setBackgroundColor(String backgroundColor)
     {
         this.backgroundColor = backgroundColor;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -766,10 +769,10 @@ public class FullCalendarEvent
      * @param borderColor
      * @return
      */
-    public FullCalendarEvent setBorderColor(String borderColor)
+    public J setBorderColor(String borderColor)
     {
         this.borderColor = borderColor;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -788,10 +791,10 @@ public class FullCalendarEvent
      * @param textColor
      * @return
      */
-    public FullCalendarEvent setTextColor(String textColor)
+    public J setTextColor(String textColor)
     {
         this.textColor = textColor;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -816,10 +819,10 @@ public class FullCalendarEvent
      * @param resourceId
      * @return
      */
-    public FullCalendarEvent setResourceId(List<String> resourceId)
+    public J setResourceId(List<String> resourceId)
     {
         this.resourceId = resourceId;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -838,10 +841,10 @@ public class FullCalendarEvent
      * @param groupId
      * @return
      */
-    public FullCalendarEvent setGroupId(String groupId)
+    public J setGroupId(String groupId)
     {
         this.groupId = groupId;
-        return this;
+        return (J) this;
     }
 
     /**
@@ -862,9 +865,9 @@ public class FullCalendarEvent
      * @param display
      * @return
      */
-    public FullCalendarEvent setDisplay(String display)
+    public J setDisplay(String display)
     {
         this.display = display;
-        return this;
+        return (J) this;
     }
 }

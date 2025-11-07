@@ -16,13 +16,11 @@
  */
 package com.jwebmp.plugins.fullcalendar.options;
 
-import java.io.Serializable;
-
 /**
  * @author GedMarc
  * @since 04 Apr 2017
  */
-public interface IFullCalendarEvent
+public interface IFullCalendarEvent<J extends IFullCalendarEvent<J>>
 {
 
 }
