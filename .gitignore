@@ -19,3 +19,6 @@ persistence.xml
 /flatter.pom
 /webroot/
 /logs/
+/log/automation.log
+/log/browserstack-javaagent.debug.log
+/log/browserstack-javaagent.log
