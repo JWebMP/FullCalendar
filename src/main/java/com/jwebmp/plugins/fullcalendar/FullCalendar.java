@@ -1038,7 +1038,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         }
     }
 
-    protected static class InitialEventsReceiver extends WebSocketAbstractCallReceiver
+    protected static class InitialEventsReceiver extends WebSocketAbstractCallReceiver<InitialEventsReceiver>
     {
         private String listenerName;
         private Class<? extends FullCalendar> actionClass;
@@ -1062,31 +1062,32 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         @Override
         public io.smallrye.mutiny.Uni<AjaxResponse<?>> action(AjaxCall<?> call, AjaxResponse<?> response)
         {
-            return io.smallrye.mutiny.Uni.createFrom().item(() -> {
-                try
-                {
-                    actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
-                    listenerName = call.getUnknownFields()
-                                       .get("listenerName")
-                                       .toString();
-                }
-                catch (ClassNotFoundException e)
-                {
-                    e.printStackTrace();
-                }
-                FullCalendarEventsList initialEvents = IGuiceContext.get(actionClass)
-                                                                    .getInitialEvents();
-                if (initialEvents == null)
-                {
-                    return null;
-                }
-                response.addDataResponse(listenerName, initialEvents);
-                return response;
-            });
+            return io.smallrye.mutiny.Uni.createFrom()
+                                         .item(() -> {
+                                             try
+                                             {
+                                                 actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
+                                                 listenerName = call.getUnknownFields()
+                                                                    .get("listenerName")
+                                                                    .toString();
+                                             }
+                                             catch (ClassNotFoundException e)
+                                             {
+                                                 e.printStackTrace();
+                                             }
+                                             FullCalendarEventsList initialEvents = IGuiceContext.get(actionClass)
+                                                                                                 .getInitialEvents();
+                                             if (initialEvents == null)
+                                             {
+                                                 return null;
+                                             }
+                                             response.addDataResponse(listenerName, initialEvents);
+                                             return response;
+                                         });
         }
     }
 
-    protected static class OnLoadOptionsReceiver extends WebSocketAbstractCallReceiver
+    protected static class OnLoadOptionsReceiver extends WebSocketAbstractCallReceiver<OnLoadOptionsReceiver>
     {
         private String listenerName;
         private Class<? extends FullCalendar> actionClass;
@@ -1110,27 +1111,28 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         @Override
         public io.smallrye.mutiny.Uni<AjaxResponse<?>> action(AjaxCall<?> call, AjaxResponse<?> response)
         {
-            return io.smallrye.mutiny.Uni.createFrom().item(() -> {
-                try
-                {
-                    actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
-                    listenerName = call.getUnknownFields()
-                                       .get("listenerName")
-                                       .toString();
-                }
-                catch (ClassNotFoundException e)
-                {
-                    e.printStackTrace();
-                }
-                FullCalendarOptions initialEvents = IGuiceContext.get(actionClass)
-                                                                 .getOnLoadOptions();
-                if (initialEvents == null)
-                {
-                    return null;
-                }
-                response.addDataResponse(listenerName, initialEvents);
-                return response;
-            });
+            return io.smallrye.mutiny.Uni.createFrom()
+                                         .item(() -> {
+                                             try
+                                             {
+                                                 actionClass = (Class<? extends FullCalendar>) Class.forName(call.getClassName());
+                                                 listenerName = call.getUnknownFields()
+                                                                    .get("listenerName")
+                                                                    .toString();
+                                             }
+                                             catch (ClassNotFoundException e)
+                                             {
+                                                 e.printStackTrace();
+                                             }
+                                             FullCalendarOptions initialEvents = IGuiceContext.get(actionClass)
+                                                                                              .getOnLoadOptions();
+                                             if (initialEvents == null)
+                                             {
+                                                 return null;
+                                             }
+                                             response.addDataResponse(listenerName, initialEvents);
+                                             return response;
+                                         });
         }
     }
 
