@@ -207,7 +207,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param defaultAllDay
      * @return
      */
-    public J setDefaultAllDay(Boolean defaultAllDay)
+    public @org.jspecify.annotations.NonNull J setDefaultAllDay(Boolean defaultAllDay)
     {
         this.defaultAllDay = defaultAllDay;
         return (J) this;
@@ -245,7 +245,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param defaultAllDayEventDuration
      * @return
      */
-    public J setDefaultAllDayEventDuration(FullCalendarViewDuration defaultAllDayEventDuration)
+    public @org.jspecify.annotations.NonNull J setDefaultAllDayEventDuration(FullCalendarViewDuration defaultAllDayEventDuration)
     {
         this.defaultAllDayEventDuration = defaultAllDayEventDuration;
         return (J) this;
@@ -283,7 +283,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param defaultTimedEventDuration
      * @return
      */
-    public J setDefaultTimedEventDuration(LocalTime defaultTimedEventDuration)
+    public @org.jspecify.annotations.NonNull J setDefaultTimedEventDuration(LocalTime defaultTimedEventDuration)
     {
         this.defaultTimedEventDuration = defaultTimedEventDuration;
         return (J) this;
@@ -313,7 +313,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param forceEventDuration
      * @return
      */
-    public J setForceEventDuration(Boolean forceEventDuration)
+    public @org.jspecify.annotations.NonNull J setForceEventDuration(Boolean forceEventDuration)
     {
         this.forceEventDuration = forceEventDuration;
         return (J) this;
@@ -339,7 +339,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param id
      * @return
      */
-    public J setId(String id)
+    public @org.jspecify.annotations.NonNull J setId(String id)
     {
         this.id = id;
         return (J) this;
@@ -365,7 +365,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param title
      * @return
      */
-    public J setTitle(String title)
+    public @org.jspecify.annotations.NonNull J setTitle(String title)
     {
         this.title = title;
         return (J) this;
@@ -405,7 +405,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param allDay
      * @return
      */
-    public J setAllDay(Boolean allDay)
+    public @org.jspecify.annotations.NonNull J setAllDay(Boolean allDay)
     {
         this.allDay = allDay;
         return (J) this;
@@ -431,7 +431,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param start
      * @return
      */
-    public J setStart(LocalDateTime start)
+    public @org.jspecify.annotations.NonNull J setStart(LocalDateTime start)
     {
         this.start = start;
         return (J) this;
@@ -461,7 +461,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param end
      * @return
      */
-    public J setEnd(LocalDateTime end)
+    public @org.jspecify.annotations.NonNull J setEnd(LocalDateTime end)
     {
         this.end = end;
         return (J) this;
@@ -491,7 +491,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param className
      * @return
      */
-    public J setClassNames(List<String> className)
+    public @org.jspecify.annotations.NonNull J setClassNames(List<String> className)
     {
         this.classNames = className;
         return (J) this;
@@ -517,7 +517,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param editable
      * @return
      */
-    public J setEditable(Boolean editable)
+    public @org.jspecify.annotations.NonNull J setEditable(Boolean editable)
     {
         this.editable = editable;
         return (J) this;
@@ -543,7 +543,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param startEditable
      * @return
      */
-    public J setStartEditable(Boolean startEditable)
+    public @org.jspecify.annotations.NonNull J setStartEditable(Boolean startEditable)
     {
         this.startEditable = startEditable;
         return (J) this;
@@ -569,7 +569,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param durationEditable
      * @return
      */
-    public J setDurationEditable(Boolean durationEditable)
+    public @org.jspecify.annotations.NonNull J setDurationEditable(Boolean durationEditable)
     {
         this.durationEditable = durationEditable;
         return (J) this;
@@ -595,7 +595,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param resourceEditable
      * @return
      */
-    public J setResourceEditable(Boolean resourceEditable)
+    public @org.jspecify.annotations.NonNull J setResourceEditable(Boolean resourceEditable)
     {
         this.resourceEditable = resourceEditable;
         return (J) this;
@@ -621,7 +621,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param rendering
      * @return
      */
-    public J setRendering(FullCalendarEventRenderingOptions rendering)
+    public @org.jspecify.annotations.NonNull J setRendering(FullCalendarEventRenderingOptions rendering)
     {
         this.rendering = rendering;
         return (J) this;
@@ -651,7 +651,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param overlap
      * @return
      */
-    public J setOverlap(Boolean overlap)
+    public @org.jspecify.annotations.NonNull J setOverlap(Boolean overlap)
     {
         this.overlap = overlap;
         return (J) this;
@@ -677,7 +677,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param constraint
      * @return
      */
-    public J setConstraint(Serializable constraint)
+    public @org.jspecify.annotations.NonNull J setConstraint(Serializable constraint)
     {
         this.constraint = constraint;
         return (J) this;
@@ -703,7 +703,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param source
      * @return
      */
-    public J setSource(Serializable source)
+    public @org.jspecify.annotations.NonNull J setSource(Serializable source)
     {
         this.source = source;
         return (J) this;
@@ -725,7 +725,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param color
      * @return
      */
-    public J setColor(String color)
+    public @org.jspecify.annotations.NonNull J setColor(String color)
     {
         this.color = color;
         return (J) this;
@@ -747,7 +747,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param backgroundColor
      * @return
      */
-    public J setBackgroundColor(String backgroundColor)
+    public @org.jspecify.annotations.NonNull J setBackgroundColor(String backgroundColor)
     {
         this.backgroundColor = backgroundColor;
         return (J) this;
@@ -769,7 +769,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param borderColor
      * @return
      */
-    public J setBorderColor(String borderColor)
+    public @org.jspecify.annotations.NonNull J setBorderColor(String borderColor)
     {
         this.borderColor = borderColor;
         return (J) this;
@@ -791,7 +791,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param textColor
      * @return
      */
-    public J setTextColor(String textColor)
+    public @org.jspecify.annotations.NonNull J setTextColor(String textColor)
     {
         this.textColor = textColor;
         return (J) this;
@@ -819,7 +819,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param resourceId
      * @return
      */
-    public J setResourceId(List<String> resourceId)
+    public @org.jspecify.annotations.NonNull J setResourceId(List<String> resourceId)
     {
         this.resourceId = resourceId;
         return (J) this;
@@ -841,7 +841,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param groupId
      * @return
      */
-    public J setGroupId(String groupId)
+    public @org.jspecify.annotations.NonNull J setGroupId(String groupId)
     {
         this.groupId = groupId;
         return (J) this;
@@ -865,7 +865,7 @@ public class FullCalendarEvent<J extends FullCalendarEvent<J>>
      * @param display
      * @return
      */
-    public J setDisplay(String display)
+    public @org.jspecify.annotations.NonNull J setDisplay(String display)
     {
         this.display = display;
         return (J) this;

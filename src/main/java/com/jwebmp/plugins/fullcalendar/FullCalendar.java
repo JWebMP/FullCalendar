@@ -408,56 +408,56 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
     public boolean isEnableListDayHeaderTemplate() {return enableListDayHeaderTemplate;}
 
     @SuppressWarnings("unchecked")
-    public J setEnableEventContentTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableEventContentTemplate(boolean enable)
     {
         this.enableEventContentTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableDayHeaderTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableDayHeaderTemplate(boolean enable)
     {
         this.enableDayHeaderTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableDayCellTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableDayCellTemplate(boolean enable)
     {
         this.enableDayCellTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableWeekNumberTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableWeekNumberTemplate(boolean enable)
     {
         this.enableWeekNumberTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableMoreLinkTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableMoreLinkTemplate(boolean enable)
     {
         this.enableMoreLinkTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableNoEventsTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableNoEventsTemplate(boolean enable)
     {
         this.enableNoEventsTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableSlotLabelTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableSlotLabelTemplate(boolean enable)
     {
         this.enableSlotLabelTemplate = enable;
         return (J) this;
     }
 
     @SuppressWarnings("unchecked")
-    public J setEnableListDayHeaderTemplate(boolean enable)
+    public @org.jspecify.annotations.NonNull J setEnableListDayHeaderTemplate(boolean enable)
     {
         this.enableListDayHeaderTemplate = enable;
         return (J) this;
@@ -859,13 +859,13 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return dateClickEvent;
     }
 
-    public J setDateClickEvent(FullCalendarDateClickEvent dateClickEvent)
+    public @org.jspecify.annotations.NonNull J setDateClickEvent(FullCalendarDateClickEvent dateClickEvent)
     {
         this.dateClickEvent = dateClickEvent;
         return (J) this;
     }
 
-    public J setOptions(FullCalendarOptions options)
+    public @org.jspecify.annotations.NonNull J setOptions(FullCalendarOptions options)
     {
         this.options = options;
         return (J) this;
@@ -876,7 +876,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return eventSource;
     }
 
-    public J setEventSource(String eventSource)
+    public @org.jspecify.annotations.NonNull J setEventSource(String eventSource)
     {
         this.eventSource = eventSource;
         return (J) this;
@@ -887,7 +887,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return externalEventContainerId;
     }
 
-    public J setExternalEventContainerId(String externalEventContainerId)
+    public @org.jspecify.annotations.NonNull J setExternalEventContainerId(String externalEventContainerId)
     {
         this.externalEventContainerId = externalEventContainerId;
         return (J) this;
@@ -898,7 +898,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return eventClickEvent;
     }
 
-    public J setEventClickEvent(FullCalendarEventClickEvent eventClickEvent)
+    public @org.jspecify.annotations.NonNull J setEventClickEvent(FullCalendarEventClickEvent eventClickEvent)
     {
         this.eventClickEvent = eventClickEvent;
         return (J) this;
@@ -909,7 +909,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return receiveEvent;
     }
 
-    public J setReceiveEvent(FullCalendarEventReceiveEvent receiveEvent)
+    public @org.jspecify.annotations.NonNull J setReceiveEvent(FullCalendarEventReceiveEvent receiveEvent)
     {
         this.receiveEvent = receiveEvent;
         return (J) this;
@@ -920,7 +920,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return eventResizeEvent;
     }
 
-    public J setEventResizeEvent(FullCalendarEventResizeEvent eventResizeEvent)
+    public @org.jspecify.annotations.NonNull J setEventResizeEvent(FullCalendarEventResizeEvent eventResizeEvent)
     {
         this.eventResizeEvent = eventResizeEvent;
         return (J) this;
@@ -931,7 +931,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return eventDropEvent;
     }
 
-    public J setEventDropEvent(FullCalendarEventDropEvent eventDropEvent)
+    public @org.jspecify.annotations.NonNull J setEventDropEvent(FullCalendarEventDropEvent eventDropEvent)
     {
         this.eventDropEvent = eventDropEvent;
         return (J) this;
@@ -942,7 +942,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return selectEvent;
     }
 
-    public J setSelectEvent(FullCalendarSelectEvent selectEvent)
+    public @org.jspecify.annotations.NonNull J setSelectEvent(FullCalendarSelectEvent selectEvent)
     {
         this.selectEvent = selectEvent;
         return (J) this;
@@ -953,7 +953,7 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
         return dropEvent;
     }
 
-    public J setDropEvent(FullCalendarDropEvent dropEvent)
+    public @org.jspecify.annotations.NonNull J setDropEvent(FullCalendarDropEvent dropEvent)
     {
         this.dropEvent = dropEvent;
         return (J) this;
