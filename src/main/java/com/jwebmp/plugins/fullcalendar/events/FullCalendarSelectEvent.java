@@ -9,7 +9,7 @@ import io.smallrye.mutiny.Uni;
 
 import java.util.LinkedHashMap;
 
-import static com.guicedee.guicedinjection.interfaces.ObjectBinderKeys.DefaultObjectMapper;
+import static com.guicedee.client.implementations.ObjectBinderKeys.DefaultObjectMapper;
 
 
 public abstract class FullCalendarSelectEvent extends ClickAdapter<FullCalendarSelectEvent>

@@ -1,3 +1,4 @@
+import com.guicedee.client.services.config.IGuiceScanModuleInclusions;
 import com.jwebmp.plugins.fullcalendar.implementations.FullCalendarInclusionModule;
 
 module com.jwebmp.plugins.fullcalendar {
@@ -19,7 +20,7 @@ module com.jwebmp.plugins.fullcalendar {
 
     provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.fullcalendar.FullCalendarPageConfigurator;
 
-    provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleInclusions with FullCalendarInclusionModule;
+    provides IGuiceScanModuleInclusions with FullCalendarInclusionModule;
 
 
     opens com.jwebmp.plugins.fullcalendar to com.fasterxml.jackson.databind, com.jwebmp.core;

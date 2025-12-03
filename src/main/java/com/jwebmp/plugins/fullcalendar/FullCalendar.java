@@ -17,12 +17,11 @@
 package com.jwebmp.plugins.fullcalendar;
 
 import com.guicedee.client.IGuiceContext;
-import com.guicedee.guicedservlets.websockets.options.IGuicedWebSocket;
+import com.guicedee.client.services.websocket.IGuicedWebSocket;
 import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;
 import com.jwebmp.core.base.angular.client.DynamicData;
 import com.jwebmp.core.base.angular.client.annotations.constructors.NgConstructorBody;
-import com.jwebmp.core.base.angular.client.annotations.constructors.NgConstructorParameter;
 import com.jwebmp.core.base.angular.client.annotations.functions.NgAfterViewInit;
 import com.jwebmp.core.base.angular.client.annotations.functions.NgOnDestroy;
 import com.jwebmp.core.base.angular.client.annotations.references.NgComponentReference;
@@ -36,19 +35,15 @@ import com.jwebmp.core.base.angular.client.services.EventBusService;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
 import com.jwebmp.core.base.angular.implementations.WebSocketAbstractCallReceiver;
 import com.jwebmp.core.base.html.Div;
-import com.jwebmp.core.base.html.DivSimple;
 import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.fullcalendar.events.*;
-import com.jwebmp.plugins.fullcalendar.options.FullCalendarEvent;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarEventsList;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarOptions;
 import com.jwebmp.plugins.fullcalendar.options.resources.FullCalendarResourceItem;
 import com.jwebmp.plugins.fullcalendar.options.resources.FullCalendarResourceItemsList;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * An implementation of
