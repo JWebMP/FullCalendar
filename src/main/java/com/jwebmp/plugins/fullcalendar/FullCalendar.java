@@ -164,7 +164,7 @@ import java.util.List;
                   };
                   this.subscriptionAdd = this.eventBusService
                       .listen(`${this.listenerName}Add`, this.handlerAddId)
-                      .subscribe(addObserver);
+                      .subscribe(addObserver); 
         
                   // Edit events listener
                   const editObserver = {
@@ -759,69 +759,9 @@ public abstract class FullCalendar<J extends FullCalendar<J>>
             addAttribute("externalEvents", externalEventContainerId);
         }
 
-        // Inject Angular template slots (content-injection areas)
-        try
-        {
-            if (enableEventContentTemplate)
-            {
-                NgTemplateElement eventContent = new NgTemplateElement("eventContent").withLetArg();
-                eventContent.add("<span class=\"fc-tpl fc-event\">{{ arg?.timeText }} {{ arg?.event?.title }}</span>");
-                super.add(eventContent);
-            }
-
-            if (enableDayHeaderTemplate)
-            {
-                NgTemplateElement dayHeaderContent = new NgTemplateElement("dayHeaderContent").withLetArg();
-                dayHeaderContent.add("<span class=\"fc-tpl fc-day-header\">{{ arg?.text }}</span>");
-                super.add(dayHeaderContent);
-            }
-
-            if (enableDayCellTemplate)
-            {
-                NgTemplateElement dayCellContent = new NgTemplateElement("dayCellContent").withLetArg();
-                dayCellContent.add("<span class=\"fc-tpl fc-day-cell\">{{ arg?.date | date:'yyyy-MM-dd' }}</span>");
-                super.add(dayCellContent);
-            }
-
-            if (enableWeekNumberTemplate)
-            {
-                NgTemplateElement weekNumberContent = new NgTemplateElement("weekNumberContent").withLetArg();
-                weekNumberContent.add("<span class=\"fc-tpl fc-week-num\">W{{ arg?.num }}</span>");
-                super.add(weekNumberContent);
-            }
-
-            if (enableMoreLinkTemplate)
-            {
-                NgTemplateElement moreLinkContent = new NgTemplateElement("moreLinkContent").withLetArg();
-                moreLinkContent.add("<span class=\"fc-tpl fc-more-link\">+{{ arg?.num }} more</span>");
-                super.add(moreLinkContent);
-            }
-
-            if (enableNoEventsTemplate)
-            {
-                NgTemplateElement noEventsContent = new NgTemplateElement("noEventsContent").withLetArg();
-                noEventsContent.add("<em class=\"fc-tpl fc-no-events\">No events to display</em>");
-                super.add(noEventsContent);
-            }
-
-            if (enableSlotLabelTemplate)
-            {
-                NgTemplateElement slotLabelContent = new NgTemplateElement("slotLabelContent").withLetArg();
-                slotLabelContent.add("<span class=\"fc-tpl fc-slot-label\">{{ arg?.text }}</span>");
-                super.add(slotLabelContent);
-            }
-
-            if (enableListDayHeaderTemplate)
-            {
-                NgTemplateElement listDayHeaderContent = new NgTemplateElement("listDayHeaderContent").withLetArg();
-                listDayHeaderContent.add("<span class=\"fc-tpl fc-list-day-header\">{{ arg?.text }}</span>");
-                super.add(listDayHeaderContent);
-            }
-        }
-        catch (Exception ignored)
-        {
-            // Defensive: generation-only path; ignore to avoid impacting server runtime
-        }
+        // Note: Angular template slots are only added if explicitly specified by the user.
+        // The enable flags merely allow template support but do not auto-generate defaults.
+        // Users must explicitly create and add NgTemplateElement instances to customize rendering.
 
         registerWebSocketListeners();
 

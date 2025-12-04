@@ -31,7 +31,7 @@ package com.jwebmp.plugins.fullcalendar.options;
  * @since 05 Feb 2017
  */
 public class FullCalendarEventSource
-		extends FullCalendarEvent
+		extends FullCalendarEvent<FullCalendarEventSource>
 {
 
 
