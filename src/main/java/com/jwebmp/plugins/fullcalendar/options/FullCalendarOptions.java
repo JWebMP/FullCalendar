@@ -71,10 +71,6 @@ public class FullCalendarOptions
      */
     private Boolean editable;
     /**
-     * Allow the "more" link when there's too many events
-     */
-    private Boolean eventLimit;
-    /**
      * The events for this calendar
      */
     private FullCalendarEventsList events;
@@ -97,8 +93,56 @@ public class FullCalendarOptions
     /**
      * Reads the name field for the name of the initial view
      */
-    @JsonIgnore
-    private FullCalendarView<?> initialView;
+    /**
+     * The initial view displayed when the calendar loads (e.g., 'dayGridMonth', 'timeGridWeek').
+     * In v6, this is a String representing the view name.
+     */
+    private String initialView;
+    
+    /**
+     * The code of the locale to display (e.g., 'en', 'es', 'fr').
+     */
+    private String locale;
+    
+    /**
+     * Array of locale codes to prefer in order.
+     */
+    private List<String> locales;
+    
+    /**
+     * IANA timezone string (e.g., 'America/New_York', 'UTC', 'Europe/London').
+     */
+    private String timeZone;
+    
+    /**
+     * Text direction: 'ltr' or 'rtl'.
+     */
+    private String direction;
+    
+    /**
+     * First day of the week (0=Sunday, 1=Monday, etc).
+     */
+    private Integer firstDay;
+    
+    /**
+     * Default duration for all-day events.
+     */
+    private String defaultAllDayEventDuration;
+    
+    /**
+     * Default duration for timed events.
+     */
+    private String defaultTimedEventDuration;
+    
+    /**
+     * Whether new events should be all-day by default.
+     */
+    private Boolean defaultAllDay;
+    
+    /**
+     * The current date/time for the calendar.
+     */
+    private String now;
 
     /**
      * Determines the text that will be displayed in the headerToolbar’s title.
@@ -284,28 +328,6 @@ public class FullCalendarOptions
     }
 
     /**
-     * Allow the "more" link when there's too many events
-     *
-     * @return
-     */
-    public Boolean getEventLimit()
-    {
-        return eventLimit;
-    }
-
-    /**
-     * Allow the "more" link when there's too many events
-     *
-     * @param eventLimit
-     * @return
-     */
-    public FullCalendarOptions setEventLimit(Boolean eventLimit)
-    {
-        this.eventLimit = eventLimit;
-        return this;
-    }
-
-    /**
      * You can specify options that apply only to specific calendar views. Provide separate options objects within the views option, keyed by the name of your view.
      *
      * @return
@@ -331,35 +353,241 @@ public class FullCalendarOptions
         return this;
     }
 
-    @JsonProperty("initialView")
-    public String initialViewRender()
+    /**
+     * The initial view displayed when the calendar loads (e.g., 'dayGridMonth', 'timeGridWeek').
+     * Can be a String view name or extracted from a FullCalendarView object.
+     *
+     * @return
+     */
+    public String getInitialView()
     {
-        if (initialView != null)
-        {
-            return initialView.getType()
-                              .toString();
-        }
-        return null;
-    }
-
-    public FullCalendarView<?> getInitialView()
-    {
-        if (initialView == null)
-        {
-            initialView = new FullCalendarViewDayGridMonth();
-        }
         return initialView;
     }
 
     /**
-     * An initial view with the name specified
+     * The initial view displayed when the calendar loads as a String view name.
+     * Example: 'dayGridMonth', 'timeGridWeek', 'listWeek', etc.
      *
-     * @param initialView
+     * @param initialView The view name as a String
+     * @return
+     */
+    public FullCalendarOptions setInitialView(String initialView)
+    {
+        this.initialView = initialView;
+        return this;
+    }
+
+    /**
+     * The initial view displayed when the calendar loads using a custom FullCalendarView object.
+     * The view's type will be extracted and used as the initial view string.
+     *
+     * @param initialView A FullCalendarView object with type configuration
      * @return
      */
     public FullCalendarOptions setInitialView(FullCalendarView<?> initialView)
     {
-        this.initialView = initialView;
+        if (initialView != null && initialView.getType() != null)
+        {
+            this.initialView = initialView.getType().toString();
+        }
+        return this;
+    }
+
+    /**
+     * The code of the locale to display.
+     *
+     * @return
+     */
+    public String getLocale()
+    {
+        return locale;
+    }
+
+    /**
+     * The code of the locale to display.
+     *
+     * @param locale
+     * @return
+     */
+    public FullCalendarOptions setLocale(String locale)
+    {
+        this.locale = locale;
+        return this;
+    }
+
+    /**
+     * Array of locale codes to prefer.
+     *
+     * @return
+     */
+    public List<String> getLocales()
+    {
+        return locales;
+    }
+
+    /**
+     * Array of locale codes to prefer.
+     *
+     * @param locales
+     * @return
+     */
+    public FullCalendarOptions setLocales(List<String> locales)
+    {
+        this.locales = locales;
+        return this;
+    }
+
+    /**
+     * IANA timezone string to display all dates in.
+     *
+     * @return
+     */
+    public String getTimeZone()
+    {
+        return timeZone;
+    }
+
+    /**
+     * IANA timezone string to display all dates in.
+     *
+     * @param timeZone
+     * @return
+     */
+    public FullCalendarOptions setTimeZone(String timeZone)
+    {
+        this.timeZone = timeZone;
+        return this;
+    }
+
+    /**
+     * Text direction: 'ltr' (left-to-right) or 'rtl' (right-to-left).
+     *
+     * @return
+     */
+    public String getDirection()
+    {
+        return direction;
+    }
+
+    /**
+     * Text direction: 'ltr' (left-to-right) or 'rtl' (right-to-left).
+     *
+     * @param direction
+     * @return
+     */
+    public FullCalendarOptions setDirection(String direction)
+    {
+        this.direction = direction;
+        return this;
+    }
+
+    /**
+     * The first day of the week (0=Sunday, 1=Monday, etc).
+     *
+     * @return
+     */
+    public Integer getFirstDay()
+    {
+        return firstDay;
+    }
+
+    /**
+     * The first day of the week (0=Sunday, 1=Monday, etc).
+     *
+     * @param firstDay
+     * @return
+     */
+    public FullCalendarOptions setFirstDay(Integer firstDay)
+    {
+        this.firstDay = firstDay;
+        return this;
+    }
+
+    /**
+     * Default duration for all-day events when none is specified.
+     *
+     * @return
+     */
+    public String getDefaultAllDayEventDuration()
+    {
+        return defaultAllDayEventDuration;
+    }
+
+    /**
+     * Default duration for all-day events when none is specified.
+     *
+     * @param defaultAllDayEventDuration
+     * @return
+     */
+    public FullCalendarOptions setDefaultAllDayEventDuration(String defaultAllDayEventDuration)
+    {
+        this.defaultAllDayEventDuration = defaultAllDayEventDuration;
+        return this;
+    }
+
+    /**
+     * Default duration for timed events when none is specified.
+     *
+     * @return
+     */
+    public String getDefaultTimedEventDuration()
+    {
+        return defaultTimedEventDuration;
+    }
+
+    /**
+     * Default duration for timed events when none is specified.
+     *
+     * @param defaultTimedEventDuration
+     * @return
+     */
+    public FullCalendarOptions setDefaultTimedEventDuration(String defaultTimedEventDuration)
+    {
+        this.defaultTimedEventDuration = defaultTimedEventDuration;
+        return this;
+    }
+
+    /**
+     * Whether new events should be all-day by default.
+     *
+     * @return
+     */
+    public Boolean getDefaultAllDay()
+    {
+        return defaultAllDay;
+    }
+
+    /**
+     * Whether new events should be all-day by default.
+     *
+     * @param defaultAllDay
+     * @return
+     */
+    public FullCalendarOptions setDefaultAllDay(Boolean defaultAllDay)
+    {
+        this.defaultAllDay = defaultAllDay;
+        return this;
+    }
+
+    /**
+     * The current date/time to use as "now" for the calendar.
+     *
+     * @return
+     */
+    public String getNow()
+    {
+        return now;
+    }
+
+    /**
+     * The current date/time to use as "now" for the calendar.
+     *
+     * @param now
+     * @return
+     */
+    public FullCalendarOptions setNow(String now)
+    {
+        this.now = now;
         return this;
     }
 
@@ -1986,9 +2214,8 @@ public class FullCalendarOptions
     private Integer dragRevertDuration;
 
     private Boolean dragScroll;
-    private FullCalendarTimeSlot snapDuration;
+    private String snapDuration;
     private Boolean allDayMaintainDuration;
-    private Boolean eventOverlap;
 
     private Integer longPressDelay;
     private Integer eventLongPressDelay;
@@ -2355,13 +2582,13 @@ public class FullCalendarOptions
     /**
      * The time interval at which a dragged event will snap to the time axis. Also affects the granularity at which selections can be made.
      * <p>
-     * Duration
+     * Duration (ISO 8601 format, e.g., '00:15:00' for 15 minutes)
      * <p>
      * The default value will be whatever slotDuration is, which defaults to half an hour.
      *
      * @return
      */
-    public FullCalendarTimeSlot getSnapDuration()
+    public String getSnapDuration()
     {
         return snapDuration;
     }
@@ -2369,14 +2596,14 @@ public class FullCalendarOptions
     /**
      * The time interval at which a dragged event will snap to the time axis. Also affects the granularity at which selections can be made.
      * <p>
-     * Duration
+     * Duration (ISO 8601 format, e.g., '00:15:00' for 15 minutes)
      * <p>
      * The default value will be whatever slotDuration is, which defaults to half an hour.
      *
      * @param snapDuration
      * @return
      */
-    public FullCalendarOptions setSnapDuration(FullCalendarTimeSlot snapDuration)
+    public FullCalendarOptions setSnapDuration(String snapDuration)
     {
         this.snapDuration = snapDuration;
         return this;
@@ -2413,36 +2640,6 @@ public class FullCalendarOptions
     public FullCalendarOptions setAllDayMaintainDuration(Boolean allDayMaintainDuration)
     {
         this.allDayMaintainDuration = allDayMaintainDuration;
-        return this;
-    }
-
-    /**
-     * Determines if events being dragged and resized are allowed to overlap each other.
-     * <p>
-     * boolean / function. default: true
-     * <p>
-     * If false, no events are allowed to overlap. If true, all events are allowed to overlap (the default).
-     *
-     * @return
-     */
-    public Boolean getEventOverlap()
-    {
-        return eventOverlap;
-    }
-
-    /**
-     * Determines if events being dragged and resized are allowed to overlap each other.
-     * <p>
-     * boolean / function. default: true
-     * <p>
-     * If false, no events are allowed to overlap. If true, all events are allowed to overlap (the default).
-     *
-     * @param eventOverlap
-     * @return
-     */
-    public FullCalendarOptions setEventOverlap(Boolean eventOverlap)
-    {
-        this.eventOverlap = eventOverlap;
         return this;
     }
 
@@ -2649,6 +2846,252 @@ public class FullCalendarOptions
     public FullCalendarOptions setEventResize(String eventResize)
     {
         this.eventResize = eventResize;
+        return this;
+    }
+
+    /**
+     * Callback for when an event drag starts.
+     * Receives event drag start information.
+     * Example: (info) => { console.log('Drag started:', info.event.title); }
+     */
+    @JsonRawValue
+    private String eventDragStart;
+
+    public String getEventDragStart()
+    {
+        return eventDragStart;
+    }
+
+    public FullCalendarOptions setEventDragStart(String eventDragStart)
+    {
+        this.eventDragStart = eventDragStart;
+        return this;
+    }
+
+    /**
+     * Callback for when an event drag stops.
+     * Called after eventDrop if the event was dropped successfully.
+     * Receives event drag stop information.
+     * Example: (info) => { console.log('Drag stopped:', info.event.title); }
+     */
+    @JsonRawValue
+    private String eventDragStop;
+
+    public String getEventDragStop()
+    {
+        return eventDragStop;
+    }
+
+    public FullCalendarOptions setEventDragStop(String eventDragStop)
+    {
+        this.eventDragStop = eventDragStop;
+        return this;
+    }
+
+    /**
+     * Callback for when an event resize starts.
+     * Receives event resize start information.
+     * Example: (info) => { console.log('Resize started:', info.event.title); }
+     */
+    @JsonRawValue
+    private String eventResizeStart;
+
+    public String getEventResizeStart()
+    {
+        return eventResizeStart;
+    }
+
+    public FullCalendarOptions setEventResizeStart(String eventResizeStart)
+    {
+        this.eventResizeStart = eventResizeStart;
+        return this;
+    }
+
+    /**
+     * Callback for when an event resize stops.
+     * Called after eventResize if the event was resized successfully.
+     * Receives event resize stop information.
+     * Example: (info) => { console.log('Resize stopped:', info.event.title); }
+     */
+    @JsonRawValue
+    private String eventResizeStop;
+
+    public String getEventResizeStop()
+    {
+        return eventResizeStop;
+    }
+
+    public FullCalendarOptions setEventResizeStop(String eventResizeStop)
+    {
+        this.eventResizeStop = eventResizeStop;
+        return this;
+    }
+
+    /**
+     * Controls which preset rendering style events use.
+     * Options: 'auto' (default), 'block', 'list-item', 'background', 'inverse-background', 'none'
+     * Example: 'background' renders events as background fills.
+     */
+    private String eventDisplay;
+
+    public String getEventDisplay()
+    {
+        return eventDisplay;
+    }
+
+    public FullCalendarOptions setEventDisplay(String eventDisplay)
+    {
+        this.eventDisplay = eventDisplay;
+        return this;
+    }
+
+    /**
+     * Setting to true will cause all events to be focusable/tabbable.
+     * By default, only events with an event.url property are tabbable.
+     * Can be set per-event via event.interactive property.
+     */
+    private Boolean eventInteractive;
+
+    public Boolean getEventInteractive()
+    {
+        return eventInteractive;
+    }
+
+    public FullCalendarOptions setEventInteractive(Boolean eventInteractive)
+    {
+        this.eventInteractive = eventInteractive;
+        return this;
+    }
+
+    /**
+     * Determines which events can be dropped/moved to the calendar.
+     * Can be a function that returns true/false, or a string with CSS selector.
+     * Example: (dragEvent) => dragEvent.extendedProps.allowed === true
+     */
+    @JsonRawValue
+    private String dropAccept;
+
+    public String getDropAccept()
+    {
+        return dropAccept;
+    }
+
+    public FullCalendarOptions setDropAccept(String dropAccept)
+    {
+        this.dropAccept = dropAccept;
+        return this;
+    }
+
+    /**
+     * Determines if and how events can overlap on the calendar.
+     * Can be a function or boolean value.
+     * Example: false prevents overlaps
+     */
+    @JsonRawValue
+    private String eventOverlap;
+
+    public String getEventOverlap()
+    {
+        return eventOverlap;
+    }
+
+    public FullCalendarOptions setEventOverlap(String eventOverlap)
+    {
+        this.eventOverlap = eventOverlap;
+        return this;
+    }
+
+    /**
+     * Constrains where events can be dragged/resized.
+     * Can be a constraint ID, business hours key, or function.
+     * Example: 'businessHours' restricts to business hours.
+     */
+    @JsonRawValue
+    private String eventConstraint;
+
+    public String getEventConstraint()
+    {
+        return eventConstraint;
+    }
+
+    public FullCalendarOptions setEventConstraint(String eventConstraint)
+    {
+        this.eventConstraint = eventConstraint;
+        return this;
+    }
+
+    /**
+     * Text for the "more" link when dayMaxEvents or dayMaxEventRows limits events.
+     * Can include %d placeholder for event count.
+     * Example: '+%d more' displays as '+2 more' for 2 hidden events.
+     */
+    private String moreLinkText;
+
+    public String getMoreLinkText()
+    {
+        return moreLinkText;
+    }
+
+    public FullCalendarOptions setMoreLinkText(String moreLinkText)
+    {
+        this.moreLinkText = moreLinkText;
+        return this;
+    }
+
+    /**
+     * CSS class names to apply to the more-link element.
+     * Can be a string of class names (space-separated) or an array.
+     * Example: 'text-primary font-bold'
+     */
+    private String moreLinkClassNames;
+
+    public String getMoreLinkClassNames()
+    {
+        return moreLinkClassNames;
+    }
+
+    public FullCalendarOptions setMoreLinkClassNames(String moreLinkClassNames)
+    {
+        this.moreLinkClassNames = moreLinkClassNames;
+        return this;
+    }
+
+    /**
+     * Callback triggered when the more-link is clicked.
+     * Can return a view name to navigate or be a custom function.
+     * Options: 'popover' (default), 'week', 'day', view name, or function.
+     * Example: (info) => { console.log('More link clicked for', info.date); }
+     */
+    @JsonRawValue
+    private String moreLinkClick;
+
+    public String getMoreLinkClick()
+    {
+        return moreLinkClick;
+    }
+
+    public FullCalendarOptions setMoreLinkClick(String moreLinkClick)
+    {
+        this.moreLinkClick = moreLinkClick;
+        return this;
+    }
+
+    /**
+     * Callback for when external events are dropped on the calendar.
+     * Allows custom handling of dropped external items.
+     * Example: (info) => { console.log('Event received:', info.event); }
+     */
+    @JsonRawValue
+    private String eventLeave;
+
+    public String getEventLeave()
+    {
+        return eventLeave;
+    }
+
+    public FullCalendarOptions setEventLeave(String eventLeave)
+    {
+        this.eventLeave = eventLeave;
         return this;
     }
 
