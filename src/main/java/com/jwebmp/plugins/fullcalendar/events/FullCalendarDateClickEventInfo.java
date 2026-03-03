@@ -1,8 +1,8 @@
 package com.jwebmp.plugins.fullcalendar.events;
 
 import com.google.common.base.Strings;
-import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
-import com.guicedee.services.jsonrepresentation.json.LocalDateTimeDeserializer;
+import com.guicedee.modules.services.jsonrepresentation.IJsonRepresentation;
+import com.guicedee.modules.services.jsonrepresentation.json.LocalDateTimeDeserializer;
 import com.jwebmp.plugins.fullcalendar.options.resources.FullCalendarEventResourceInfo;
 
 import java.time.LocalDateTime;

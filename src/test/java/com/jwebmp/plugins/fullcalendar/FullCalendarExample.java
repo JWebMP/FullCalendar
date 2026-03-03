@@ -5,7 +5,7 @@ import com.jwebmp.core.base.angular.client.annotations.angular.NgComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.IComponent;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgApp;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgComponent;
-import com.jwebmp.core.base.angular.services.compiler.JWebMPTypeScriptCompiler;
+import com.jwebmp.core.base.angular.services.compiler.TypeScriptCompiler;
 import com.jwebmp.core.base.html.DivSimple;
 import com.jwebmp.plugins.fullcalendar.events.FullCalendarSelectEventTest;
 
@@ -29,9 +29,9 @@ public class FullCalendarExample extends DivSimple<FullCalendarExample>
     {
         GuiceContext.instance()
                     .inject();
-        for (INgApp<?> app : JWebMPTypeScriptCompiler.getAllApps())
+        for (INgApp<?> app : TypeScriptCompiler.getAllApps())
         {
-            JWebMPTypeScriptCompiler compiler = new JWebMPTypeScriptCompiler(app);
+            TypeScriptCompiler compiler = new TypeScriptCompiler(app);
 
             System.out.println("Generating @NgApp (" + getTsFilename(app.getClass()) + ") " +
                                        "in folder " + IComponent.getClassDirectory(app.getClass()));

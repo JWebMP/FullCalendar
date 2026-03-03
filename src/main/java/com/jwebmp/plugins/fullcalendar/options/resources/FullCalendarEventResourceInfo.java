@@ -2,7 +2,7 @@ package com.jwebmp.plugins.fullcalendar.options.resources;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
+import com.guicedee.modules.services.jsonrepresentation.IJsonRepresentation;
 import com.jwebmp.plugins.fullcalendar.options.FullCalendarBusinessHours;
 
 import java.util.Map;

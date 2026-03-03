@@ -18,7 +18,7 @@ package com.jwebmp.plugins.fullcalendar.options.enumerations;
 
 import com.jwebmp.plugins.fullcalendar.options.toolbars.IFullCalendarHeaderToolbarButton;
 
-import static com.guicedee.services.jsonrepresentation.json.StaticStrings.STRING_SPACE;
+import static com.guicedee.modules.services.jsonrepresentation.json.StaticStrings.STRING_SPACE;
 
 
 /**

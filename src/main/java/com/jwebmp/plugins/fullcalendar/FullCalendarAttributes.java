@@ -18,7 +18,7 @@ package com.jwebmp.plugins.fullcalendar;
 
 import com.jwebmp.core.base.html.interfaces.AttributeDefinitions;
 
-import static com.guicedee.services.jsonrepresentation.json.StaticStrings.*;
+import static com.guicedee.modules.services.jsonrepresentation.json.StaticStrings.*;
 
 
 /**

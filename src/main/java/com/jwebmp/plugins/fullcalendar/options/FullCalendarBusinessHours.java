@@ -2,7 +2,7 @@ package com.jwebmp.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.guicedee.services.jsonrepresentation.IJsonRepresentation;
+import com.guicedee.modules.services.jsonrepresentation.IJsonRepresentation;
 import com.jwebmp.core.base.angular.client.annotations.angular.NgDataType;
 import com.jwebmp.core.base.angular.client.services.interfaces.INgDataType;
 import lombok.Getter;
