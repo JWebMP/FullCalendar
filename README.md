@@ -12,11 +12,11 @@
 ![FullCalendar](https://img.shields.io/badge/FullCalendar-6.1.19-4285F4)
 ![JWebMP](https://img.shields.io/badge/JWebMP-2.0-0A7)
 
-Full-featured calendar integration for JWebMP with Angular 20. Provides server-driven calendar configuration with FullCalendar 6.1.19 for drag-and-drop event scheduling, multiple calendar views, and full timezone support.
+Full-featured calendar integration for JWebMP with Angular 21. Provides server-driven calendar configuration with FullCalendar 6.1.19 for drag-and-drop event scheduling, multiple calendar views, and full timezone support.
 
 Built on [FullCalendar 6](https://fullcalendar.io/) · [Angular FullCalendar](https://github.com/fullcalendar/fullcalendar-angular) · [JWebMP Core](https://jwebmp.com/) · JPMS module `com.jwebmp.plugins.fullcalendar` · Java 25+
 
-**Version: 6.1.19** — Complete FullCalendar integration with Angular 20 and server-side configuration.
+**Version: 6.1.19** — Complete FullCalendar integration with Angular 21 and server-side configuration.
 
 ## Installation
 
@@ -24,7 +24,7 @@ Built on [FullCalendar 6](https://fullcalendar.io/) · [Angular FullCalendar](ht
 <dependency>
   <groupId>com.jwebmp.plugins</groupId>
   <artifactId>full-calendar</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.0-RC1</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ Built on [FullCalendar 6](https://fullcalendar.io/) · [Angular FullCalendar](ht
 <summary>Gradle (Kotlin DSL)</summary>
 
 ```kotlin
-implementation("com.jwebmp.plugins:full-calendar:2.0.0-SNAPSHOT")
+implementation("com.jwebmp.plugins:full-calendar:2.0.0-RC1")
 ```
 </details>
 
@@ -71,7 +71,7 @@ The plugin automatically includes FullCalendar dependencies:
 - **Theming** — Bootstrap 5 theme integration
 - **Mobile Adaptive** — Responsive design with touch support
 - **Type-Safe Java API** — CRTP fluent API for calendar configuration
-- **Angular Integration** — Seamless integration with Angular 20
+- **Angular Integration** — Seamless integration with Angular 21
 - **Server-Driven Config** — Configure calendar from Java backend
 - **JSON Serialization** — Automatic Jackson serialization for Angular binding
 
@@ -82,7 +82,7 @@ The plugin automatically includes FullCalendar dependencies:
 - **Java 25 LTS** (required)
 - **Maven 3.8+**
 - **Node.js 18+** (for frontend builds)
-- **Angular 20+** (auto-integrated via JWebMP)
+- **Angular 21+** (auto-integrated via JWebMP)
 
 ### Basic Usage
 
@@ -230,7 +230,7 @@ public class CalendarResource {
 ### Technology Stack
 
 - **Backend**: Java 25 LTS, Maven, GuicedEE (IoC), Vert.x 5
-- **Frontend**: Angular 20, TypeScript, FullCalendar 6.1.19
+- **Frontend**: Angular 21, TypeScript, FullCalendar 6.1.19
 - **Integration**: JWebMP Page Configurators, ServiceLoader SPI
 - **Calendar**: FullCalendar Core with Angular adapter
 - **Plugins**: DayGrid, TimeGrid, List, Interaction, Bootstrap5, Moment, Luxon
@@ -646,7 +646,7 @@ Contributions are welcome! Please follow these guidelines:
 
 | Aspect | Status |
 |--------|--------|
-| **Version** | 6.1.19 / 2.0.0-SNAPSHOT |
+| **Version** | 6.1.19 / 2.0.0-RC1 |
 | **FullCalendar** | 6.1.19 |
 | **Angular** | 12-20 (aligned) |
 | **Java** | 25 LTS (required) |
