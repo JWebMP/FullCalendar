@@ -24,7 +24,7 @@ Built on [FullCalendar 6](https://fullcalendar.io/) · [Angular FullCalendar](ht
 <dependency>
   <groupId>com.jwebmp.plugins</groupId>
   <artifactId>full-calendar</artifactId>
-  <version>2.0.0-RC8</version>
+  <version>2.0.0-RC9</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ Built on [FullCalendar 6](https://fullcalendar.io/) · [Angular FullCalendar](ht
 <summary>Gradle (Kotlin DSL)</summary>
 
 ```kotlin
-implementation("com.jwebmp.plugins:full-calendar:2.0.0-RC8")
+implementation("com.jwebmp.plugins:full-calendar:2.0.0-RC9")
 ```
 </details>
 
@@ -646,7 +646,7 @@ Contributions are welcome! Please follow these guidelines:
 
 | Aspect | Status |
 |--------|--------|
-| **Version** | 6.1.19 / 2.0.0-RC8 |
+| **Version** | 6.1.19 / 2.0.0-RC9 |
 | **FullCalendar** | 6.1.19 |
 | **Angular** | 12-20 (aligned) |
 | **Java** | 25 LTS (required) |
