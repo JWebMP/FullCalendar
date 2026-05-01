@@ -54,10 +54,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param name
 	 * @return
 	 */
-	public FullCalendarView<J> setName(String name)
+    @SuppressWarnings("unchecked")
+	public J setName(String name)
 	{
 		this.name = name;
-		return this;
+		return (J) this;
 	}
 	
 	/**
@@ -74,10 +75,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param type
 	 * @return
 	 */
-	public FullCalendarView<J> setType(IFullCalendarViewType<?> type)
+    @SuppressWarnings("unchecked")
+	public J setType(IFullCalendarViewType<?> type)
 	{
 		this.type = type;
-		return this;
+		return (J) this;
 	}
 	
 	/**
@@ -85,10 +87,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param type
 	 * @return
 	 */
-	public FullCalendarView<J> setType(FullCalendarDefaultViews type)
+    @SuppressWarnings("unchecked")
+	public J setType(FullCalendarDefaultViews type)
 	{
 		this.type = type;
-		return this;
+		return (J) this;
 	}
 	
 	
@@ -110,10 +113,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param title
 	 * @return
 	 */
-	public FullCalendarView<J> setTitle(FullCalendarTitleFormat title)
+    @SuppressWarnings("unchecked")
+	public J setTitle(FullCalendarTitleFormat title)
 	{
 		this.title = title;
-		return this;
+		return (J) this;
 	}
 	
 	/**
@@ -130,10 +134,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param activeStart
 	 * @return
 	 */
-	public FullCalendarView<J> setActiveStart(LocalDateTime activeStart)
+    @SuppressWarnings("unchecked")
+	public J setActiveStart(LocalDateTime activeStart)
 	{
 		this.activeStart = activeStart;
-		return this;
+		return (J) this;
 	}
 	
 	/**
@@ -150,10 +155,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param activeEnd
 	 * @return
 	 */
-	public FullCalendarView<J> setActiveEnd(LocalDateTime activeEnd)
+    @SuppressWarnings("unchecked")
+	public J setActiveEnd(LocalDateTime activeEnd)
 	{
 		this.activeEnd = activeEnd;
-		return this;
+		return (J) this;
 	}
 	
 	/**
@@ -170,10 +176,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param currentStart
 	 * @return
 	 */
-	public FullCalendarView<J> setCurrentStart(LocalDateTime currentStart)
+    @SuppressWarnings("unchecked")
+	public J setCurrentStart(LocalDateTime currentStart)
 	{
 		this.currentStart = currentStart;
-		return this;
+		return (J) this;
 	}
 	
 	/**
@@ -190,10 +197,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 	 * @param currentEnd
 	 * @return
 	 */
-	public FullCalendarView<J> setCurrentEnd(LocalDateTime currentEnd)
+    @SuppressWarnings("unchecked")
+	public J setCurrentEnd(LocalDateTime currentEnd)
 	{
 		this.currentEnd = currentEnd;
-		return this;
+		return (J) this;
 	}
 	
 	public FullCalendarViewDuration getDuration()
@@ -205,10 +213,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 		return duration;
 	}
 	
-	public FullCalendarView<J> setDuration(FullCalendarViewDuration duration)
+    @SuppressWarnings("unchecked")
+	public J setDuration(FullCalendarViewDuration duration)
 	{
 		this.duration = duration;
-		return this;
+		return (J) this;
 	}
 	
 	public Integer getDayCount()
@@ -216,10 +225,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 		return dayCount;
 	}
 	
-	public FullCalendarView<J> setDayCount(Integer dayCount)
+    @SuppressWarnings("unchecked")
+	public J setDayCount(Integer dayCount)
 	{
 		this.dayCount = dayCount;
-		return this;
+		return (J) this;
 	}
 	
 	public String getButtonText()
@@ -227,10 +237,11 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 		return buttonText;
 	}
 	
-	public FullCalendarView<J> setButtonText(String buttonText)
+    @SuppressWarnings("unchecked")
+	public J setButtonText(String buttonText)
 	{
 		this.buttonText = buttonText;
-		return this;
+		return (J) this;
 	}
 	
 	public FullCalendarVisibleRange getVisibleRange()
@@ -242,9 +253,10 @@ public class FullCalendarView<J extends FullCalendarView<J>> extends JavaScriptP
 		return visibleRange;
 	}
 	
-	public FullCalendarView<J> setVisibleRange(FullCalendarVisibleRange visibleRange)
+    @SuppressWarnings("unchecked")
+	public J setVisibleRange(FullCalendarVisibleRange visibleRange)
 	{
 		this.visibleRange = visibleRange;
-		return this;
+		return (J) this;
 	}
 }

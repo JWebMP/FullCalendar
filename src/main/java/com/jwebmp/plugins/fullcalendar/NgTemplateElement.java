@@ -24,7 +24,7 @@ import jakarta.validation.constraints.NotNull;
  * calendar.add(template);
  * </pre>
  */
-public class NgTemplateElement extends DivSimple<NgTemplateElement> implements FullCalendarChildren
+public class NgTemplateElement<J extends NgTemplateElement<J>> extends DivSimple<J> implements FullCalendarChildren
 {
     public NgTemplateElement()
     {
@@ -64,27 +64,28 @@ public class NgTemplateElement extends DivSimple<NgTemplateElement> implements F
     /**
      * Adds the standard Angular local variable binding used by FullCalendar templates: let-arg
      */
-    public NgTemplateElement withLetArg()
+    @SuppressWarnings("unchecked")
+    public J withLetArg()
     {
         addAttribute("let-arg", "");
-        return this;
+        return (J) this;
     }
 
     /**
      * Add raw inner HTML/text into the template.
      */
     @Override
-    public @NotNull NgTemplateElement add(@NotNull String textToAdd)
+    public @NotNull J add(@NotNull String textToAdd)
     {
-        return super.add(textToAdd);
+        return (J) super.add(textToAdd);
     }
 
     /**
      * Add child components as inner content of the template.
      */
     @Override
-    public @NotNull NgTemplateElement add(@NotNull GlobalChildren newChild)
+    public @NotNull J add(@NotNull GlobalChildren newChild)
     {
-        return super.add(newChild);
+        return (J)super.add(newChild);
     }
 }

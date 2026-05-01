@@ -21,10 +21,11 @@ public class FullCalendarViewDuration<J extends FullCalendarViewDuration<J>> ext
         return years;
     }
 
-    public FullCalendarViewDuration setYears(String years)
+    @SuppressWarnings("unchecked")
+    public J setYears(String years)
     {
         this.years = years;
-        return this;
+        return (J) this;
     }
 
     public String getMonths()
@@ -32,10 +33,11 @@ public class FullCalendarViewDuration<J extends FullCalendarViewDuration<J>> ext
         return months;
     }
 
-    public FullCalendarViewDuration setMonths(String months)
+    @SuppressWarnings("unchecked")
+    public J setMonths(String months)
     {
         this.months = months;
-        return this;
+        return (J) this;
     }
 
     public String getWeeks()
@@ -43,10 +45,11 @@ public class FullCalendarViewDuration<J extends FullCalendarViewDuration<J>> ext
         return weeks;
     }
 
-    public FullCalendarViewDuration setWeeks(String weeks)
+    @SuppressWarnings("unchecked")
+    public J setWeeks(String weeks)
     {
         this.weeks = weeks;
-        return this;
+        return (J) this;
     }
 
     public Integer getDays()
@@ -54,9 +57,10 @@ public class FullCalendarViewDuration<J extends FullCalendarViewDuration<J>> ext
         return days;
     }
 
-    public FullCalendarViewDuration setDays(Integer days)
+    @SuppressWarnings("unchecked")
+    public J setDays(Integer days)
     {
         this.days = days;
-        return this;
+        return (J) this;
     }
 }
