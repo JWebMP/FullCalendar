@@ -24,7 +24,7 @@ Built on [FullCalendar 6](https://fullcalendar.io/) · [Angular FullCalendar](ht
 <dependency>
   <groupId>com.jwebmp.plugins</groupId>
   <artifactId>full-calendar</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.3-SNAPSHOT</version>
 </dependency>
 ```
 
