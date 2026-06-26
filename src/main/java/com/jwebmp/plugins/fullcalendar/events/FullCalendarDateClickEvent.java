@@ -1,6 +1,6 @@
 package com.jwebmp.plugins.fullcalendar.events;
 
-import com.fasterxml.jackson.databind.*;
+import tools.jackson.databind.*;
 import com.guicedee.client.IGuiceContext;
 
 import com.jwebmp.core.base.ajax.*;

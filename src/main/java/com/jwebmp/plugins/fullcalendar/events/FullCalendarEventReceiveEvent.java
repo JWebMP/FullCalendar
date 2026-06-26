@@ -1,6 +1,6 @@
 package com.jwebmp.plugins.fullcalendar.events;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.guicedee.client.IGuiceContext;
 import com.jwebmp.core.base.ajax.AjaxCall;
 import com.jwebmp.core.base.ajax.AjaxResponse;

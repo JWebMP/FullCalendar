@@ -17,8 +17,8 @@
 package com.jwebmp.plugins.fullcalendar.options;
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
 import com.guicedee.client.IGuiceContext;
 import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
 import com.jwebmp.core.base.servlets.interfaces.IDataComponent;
@@ -251,7 +251,7 @@ public class FullCalendarOptions
             return new StringBuilder(IGuiceContext.get(ObjectMapper.class)
                                                   .writeValueAsString(getEvents()));
         }
-        catch (JsonProcessingException e)
+        catch (JacksonException e)
         {
             return new StringBuilder();
         }

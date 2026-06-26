@@ -10,8 +10,8 @@ module com.jwebmp.plugins.fullcalendar {
     requires com.jwebmp.client;
     requires com.jwebmp.core;
 
-    requires com.fasterxml.jackson.databind;
-    requires com.fasterxml.jackson.core;
+    requires tools.jackson.databind;
+    requires tools.jackson.core;
     requires com.guicedee.jsonrepresentation;
     requires com.guicedee.vertx;
     requires com.jwebmp.core.angular;
@@ -23,24 +23,24 @@ module com.jwebmp.plugins.fullcalendar {
     provides IGuiceScanModuleInclusions with FullCalendarInclusionModule;
 
 
-    opens com.jwebmp.plugins.fullcalendar to com.fasterxml.jackson.databind, com.jwebmp.core;
-    opens com.jwebmp.plugins.fullcalendar.options to com.fasterxml.jackson.databind, com.jwebmp.core;
-    opens com.jwebmp.plugins.fullcalendar.options.enumerations to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar to tools.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options to tools.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options.enumerations to tools.jackson.databind, com.jwebmp.core;
 
     exports com.jwebmp.plugins.fullcalendar.events;
-    opens com.jwebmp.plugins.fullcalendar.events to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.events to tools.jackson.databind, com.jwebmp.core;
 
     exports com.jwebmp.plugins.fullcalendar.options.views;
-    opens com.jwebmp.plugins.fullcalendar.options.views to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options.views to tools.jackson.databind, com.jwebmp.core;
 
     exports com.jwebmp.plugins.fullcalendar.options.views.defaults;
-    opens com.jwebmp.plugins.fullcalendar.options.views.defaults to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options.views.defaults to tools.jackson.databind, com.jwebmp.core;
 
     exports com.jwebmp.plugins.fullcalendar.options.toolbars;
-    opens com.jwebmp.plugins.fullcalendar.options.toolbars to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options.toolbars to tools.jackson.databind, com.jwebmp.core;
 
     exports com.jwebmp.plugins.fullcalendar.options.titles;
-    opens com.jwebmp.plugins.fullcalendar.options.titles to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options.titles to tools.jackson.databind, com.jwebmp.core;
     exports com.jwebmp.plugins.fullcalendar.options.resources;
-    opens com.jwebmp.plugins.fullcalendar.options.resources to com.fasterxml.jackson.databind, com.jwebmp.core;
+    opens com.jwebmp.plugins.fullcalendar.options.resources to tools.jackson.databind, com.jwebmp.core;
 }
