@@ -27,11 +27,11 @@ public class FullCalendarDateClickEvent extends ClickAdapter<FullCalendarDateCli
     {
         LinkedHashMap map = (LinkedHashMap) call.getUnknownFields()
                                                 .get("infoObj");
-        LinkedHashMap<String, String> info = (LinkedHashMap<String, String>) map.get("event");
-
+        //LinkedHashMap<String, String> info = (LinkedHashMap<String, String>) map.get("event");
         ObjectMapper mapper = IGuiceContext.get(DefaultObjectMapper);
-        FullCalendarDateClickEventInfo el = mapper.convertValue(info, FullCalendarDateClickEventInfo.class);
-        el.updateDates();
+        FullCalendarDateClickEventInfo el = mapper.convertValue(map, FullCalendarDateClickEventInfo.class);
+        if(el != null)
+            el.updateDates();
         onDateClick(call, response, el);
         return Uni.createFrom()
                   .voidItem();

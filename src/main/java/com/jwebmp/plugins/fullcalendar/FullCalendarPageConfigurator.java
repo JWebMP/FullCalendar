@@ -32,7 +32,7 @@ import jakarta.validation.constraints.NotNull;
 @PluginInformation(pluginName = "Full Calendar",
         pluginUniqueName = "full-calendar",
         pluginDescription = "Full Calendar is a free, open-source project that enables you to design full calendar-like features and functions that is fully interactive, ajax controlled and mobile friendly. ",
-        pluginVersion = "6.1.19",
+        pluginVersion = "6.1.21",
         pluginDependancyUniqueIDs = "jquery,moment",
         pluginCategories = "jquery, calendar, schedular, event planner, events, ui, web",
         pluginSubtitle = "Display a full-size drag-n-drop event calendar, leveraging jQuery. ",
@@ -50,18 +50,19 @@ import jakarta.validation.constraints.NotNull;
         pluginModuleName = "com.jwebmp.plugins.fullcalendar",
         pluginStatus = PluginStatus.Released
 )
-@TsDependency(value = "@fullcalendar/angular", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/adaptive", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/daygrid", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/timegrid", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/list", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/interaction", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/scrollgrid", version = "^6.1.19")
+@TsDependency(value = "@fullcalendar/angular", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/core", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/adaptive", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/daygrid", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/timegrid", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/list", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/interaction", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/scrollgrid", version = "^6.1.21")
 //TODO only when the selected theme is bootstrap 5
-@TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/luxon2", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/moment", version = "^6.1.19")
-@TsDependency(value = "@fullcalendar/moment-timezone", version = "^6.1.19")
+@TsDependency(value = "@fullcalendar/bootstrap5", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/luxon2", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/moment", version = "^6.1.21")
+@TsDependency(value = "@fullcalendar/moment-timezone", version = "^6.1.21")
 public class FullCalendarPageConfigurator
         implements IPageConfigurator<FullCalendarPageConfigurator>
 {
